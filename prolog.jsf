@@ -1,0 +1,91 @@
+# JOE syntax highlight file for Prolog
+
+=Idle
+=Comment green
+=Constant cyan
+=Escape bold cyan
+=Variable cyan
+=Keyword bold
+=Bad bold red
+
+:idle Idle
+	*		idle
+	"%"		comment	recolor=-1
+	"0-9"		first_digit	recolor=-1
+	"'"		string_sq_1	recolor=-1
+	"\""	string_dq_1	recolor=-1
+	"a-z"		atom	buffer
+	"A-Z"		variable	recolor=-1
+	"_"		_variable
+
+:comment Comment
+	*		comment
+	"\n"	idle
+
+:string_sq_1 Constant
+	*		string_sq	noeat
+
+:string_sq Constant
+	*		string_sq
+	"\'"		idle
+	"\\"		string_sq_esc	recolor=-1
+
+:string_sq_esc Escape
+	*		string_sq
+	"\n"		string_sq	recolor=-2
+
+:string_dq_1 Constant
+	*		string_dq	noeat
+
+:string_dq Constant
+	*		string_dq
+	"\""		idle
+	"\\"		string_dq_esc	recolor=-1
+
+:string_dq_esc Escape
+	*		string_dq
+	"\n"		string_dq	recolor=-2
+
+:first_digit Constant
+	*		idle	noeat
+	# no float support
+#	"."		float
+	"0-9"		first_number
+
+:first_number Constant
+	*		idle	noeat
+	"0-9"		first_number
+	"."		float
+
+:float Constant
+	*		idle	noeat
+	"eE"		epart
+	"0-9"		float
+
+:epart Constant
+	*		idle	noeat
+	"0-9+\-"	enum
+
+:enum Constant
+	*		idle	noeat
+	"0-9"		enum
+
+:atom Idle
+	*		idle	noeat strings
+	"write"		kw
+	"nl"		kw
+	"fail"		kw
+done
+	"a-zA-Z0-9_"	atom
+	
+:kw Keyword
+	*		idle	noeat
+
+:variable Variable
+	*		idle	noeat
+	"a-zA-Z0-9_"	variable
+
+:_variable Idle
+	*		idle	noeat
+	# if it's not only _, color it
+	"a-zA-Z0-9_"	variable	recolor=-2
