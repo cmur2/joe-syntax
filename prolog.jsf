@@ -8,19 +8,41 @@
 =Keyword bold
 =Bad bold red
 
+# since lists are important...
+=Brace magenta
+
 :idle Idle
 	*		idle
-	"%"		comment	recolor=-1
+	"\n"		idle
+	"%"		line_comment	recolor=-1
+	"/"		maybe_comment
 	"0-9"		first_digit	recolor=-1
 	"'"		string_sq_1	recolor=-1
 	"\""	string_dq_1	recolor=-1
 	"a-z"		atom	buffer
 	"A-Z"		variable	recolor=-1
 	"_"		_variable
+	"[]"		brace	recolor=-1
+
+:line_comment Comment
+	*		line_comment
+	"\n"	idle
+
+:maybe_comment Idle
+	*		idle	noeat
+	"*"		comment	recolor=-2
 
 :comment Comment
 	*		comment
-	"\n"	idle
+	"*"		maybe_end_comment
+
+:maybe_end_comment Comment
+	*		comment
+	"/"		idle
+	"*"		maybe_end_comment
+
+:brace Brace
+	*		idle	noeat
 
 :string_sq_1 Constant
 	*		string_sq	noeat
@@ -70,11 +92,35 @@
 	*		idle	noeat
 	"0-9"		enum
 
+# list of keywords includes some predicates...
 :atom Idle
 	*		idle	noeat strings
-	"write"		kw
-	"nl"		kw
+	"append"	kw
+	"atom"		kw
+	"atomic"	kw
+	"call"		kw
+	"catch"		kw
+	"clause"	kw
+	"close"		kw
 	"fail"		kw
+	"findall"	kw
+	"float"		kw
+	"halt"		kw
+	"integer"	kw
+	"is"		kw
+	"member"	kw
+	"nl"		kw
+	"nonvar"	kw
+	"number"	kw
+	"once"		kw
+	"op"		kw
+	"open"		kw
+	"read"		kw
+	"repeat"	kw
+	"throw"		kw
+	"true"		kw
+	"var"		kw
+	"write"		kw
 done
 	"a-zA-Z0-9_"	atom
 	
