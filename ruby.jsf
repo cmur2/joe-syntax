@@ -6,7 +6,6 @@
 # EOF2.
 
 =Idle
-=Preproc blue
 =Comment green
 =POD green
 =Constant cyan
@@ -19,7 +18,7 @@
 =CommentTODO bold green
 =Symbol red
 =ProcArg #yellow
-=ClassMember #fg_310 # brown
+=ClassMember fg_310 # brown
 
 # Detect pod
 
@@ -48,7 +47,7 @@
 	# added
 	":"		maybe_symbol	noeat
 	"|"		proc_arg
-	"@"		class_member	recolor=-1
+	"@"		class_member1
 
 # / / regex not allowed after terms
 
@@ -480,18 +479,23 @@ done
 	*		rest	noeat
 	"a-zA-Z0-9_"	symbol recolor=-3
 
-:proc_arg	ProcArg
+:proc_arg ProcArg
 	*		rest	noeat
 	","		proc_arg_sep noeat
 	"a-zA-Z_"	proc_arg
 	
-:proc_arg_sep	Idle
+:proc_arg_sep Idle
 	*		proc_arg
 	
-:class_member1	ClassMember
+:class_member1 Idle
 	*		rest	noeat
-	"a-zA-Z_"	class_member
-	
-:class_member	ClassMember
+	"a-zA-Z_"	class_member	recolor=-2
+	"@"		class_member2
+
+:class_member2 ClassMember
+	*		rest	noeat
+	"a-zA-Z_"	class_member	recolor=-3
+
+:class_member ClassMember
 	*		rest	noeat
 	"a-zA-Z0-9_"	class_member
