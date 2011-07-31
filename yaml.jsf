@@ -1,0 +1,13 @@
+# JOE syntax highlight file for Prolog
+
+=Idle
+=Comment green
+=Bad bold red
+
+:idle Idle
+	*		idle
+	"#"		line_comment	recolor=-1
+
+:line_comment Comment
+	*		line_comment
+	"\n"		idle
