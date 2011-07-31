@@ -8,32 +8,7 @@
 :idle Idle
 	*		idle
 	"#"		line_comment	recolor=-1
-	"\t"	tab_indent
-	"-"		maybe_block1
-	"\n"	line_start
 
 :line_comment Comment
 	*		line_comment
-	"\n"		idle	noeat
-
-:line_start Idle
-	*		idle	noeat #dont eat might be the next \n
-	"#"		line_comment	recolor=-1
-	"\t"	tab_indent
-	"-"		maybe_block1
-
-# mark whole line as Bad
-:tab_indent Bad
-	*		tab_indent
-	"\n"	idle	noeat
-
-:maybe_block1 Idle
-	*		idle	noeat #dont eat might be the next \n
-	"-"		maybe_block2
-
-:maybe_block2 Idle
-	*		idle	noeat #dont eat might be the next \n
-	"-"		block	recolor=-3
-
-:block BlockDelim
-	*		idle	noeat #dont eat might be the next \n
+	"\n"		idle
