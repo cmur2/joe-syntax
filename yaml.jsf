@@ -1,14 +1,115 @@
-# JOE syntax highlight file for Prolog
+# JOE syntax highlight file for YAML
 
 =Idle
 =Comment green
-=BlockDelim bold
+=Constant cyan
+=Escape bold cyan
+=Keyword bold
 =Bad bold red
+
+=Brace magenta
+=BlockDelim bold blue
+=Reference yellow
+=LocalDatatype fg_310 # brown
+=Directive red
 
 :idle Idle
 	*		idle
+	"%"		directive	recolor=-1
 	"#"		line_comment	recolor=-1
+	"'"		string_sq_1 recolor=-1
+	"\""	string_dq_1 recolor=-1
+	"{[]}"	brace	recolor=-1
+	"-"		maybe_block1
+	"."		maybe_block_end1
+	"*&"	maybe_reference
+	"!"		maybe_datacast
 
 :line_comment Comment
 	*		line_comment
 	"\n"		idle
+
+:brace Brace
+	*		idle	noeat
+
+:directive Directive
+	*		directive
+	"\n"		idle
+
+:string_sq_1 Constant
+	*		string_sq	noeat
+
+:string_sq Constant
+	*		string_sq
+	"\'"		idle
+	"\\"		string_sq_esc	recolor=-1
+
+:string_sq_esc Escape
+	*		string_sq
+	"\n"		string_sq	recolor=-2
+
+:string_dq_1 Constant
+	*		string_dq	noeat
+
+:string_dq Constant
+	*		string_dq
+	"\""		idle
+	"\\"		string_dq_esc	recolor=-1
+
+:string_dq_esc Escape
+	*		string_dq
+	"\n"		string_dq	recolor=-2
+
+:maybe_block1 Idle
+	*		idle	noeat
+	"-"		maybe_block2
+
+:maybe_block2 Idle
+	*		idle	noeat
+	"-"		block	recolor=-3
+
+:block BlockDelim
+	*		idle	noeat
+
+:maybe_block_end1 Idle
+	*		idle	noeat
+	"."		maybe_block_end2
+
+:maybe_block_end2 Idle
+	*		idle	noeat
+	"."		block_end	recolor=-3
+
+:block_end BlockDelim
+	*		idle	noeat
+
+:maybe_reference Idle
+	*		idle
+	"a-zA-Z_"	reference	recolor=-2
+
+:reference Reference
+	*		idle	noeat
+	"a-zA-Z0-9_"	reference
+
+:maybe_datacast Idle
+	*		idle	noeat
+	"a-zA-Z_"		local_datatype	recolor=-1
+	"!"		builtin_datatype1
+
+:builtin_datatype1 Idle
+	*		idle	noeat
+	"a-zA-Z"		builtin_datatype	buffer
+
+:builtin_datatype Idle
+	*		idle	noeat strings
+	"str"		dt
+	"float"		dt
+	"binary"	dt
+done
+	"a-zA-Z_"	builtin_datatype
+
+:dt Keyword
+	*		idle	noeat
+
+:local_datatype	LocalDatatype
+	*		idle	noeat
+	"a-zA-Z_"	local_datatype
