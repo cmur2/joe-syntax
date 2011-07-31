@@ -1,0 +1,33 @@
+# JOE syntax highlight file for Markdown
+
+# And yes, this *is* a joke :p
+
+# bold parsing is not that perfect since this works: **bold__
+
+=Idle
+=Bold bold
+
+:idle Idle
+	*		idle
+	"\\"		slash
+	"*_"		maybe_bold1
+
+# do escaping of *_
+:slash Idle
+	*		idle
+	"*_"		idle
+
+:maybe_bold1 Idle
+	*		idle	noeat
+	"*_"		bold	recolor=-2
+
+:bold Bold
+	*		bold
+	"*_"		maybe_end_bold
+
+:maybe_end_bold Bold
+	*		bold
+	"*_"		end_bold
+
+:end_bold Bold
+	*		idle	noeat
