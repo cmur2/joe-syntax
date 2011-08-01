@@ -8,8 +8,8 @@
 =Keyword bold
 =Bad bold red
 
-# since lists are important...
-=Brace magenta
+=Brace
+=Predicate red
 
 :idle Idle
 	*		idle
@@ -137,7 +137,7 @@ done
 	"("		pred_end	recolormark
 	":"		maybe_pred_end
 
-:pred_end Bad
+:pred_end Predicate
 	*		idle		noeat
 
 :maybe_pred_end Idle
