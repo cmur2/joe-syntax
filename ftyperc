@@ -683,12 +683,13 @@
 -autoindent
 -syntax jsf
 -smarthome
-
+-tab 8
 
 *.jsf.in
 -autoindent
 -syntax jsf
 -smarthome
+-tab 8
 
  Autoconfig file
 *.ac
