@@ -18,8 +18,8 @@
 	"*_"		idle
 
 :maybe_bold1 Idle
-	*		idle	noeat
-	"*_"		bold	recolor=-2
+	*		idle		noeat
+	"*_"		bold		recolor=-2
 
 :bold Bold
 	*		bold
@@ -30,4 +30,4 @@
 	"*_"		end_bold
 
 :end_bold Bold
-	*		idle	noeat
+	*		idle		noeat

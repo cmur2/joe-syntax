@@ -36,7 +36,7 @@
 	"\n"		idle
 	"{}"		brace		recolor=-1
 	"0"		first_digit	recolor=-1
-	"1-9"		decimal	recolor=-1
+	"1-9"		decimal		recolor=-1
 	"."		maybe_float
 	"\""		string		recolor=-1
 	"'"		char		recolor=-1
@@ -178,15 +178,15 @@ done
 # and color it so - else we are wrong with the guess that it's a todo-keyword
 # so it's a normal 'Comment'
 :line_comment_todo_guess Comment
-	*		line_comment_todo_unknown	noeat strings
-	"TODO"	line_comment_todo
-	"FIXME"	line_comment_todo
-	"BUG"	line_comment_todo
-	"XXX"	line_comment_todo
+	*		line_comment_todo_unkwn	noeat strings
+	"TODO"		line_comment_todo
+	"FIXME"		line_comment_todo
+	"BUG"		line_comment_todo
+	"XXX"		line_comment_todo
 done
-	"A-Z"	line_comment_todo_guess
+	"A-Z"		line_comment_todo_guess
 	
-:line_comment_todo_unknown Idle
+:line_comment_todo_unkwn Idle
 	*		line_comment_i noeat
 
 :line_comment_todo CommentTODO
@@ -470,39 +470,39 @@ done
 	*		repl
 
 :maybe_symbol Idle
-	*	rest	noeat
-	":"	maybe_symbol2
+	*		rest		noeat
+	":"		maybe_symbol2
 
 :maybe_symbol2 Idle
-	*	rest	noeat
+	*		rest		noeat
 	# prevent wrong Module::Member detection
-	":" rest
+	":"		rest
 	# first char mustn't be 0-9
 	"a-zA-Z_"	symbol
 #	# might be a :"symbol"
 #	"\""
 
 :symbol Symbol
-	*		rest	noeat
-	"a-zA-Z0-9_"	symbol recolor=-3
+	*		rest		noeat
+	"a-zA-Z0-9_"	symbol		recolor=-3
 
 :proc_arg ProcArg
-	*		rest	noeat
-	","		proc_arg_sep noeat
+	*		rest		noeat
+	","		proc_arg_sep 	noeat
 	"a-zA-Z_"	proc_arg
 	
 :proc_arg_sep Idle
 	*		proc_arg
 	
 :class_member1 Idle
-	*		rest	noeat
+	*		rest		noeat
 	"a-zA-Z_"	class_member	recolor=-2
 	"@"		class_member2
 
 :class_member2 ClassMember
-	*		rest	noeat
+	*		rest		noeat
 	"a-zA-Z_"	class_member	recolor=-3
 
 :class_member ClassMember
-	*		rest	noeat
+	*		rest		noeat
 	"a-zA-Z0-9_"	class_member

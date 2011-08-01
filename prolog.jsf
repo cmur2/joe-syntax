@@ -18,19 +18,19 @@
 	"/"		maybe_comment
 	"0-9"		first_digit	recolor=-1
 	"'"		string_sq_1	recolor=-1
-	"\""	string_dq_1	recolor=-1
-	"a-z"		atom	buffer
+	"\""		string_dq_1	recolor=-1
+	"a-z"		atom		buffer
 	"A-Z"		variable	recolor=-1
 	"_"		_variable
-	"[]"		brace	recolor=-1
+	"[]"		brace		recolor=-1
 
 :line_comment Comment
 	*		line_comment
-	"\n"	idle
+	"\n"		idle
 
 :maybe_comment Idle
-	*		idle	noeat
-	"*"		comment	recolor=-2
+	*		idle		noeat
+	"*"		comment		recolor=-2
 
 :comment Comment
 	*		comment
@@ -42,7 +42,7 @@
 	"*"		maybe_end_comment
 
 :brace Brace
-	*		idle	noeat
+	*		idle		noeat
 
 :string_sq_1 Constant
 	*		string_sq	noeat
@@ -69,32 +69,32 @@
 	"\n"		string_dq	recolor=-2
 
 :first_digit Constant
-	*		idle	noeat
+	*		idle		noeat
 	# no float support
 #	"."		float
 	"0-9"		first_number
 
 :first_number Constant
-	*		idle	noeat
+	*		idle		noeat
 	"0-9"		first_number
 	"."		float
 
 :float Constant
-	*		idle	noeat
+	*		idle		noeat
 	"eE"		epart
 	"0-9"		float
 
 :epart Constant
-	*		idle	noeat
+	*		idle		noeat
 	"0-9+\-"	enum
 
 :enum Constant
-	*		idle	noeat
+	*		idle		noeat
 	"0-9"		enum
 
 # list of keywords includes some predicates...
 :atom Idle
-	*		idle	noeat strings
+	*		idle		noeat strings
 	"append"	kw
 	"atom"		kw
 	"atomic"	kw
@@ -125,13 +125,13 @@ done
 	"a-zA-Z0-9_"	atom
 	
 :kw Keyword
-	*		idle	noeat
+	*		idle		noeat
 
 :variable Variable
-	*		idle	noeat
+	*		idle		noeat
 	"a-zA-Z0-9_"	variable
 
 :_variable Idle
-	*		idle	noeat
+	*		idle		noeat
 	# if it's not only _, color it
 	"a-zA-Z0-9_"	variable	recolor=-2
