@@ -34,7 +34,7 @@
 	*		rest
 	"#"		line_comment_i	recolor=-1
 	"\n"		idle
-	"{[]}"		brace		recolor=-1
+	"{}"		brace		recolor=-1
 	"0"		first_digit	recolor=-1
 	"1-9"		decimal	recolor=-1
 	"."		maybe_float
@@ -56,7 +56,7 @@
 
 :after_term Idle
 	*		rest	noeat
-	"{[]}"		brace	recolor=-1
+	"{}"		brace	recolor=-1
 	" 	)"	after_term
 	"/%"		rest
 
