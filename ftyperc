@@ -753,3 +753,19 @@
 *jpicorc.in
 -syntax joerc
 
+ Markdown
+*.md
+-syntax md
+
+ YAML
+*.yml
+-autoindent
+-smarthome
+-smartbacks
+-syntax yaml
+
+*.yaml
+-autoindent
+-smarthome
+-smartbacks
+-syntax yaml
