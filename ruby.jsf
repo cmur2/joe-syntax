@@ -15,7 +15,9 @@
 =Bad bold red
 =Var yellow
 
+=Brace magenta
 =CommentTODO bold green
+
 =Symbol red
 =ProcArg #yellow
 =ClassMember fg_310 # brown
@@ -43,8 +45,9 @@
 	"$"		not_string	buffer
 	"%"		pstring
 	"a-zA-Z_"	ident		buffer
+	"{[]}"		brace		recolor=-1
 
-	# added
+	# higher level, ruby specific
 	":"		maybe_symbol	noeat
 	"|"		proc_arg
 	"@"		class_member1
@@ -153,6 +156,9 @@ done
 	*		rest noeat
 	"A-Za-z_"	ident
 	"\"'`#/"	rest
+
+:brace Brace
+	*		idle		noeat
 
 :line_comment Comment
 	*		line_comment
