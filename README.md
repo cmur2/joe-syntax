@@ -7,7 +7,11 @@ For a description about how JOEs jsf parser works, see the header of
 Another good resource might be
 [jsf.jsf](http://joe-editor.hg.sourceforge.net/hgweb/joe-editor/joe-editor/file/tip/syntax/jsf.jsf.in).
 
-Other Syntax Files
-------------------
+### ftyperc
+
+To enable to enhanced *ftyperc* without overwriting '/etc/joe/ftyperc',
+you may place the modified one in '~/.joe/' as '~/.joe/ftyperc'.
+
+### Other Syntax Files
 
 * [d.jsf](https://gist.github.com/1032393)
