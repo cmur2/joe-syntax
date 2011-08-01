@@ -34,6 +34,7 @@
 	*		rest
 	"#"		line_comment_i	recolor=-1
 	"\n"		idle
+	"{[]}"		brace		recolor=-1
 	"0"		first_digit	recolor=-1
 	"1-9"		decimal	recolor=-1
 	"."		maybe_float
@@ -45,7 +46,6 @@
 	"$"		not_string	buffer
 	"%"		pstring
 	"a-zA-Z_"	ident		buffer
-	"{[]}"		brace		recolor=-1
 
 	# higher level, ruby specific
 	":"		maybe_symbol	noeat
@@ -56,7 +56,8 @@
 
 :after_term Idle
 	*		rest	noeat
-	" 	)]"	after_term
+	"{[]}"		brace	recolor=-1
+	" 	)"	after_term
 	"/%"		rest
 
 :pod_start Idle
@@ -158,7 +159,7 @@ done
 	"\"'`#/"	rest
 
 :brace Brace
-	*		idle		noeat
+	*		rest		noeat
 
 :line_comment Comment
 	*		line_comment
