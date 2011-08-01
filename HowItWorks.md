@@ -6,8 +6,9 @@ A (deterministic) state machine which performs lexical analysis of C.
 program could be used to convert a regular expression NFA syntax into this
 format).
 
-Each state begins with ':<name> <color-name>'
-<color-name> is the color used for characters eaten by the state
+Each state begins with
+    ':<name> <color-name>'
+\<color-name\> is the color used for characters eaten by the state
 (really a symbol for a user definable color).
 
 The first state defined is the initial state.
