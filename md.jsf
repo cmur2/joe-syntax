@@ -5,15 +5,16 @@
 # bold parsing is not that perfect since this works: **bold__
 
 =Idle
+=Escape bold
 =Bold bold
 
 :idle Idle
 	*		idle
-	"\\"		slash
+	"\\"		slash		recolor=-1
 	"*_"		maybe_bold1
 
 # do escaping of *_
-:slash Idle
+:slash Escape
 	*		idle
 	"*_"		idle
 

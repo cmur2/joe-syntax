@@ -6,15 +6,19 @@ A (deterministic) state machine which performs lexical analysis of C.
 program could be used to convert a regular expression NFA syntax into this
 format).
 
-Each state begins with
-    ':<name> <color-name>'
+Each state begins with:
+
+    :<name> <color-name>
+
 \<color-name\> is the color used for characters eaten by the state
 (really a symbol for a user definable color).
 
 The first state defined is the initial state.
 
 Within a state, define transitions (jumps) to other states.  Each
-jump has the form: <character-list> <target-state> [<option>s]
+jump has the form:
+
+	<character-list> <target-state> [<option>s]
 
 There are three ways to specify <character-list>s, either * for any
 character not otherwise specified, & to match the character in the
