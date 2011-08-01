@@ -1,15 +1,15 @@
 # JOE syntax highlight file for Prolog
 
 =Idle
-=Comment green
-=Constant cyan
-=Escape bold cyan
-=Variable cyan
-=Keyword bold
-=Bad bold red
+=Comment	green
+=Constant	cyan
+=Escape		bold cyan
+=Variable	cyan
+=Keyword	bold
+=Bad		bold red
 
 =Brace
-=Predicate red
+=Predicate	red
 
 :idle Idle
 	*		idle

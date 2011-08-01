@@ -4,8 +4,6 @@
 # improve escape parsing
 
 =Idle
-=Preproc 	blue
-=Define		bold blue
 =Comment 	green
 =Constant 	cyan
 =Escape 	bold cyan
@@ -15,6 +13,8 @@
 =Bad		bold red
 =Brace		magenta
 =Control
+
+=Methods
 
 :begin Idle
 	*	begin	noeat call=.java()
@@ -30,28 +30,28 @@
 	"\n"		idle
 	"/"		slash
 	"0"		first_digit	recolor=-1
-	"1-9"		decimal	recolor=-1
+	"1-9"		decimal		recolor=-1
 	"."		maybe_float
 	"\""		string		recolor=-1
 	"'"		char		recolor=-1
-	"a-zA-Z_"	ident		buffer
+	"a-zA-Z_"	ident		mark buffer
 	"{}"		brace		recolor=-1
 .ifdef script
-	",:;=()>[]*&|!~+\-%^"	control		recolor=-1
+	",:;=()>[]*&|!~+\-%^"	control	recolor=-1
 	"<"		maybe_done
 .else
-	",:;=()><[]*&|!~+\-%^"	control		recolor=-1
+	",:;=()><[]*&|!~+\-%^"	control	recolor=-1
 .endif
 
 :maybe_done Control
-	*	idle	noeat
-	"/"	idle	noeat return recolor=-2
+	*		idle		noeat
+	"/"		idle		noeat return recolor=-2
 
 :brace Brace
-	*	idle	noeat
+	*		idle		noeat
 
 :control Control
-	*	idle	noeat
+	*		idle		noeat
 
 :slash Idle
 	*		idle		noeat
@@ -72,7 +72,7 @@
 	"\n"		idle
 
 :first_digit Constant
-	*		idle	noeat
+	*		idle		noeat
 	"xX"		hex
 	"."		float
 	"eE"		epart
@@ -80,39 +80,39 @@
 	"89"		bad_number	recolor=-1
 
 :bad_number Bad
-	*		idle	noeat
+	*		idle		noeat
 	"0-9"		bad_number
 
 :octal Constant
-	*		idle	noeat
+	*		idle		noeat
 	"0-7"		octal
 	"89"		bad_number	recolor=-1
 
 :hex Constant
-	*		idle	noeat
+	*		idle		noeat
 	"0-9A-Fa-f"	hex
 
 :decimal Constant
-	*		idle	noeat
+	*		idle		noeat
 	"0-9"		decimal
 	"eE"		epart
 	"."		float
 
 :maybe_float Constant
-	*		idle	recolor=-2	noeat
+	*		idle		recolor=-2 noeat
 	"0-9"		float		recolor=-2
 
 :float Constant
-	*		idle	noeat
+	*		idle		noeat
 	"eE"		epart
 	"0-9"		float
 
 :epart Constant
-	*		idle	noeat
+	*		idle		noeat
 	"0-9+\-"	enum
 
 :enum Constant
-	*		idle	noeat
+	*		idle		noeat
 	"0-9"		enum
 
 :string	Constant
@@ -177,7 +177,7 @@
 	"0-7"		char
 
 :ident Idle
-	*		idle		noeat strings
+	*		ident_end	noeat markend strings
 	"abstract"	kw
 	"boolean"	type
 	"break"		kw
@@ -232,15 +232,23 @@ done
 	"a-zA-Z0-9_"	ident
 
 :type Type
-	*	idle	noeat
+	*		idle		noeat
 
 :kw Keyword
-	*	idle	noeat
+	*		idle		noeat
 
 :lit Constant
-	*	idle	noeat
+	*		idle		noeat
 
 :operator Operator
-	*	idle	noeat
+	*		idle		noeat
+
+:ident_end Idle
+	*		idle		noeat
+	" "		ident_end
+	"("		method_end	recolormark
+
+:method_end Methods
+	*		idle		noeat
 
 .end
