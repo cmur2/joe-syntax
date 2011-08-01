@@ -6,17 +6,18 @@
 
 =Idle
 =Escape bold
+=Bad bold red
+
 =Bold bold
 
 :idle Idle
 	*		idle
-	"\\"		slash		recolor=-1
+	"\\"		escape		recolor=-1
 	"*_"		maybe_bold1
 
-# do escaping of *_
-:slash Escape
+# do escaping of *_ and so on
+:escape Escape
 	*		idle
-	"*_"		idle
 
 :maybe_bold1 Idle
 	*		idle		noeat

@@ -22,7 +22,7 @@ The first state defined is the initial state.
 Within a state, define transitions (jumps) to other states.  Each
 jump has the form:
 
-	<character-list> <target-state-name> [<option>s]
+        <character-list> <target-state-name> [<option>s]
 
 There are three ways to specify \<character-list\>s, either * for any
 character not otherwise specified, & to match the character in the
@@ -79,10 +79,10 @@ There are several options:
 
 The format of the string list is:
 
-    "string"   <target-state> [<options>s]
-    "string"   <target-state> [<options>s]
-    "&"        <target-state> [<options>s]   # matches contents of delimiter match buffer
-    done
+        "string"   <target-state> [<options>s]
+        "string"   <target-state> [<options>s]
+        "&"        <target-state> [<options>s]   # matches contents of delimiter match buffer
+        done
 
 (all of the options above are allowed except "strings", "istrings" and "noeat".  noeat is
 always implied after a matched string).
@@ -90,7 +90,7 @@ always implied after a matched string).
 Weirdness: only states have colors, not transitions.  This means that you
 sometimes have to make dummy states with
 
-    *    <next-state>    noeat
+        *    <next-state>    noeat
 
 just to get a color specification.
 
@@ -110,14 +110,14 @@ Recursion is allowed, but is self limited to 5 levels.
 
 To call a subroutine, use the 'call' option:
 
-    "\""    fred    call=string(dquote)
+        "\""    fred    call=string(dquote)
 
 The subroutine called 'string' is called and the jump to 'fred' is
 ignored.  The 'dquote' option is passed to the subroutine.
 
 The subroutine itself returns to the caller like this:
 
-    "\""    whatever    return
+        "\""    whatever    return
 
 If we're in a subroutine, the return is made.  Otherwise the jump
 to 'whatever' is made.
@@ -147,10 +147,10 @@ Option flags can be passed to subroutines which control preprocessor-like
 directives.  For example:
 
     .ifdef dquote
-       "\""       idle    return
+        "\""    idle    return
     .endif
     .ifdef squote
-       "'"        idle    return
+        "'"     idle    return
     .endif
 
 .else if also available.  .ifdefs can be nested.
