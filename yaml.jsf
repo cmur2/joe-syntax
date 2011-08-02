@@ -24,7 +24,7 @@
 	"-"		maybe_block1
 	"."		maybe_block_end1
 	"*&"		maybe_reference
-	"!"		maybe_datacast
+	"!"		maybe_typecast
 
 :line_comment Comment
 	*		line_comment
