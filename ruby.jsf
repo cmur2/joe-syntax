@@ -6,21 +6,20 @@
 # EOF2.
 
 =Idle
-=Comment green
-=POD green
-=Constant cyan
-=Escape bold cyan
-=Type bold
-=Keyword bold
-=Bad bold red
-=Var yellow
+=Comment	green
+=CommentLabel	bold green
+=POD		green
+=Constant	cyan
+=Escape		bold cyan
+=Type		bold
+=Keyword	bold
+=Bad		bold red
+=Var		yellow
+=Brace		magenta
 
-=Brace magenta
-=CommentTODO bold green
-
-=Symbol red
-=ProcArg #yellow
-=ClassMember fg_310 # brown
+=Symbol		red
+=ProcArg	#yellow
+=ClassMember	fg_310 # brown
 
 # Detect pod
 
@@ -32,7 +31,7 @@
 
 :rest Idle
 	*		rest
-	"#"		line_comment_i	recolor=-1
+	"#"		line_comment	recolor=-1
 	"\n"		idle
 	"{}"		brace		recolor=-1
 	"0"		first_digit	recolor=-1
@@ -163,34 +162,9 @@ done
 
 :line_comment Comment
 	*		line_comment
-	"\n"		rest
-
-# pimped by a line matching on possible upper-case "todo" labels (like TODO, FIXME, etc.)
-# and buffering all following chars in :line_comment_todo_guess
-:line_comment_i Comment
-	*		line_comment_i
-	"TFBX"		line_comment_todo_guess	noeat buffer
+	# might be TODO label
+	"BFHNTX"	line_comment	noeat call=.comment_todo()
 	"\n"		idle
-
-# if the current char _is_ in [A-Z] put it to the buffer
-# if it's not (e.g. a space) then it is an unknown char so we should exit
-# but before we'll check if the buffer matches one of our keywords (like TODO)
-# and color it so - else we are wrong with the guess that it's a todo-keyword
-# so it's a normal 'Comment'
-:line_comment_todo_guess Comment
-	*		line_comment_todo_unkwn	noeat strings
-	"TODO"		line_comment_todo
-	"FIXME"		line_comment_todo
-	"BUG"		line_comment_todo
-	"XXX"		line_comment_todo
-done
-	"A-Z"		line_comment_todo_guess
-	
-:line_comment_todo_unkwn Idle
-	*		line_comment_i noeat
-
-:line_comment_todo CommentTODO
-	*		line_comment_i noeat
 
 :end_of_file_comment Comment
 	*		end_of_file_comment
@@ -510,3 +484,27 @@ done
 :class_member ClassMember
 	*		rest		noeat
 	"a-zA-Z0-9_"	class_member
+
+.subr comment_todo
+# initial state
+:comment_todo_init Comment
+	*		comment_todo_guess	buffer
+
+# highlight common TODO labels
+:comment_todo_guess Comment
+	*		comment_todo_unknown	noeat strings
+	"BUG"		comment_todo
+	"FIXME"		comment_todo
+	"HACK"		comment_todo
+	"NOTE"		comment_todo
+	"TODO"		comment_todo
+	"XXX"		comment_todo
+done
+	"A-Z"		comment_todo_guess
+
+:comment_todo_unknown Comment
+	*		NULL		noeat return
+
+:comment_todo CommentLabel
+	*		NULL		noeat return
+.end
