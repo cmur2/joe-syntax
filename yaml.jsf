@@ -1,17 +1,18 @@
 # JOE syntax highlight file for YAML
 
 =Idle
-=Comment green
-=Constant cyan
-=Escape bold cyan
-=Keyword bold
-=Bad bold red
+=Comment	green
+=Constant	cyan
+=Escape		bold cyan
+=Type		bold
+=Keyword	bold
+=Bad		bold red
+=Brace		magenta
 
-=Brace magenta
-=BlockDelim bold blue
-=Reference yellow
-=LocalDatatype fg_310 # brown
-=Directive red
+=Directive	red
+=Reference	yellow
+=LocalType	fg_310 # brown
+=BlockDelim	bold blue
 
 :idle Idle
 	*		idle
@@ -90,26 +91,26 @@
 	*		idle		noeat
 	"a-zA-Z0-9_"	reference
 
-:maybe_datacast Idle
+:maybe_typecast Idle
 	*		idle		noeat
-	"a-zA-Z_"	local_datatype	recolor=-1
-	"!"		builtin_datatype1
+	"a-zA-Z_"	local_type	recolor=-1
+	"!"		builtin_type1
 
-:builtin_datatype1 Idle
+:builtin_type1 Idle
 	*		idle		noeat
-	"a-zA-Z"	builtin_datatype	buffer
+	"a-zA-Z"	builtin_type	buffer
 
-:builtin_datatype Idle
+:builtin_type Idle
 	*		idle		noeat strings
-	"str"		dt
-	"float"		dt
-	"binary"	dt
+	"str"		type
+	"float"		type
+	"binary"	type
 done
-	"a-zA-Z_"	builtin_datatype
+	"a-zA-Z_"	builtin_type
 
-:dt Keyword
+:type Type
 	*		idle		noeat
 
-:local_datatype	LocalDatatype
+:local_type LocalType
 	*		idle		noeat
-	"a-zA-Z_"	local_datatype
+	"a-zA-Z_"	local_type
