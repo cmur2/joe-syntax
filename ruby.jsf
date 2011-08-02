@@ -249,12 +249,16 @@ done
 	*		string
 	"\""		after_term
 	"\\"		string_escape	recolor=-1
-	"$@"		string_subst	recolor=-1
+	"#"		maybe_string_subst	recolor=-1
+
+:maybe_string_subst Constant
+	*		string
+	"{"		string_subst	recolor=-2
 
 :string_subst Escape
-	*		string	noeat recolor=-1
-	"a-zA-Z_0-9"	string_subst
-
+	*		string_subst
+	"}"		string
+	
 :string_escape Escape
 	*		string
 	"x"		string_hex1
