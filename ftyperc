@@ -770,3 +770,10 @@
 -smarthome
 -smartbacks
 -syntax yaml
+
+ Debian apt
+*apt/sources.list
+-syntax debian
+
+*sources.list.*
+-syntax debian
