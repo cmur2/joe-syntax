@@ -5,6 +5,7 @@
 
 =Idle
 =Comment 	green
+=CommentLabel	bold green
 =Constant 	cyan
 =Escape 	bold cyan
 =Type 		bold
@@ -60,15 +61,19 @@
 
 :comment Comment
 	*		comment
+	# might be TODO label
+	"BFHNTX"	comment		noeat call=.comment_todo()
 	"*"		maybe_end_comment
 
 :maybe_end_comment Comment
-	*		comment
+	*		comment		noeat
 	"/"		idle
 	"*"		maybe_end_comment
 
 :line_comment Comment
 	*		line_comment
+	# might be TODO label
+	"BFHNTX"	line_comment	noeat call=.comment_todo()
 	"\n"		idle
 
 :first_digit Constant
@@ -251,4 +256,28 @@ done
 :method_end Methods
 	*		idle		noeat
 
+.end
+
+.subr comment_todo
+# initial state
+:comment_todo_init Comment
+	*		comment_todo_guess	buffer
+
+# highlight common TODO labels
+:comment_todo_guess Comment
+	*		comment_todo_unknown	noeat strings
+	"BUG"		comment_todo
+	"FIXME"		comment_todo
+	"HACK"		comment_todo
+	"NOTE"		comment_todo
+	"TODO"		comment_todo
+	"XXX"		comment_todo
+done
+	"A-Z"		comment_todo_guess
+
+:comment_todo_unknown Comment
+	*		NULL		noeat return
+
+:comment_todo CommentLabel
+	*		NULL		noeat return
 .end
