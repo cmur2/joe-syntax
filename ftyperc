@@ -777,3 +777,7 @@
 
 *sources.list.*
 -syntax debian
+
+ Ant's build.xml
+*build.xml
+-syntax ant
