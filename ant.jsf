@@ -179,7 +179,7 @@ done
 	"<"		error		noeat recolor=-1
 	"&"		char_sq		recolor=-1
 	"'"		endstring
-	"$"		string_sq	call=.antvar()
+	"$"		string_sq	call=.maybe_antvar()
 
 #	">"		error		noeat recolor=-1
 
@@ -196,7 +196,7 @@ done
 	"#"		char_sq
 	";"		string_sq
 
-.subr antvar
+.subr maybe_antvar
 # initial state
 :maybe_antvar Constant
 	*		NULL		return
