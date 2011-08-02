@@ -2,15 +2,13 @@
 
 =Idle
 =Comment	green
+=Constant	cyan
+=Escape		bold cyan
 =Bad		bold red
 
 =Key		
 =KeyEscape	bold
-
 =Separator	bold
-
-=Constant	cyan
-=Escape		bold cyan
 
 :line_start Idle
 	*		key		noeat
@@ -18,10 +16,6 @@
 	" \t\r"		line_start # leading spaces
 	"#!"		line_comment	recolor=-1
 	"=:"		missing_key	recolor=-1
-
-:line_rest Idle
-	*		line_rest
-	"\n"		line_start
 
 :line_comment Comment
 	*		line_comment
