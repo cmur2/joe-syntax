@@ -785,3 +785,10 @@
  Java's .properties
 *.properties
 -syntax properties
+
+ INI file
+*.ini
+-syntax ini
+
+*hgrc
+-syntax ini
