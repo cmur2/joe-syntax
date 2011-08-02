@@ -14,8 +14,6 @@
 =LocalType	fg_310 # brown
 =BlockDelim	bold blue
 
-=URL		cyan
-
 :idle Idle
 	*		idle
 	"%"		directive	recolor=-1
@@ -27,7 +25,6 @@
 	"."		maybe_block_end1
 	"*&"		maybe_reference
 	"!"		maybe_typecast
-	"a-zA-Z_"	maybe_url	mark buffer
 
 :line_comment Comment
 	*		line_comment
@@ -117,33 +114,3 @@ done
 :local_type LocalType
 	*		idle		noeat
 	"a-zA-Z_"	local_type
-
-:maybe_url Idle
-	*		url_scheme_unkwn	noeat strings
-	"ftp"		maybe_url2
-	"http"		maybe_url2
-	"https"		maybe_url2
-done
-	"a-zA-Z"	maybe_url
-
-:url_scheme_unkwn Idle
-	*		idle		noeat markend
-
-:maybe_url2 Idle
-	*		idle		noeat markend
-	":"		maybe_url3
-
-:maybe_url3 Idle
-	*		idle		noeat markend
-	"/"		maybe_url4
-
-:maybe_url4 Idle
-	*		idle		noeat markend
-	"/"		url
-
-:url Idle
-	*		url
-	" \t\r\n"	url_end		recolormark noeat
-
-:url_end URL
-	*		idle		noeat
