@@ -781,3 +781,7 @@
  Ant's build.xml
 *build.xml
 -syntax ant
+
+ Java's .properties
+*.properties
+-syntax properties
