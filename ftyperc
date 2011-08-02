@@ -157,6 +157,24 @@
 -syntax ruby
 -text_delimiters do=end
 
+*.gemspec
+-autoindent
+-pound_comment
+-syntax ruby
+-text_delimiters do=end
+
+*Gemfile
+-autoindent
+-pound_comment
+-syntax ruby
+-text_delimiters do=end
+
+*Rakefile
+-autoindent
+-pound_comment
+-syntax ruby
+-text_delimiters do=end
+
  Perl
 *
 +#!\+\[ 	]\+\[a-z/]/perl\>
@@ -618,17 +636,27 @@
 -text_delimiters do=done:if=elif=else=fi:case=esac
 
  Makefile
-*akefile
+*Makefile
 -autoindent
 -syntax conf
 -pound_comment
 
-*akefile.in
+*makefile
 -autoindent
 -syntax conf
 -pound_comment
 
-*AKEFILE
+*Makefile.in
+-autoindent
+-syntax conf
+-pound_comment
+
+*makefile.in
+-autoindent
+-syntax conf
+-pound_comment
+
+*MAKEFILE
 -autoindent
 -syntax conf
 -pound_comment
