@@ -19,12 +19,15 @@
 =CommentStart	green
 =CommentBody	green
 =CommentEnd	green
-=PIStart	magenta bold
-=PIBody		magenta
-=PIEnd		magenta bold
+=PIStart	yellow bold
+=PIBody		yellow
+=PIEnd		yellow bold
 =CdataStart	blue bold
 =CdataBody	bold
 =CdataEnd	blue bold
+
+=Keytag		bold magenta #fg_310 # brown
+
 
 # http://www.w3.org/TR/2004/REC-xml-20040204/
 #
@@ -65,7 +68,7 @@
 :tag Tag
 	*		error		noeat recolor=-1
 	"/"		end_tag
-	"A-Za-z_:"	start_or_empty_tag
+	"A-Za-z_:"	start_or_empty_tag	buffer
 	"?"		pi_start	recolor=-2
 	"!"		decl		recolor=-2 buffer
 
@@ -94,11 +97,21 @@
 
 # Matched: <tag
 
+# compare tag name of start/empty tags with a list
+# of Ant specific keywords
 :start_or_empty_tag Tag
-	*		error		noeat recolor=-1
+	*		decide_tag_type	noeat strings
+	"target"	kw
+done
 	"A-Za-z0-9._:-"	start_or_empty_tag
+
+:kw Keytag
+	*		decide_tag_type	noeat
+
+:decide_tag_type Tag
+	*		error		noeat recolor=-1
 	"/"		empty_tag
-	" \t\r\n"	start_or_empty_tag_sp	recolor=-1
+	" \t\r\n"	start_or_empty_tag_sp
 	">"		content
 
 :start_or_empty_tag_sp Idle
@@ -156,7 +169,7 @@
 	"<"		error		noeat recolor=-1
 	"&"		char_dq		recolor=-1
 	"\""		endstring
-	"$"		maybe_antvar_dq
+	"$"		string_dq	call=.antvar()
 
 #	">"		error		noeat recolor=-1
 
@@ -166,7 +179,7 @@
 	"<"		error		noeat recolor=-1
 	"&"		char_sq		recolor=-1
 	"'"		endstring
-	"$"		maybe_antvar_sq
+	"$"		string_sq	call=.antvar()
 
 #	">"		error		noeat recolor=-1
 
@@ -183,21 +196,16 @@
 	"#"		char_sq
 	";"		string_sq
 
-:maybe_antvar_dq Constant
-	*		string_dq
-	"{"		antvar_dq	recolor=-2
+.subr antvar
+# initial state
+:maybe_antvar Constant
+	*		NULL		return
+	"{"		antvar		recolor=-2
 
-:antvar_dq Escape
-	*		antvar_dq
-	"}"		string_dq
-
-:maybe_antvar_sq Constant
-	*		string_sq
-	"{"		antvar_sq	recolor=-2
-
-:antvar_sq Escape
-	*		antvar_sq
-	"}"		string_sq
+:antvar Escape
+	*		antvar
+	"}"		NULL		return
+.end
 
 # Matched: <tag attr="foo"
 
