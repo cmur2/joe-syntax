@@ -153,7 +153,9 @@
  Ruby
 *.rb
 -autoindent
+-pound_comment
 -syntax ruby
+-text_delimiters do=end
 
  Perl
 *
@@ -454,12 +456,14 @@
 -autoindent
 -syntax html
 
- JAVA
+ Java
 *.java
 -autoindent
 -syntax java
 -smarthome
 -smartbacks
+-c_comment
+-cpp_comment
 -purify
 -cpara >#!;*/%
 
@@ -469,6 +473,8 @@
 -syntax java
 -smarthome
 -smartbacks
+-c_comment
+-cpp_comment
 -purify
 -cpara >#!;*/%
 
@@ -763,19 +769,23 @@
 -autoindent
 -smarthome
 -smartbacks
+-pound_comment
 -syntax yaml
 
 *.yaml
 -autoindent
 -smarthome
 -smartbacks
+-pound_comment
 -syntax yaml
 
  Debian apt
 *apt/sources.list
+-pound_comment
 -syntax debian
 
 *sources.list.*
+-pound_comment
 -syntax debian
 
  Ant's build.xml
@@ -784,11 +794,28 @@
 
  Java's .properties
 *.properties
+ this is part of the specification:
+-encoding iso-8859-1
+-pound_comment
 -syntax properties
 
  INI file
 *.ini
+-pound_comment
+-semi_comment
 -syntax ini
 
 *hgrc
+-pound_comment
+-semi_comment
+-syntax ini
+
+*.gitconfig
+-pound_comment
+-semi_comment
+-syntax ini
+
+*.git/config
+-pound_comment
+-semi_comment
 -syntax ini
