@@ -163,6 +163,7 @@ from the beginning of the file.  Here is the old description:
 
 Define no. sync lines
 You can say:
+
 * '-200' means 200 lines
 * '-'    means always start parsing from beginning of file when we lose sync
          if nothing is specified, the default is -50
