@@ -20,6 +20,7 @@
 =Symbol		red
 =ProcArg	#yellow
 =ClassMember	fg_310 # brown
+=GlobalVar	yellow
 
 # Detect pod
 
@@ -153,8 +154,8 @@ done
 	*		regex
 
 :not_string Idle
-	*		rest noeat
-	"A-Za-z_"	ident
+	*		rest		noeat
+	"A-Za-z_"	global_var	recolor=-2
 	"\"'`#/"	rest
 
 :brace Brace
@@ -484,6 +485,10 @@ done
 :class_member ClassMember
 	*		rest		noeat
 	"a-zA-Z0-9_"	class_member
+
+:global_var GlobalVar
+	*		rest		noeat
+	"a-zA-Z0-9_"	global_var
 
 .subr comment_todo
 # initial state
