@@ -3,6 +3,13 @@
 # the real one - not a pimped Java file...
 # just getting this idea seams crazy...
 
+# TODO: regex escape highlighter ignored \x (and other?) sequences
+
+# BUG: The regex has currently some SERIOUS problems - enabled
+#      or disabled: calc(a / b) vs match(/'/) - one of the two fails,
+#      need "after_term" support like in ruby.jsf
+
+
 =Idle		
 =Comment	green
 =CommentLabel	bold green
@@ -13,10 +20,11 @@
 =Operator	bold
 =Bad		bold red
 =Brace		magenta
-=Control
+=Control	
 
+# additional classes not present everywhere but useful
 =Methods
-=Number		fg_520
+=Number		cyan #fg_520 # orange
 
 :idle Idle
 	*		idle
@@ -39,6 +47,9 @@
 
 :slash Idle
 	*		idle		noeat
+
+	# the "noeat recolor=-2" is needed since _this_ char maybe '\'
+#	*		regex		noeat recolor=-2
 	"*"		comment		recolor=-2
 	"/"		line_comment	recolor=-2
 
@@ -59,7 +70,19 @@
 	"BFHNTX"	line_comment	noeat call=.comment_todo()
 	"\n"		idle
 
-:first_digit Constant
+#:regex Constant
+#	*		regex
+#	"\\"		regex_esc	recolor=-1
+#	"/"		regex_mod
+#
+#:regex_esc Escape
+#	*		regex
+#
+#:regex_mod Constant
+#	*		idle		noeat
+#	"igm"		regex_mod
+
+:first_digit Number
 	*		idle		noeat
 	"xX"		hex
 	"."		float
@@ -71,35 +94,35 @@
 	*		idle		noeat
 	"0-9"		bad_number
 
-:octal Constant
+:octal Number
 	*		idle		noeat
 	"0-7"		octal
 	"89"		bad_number	recolor=-1
 
-:hex Constant
+:hex Number
 	*		idle		noeat
 	"0-9A-Fa-f"	hex
 
-:decimal Constant
+:decimal Number
 	*		idle		noeat
 	"0-9"		decimal
 	"eE"		epart
 	"."		float
 
-:maybe_float Constant
+:maybe_float Number
 	*		idle		recolor=-2 noeat
 	"0-9"		float		recolor=-2
 
-:float Constant
+:float Number
 	*		idle		noeat
 	"eE"		epart
 	"0-9"		float
 
-:epart Constant
+:epart Number
 	*		idle		noeat
 	"0-9+\-"	enum
 
-:enum Constant
+:enum Number
 	*		idle		noeat
 	"0-9"		enum
 
@@ -223,7 +246,7 @@ done
 :ident_end Idle
 	*		idle		noeat
 	" "		ident_end
-	"("		method_end	recolormark
+	"("		method_end	noeat recolormark
 
 :method_end Methods
 	*		idle		noeat
