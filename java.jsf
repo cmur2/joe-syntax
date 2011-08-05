@@ -184,6 +184,7 @@
 :ident Idle
 	*		ident_end	noeat markend strings
 	"abstract"	kw
+	"assert"	kw
 	"boolean"	type
 	"break"		kw
 	"byte"		type
@@ -191,18 +192,20 @@
 	"catch"		kw
 	"char"		type
 	"class"		kw
-	"const"		kw
+	"const"		bad_kw
 	"continue"	kw
 	"default"	kw
 	"do"		kw
 	"double"	type
 	"else"		kw
+	"enum"		kw
 	"extends"	kw
+	"false"		lit
 	"final"		kw
 	"finally"	kw
 	"float"		type
 	"for"		kw
-	"goto"		kw
+	"goto"		bad_kw
 	"if"		kw
 	"implements"	kw
 	"import"	kw
@@ -220,6 +223,7 @@
 	"return"	kw
 	"short"		type
 	"static"	kw
+	"strictfp"	kw
 	"super"		kw
 	"switch"	kw
 	"synchronized"	kw
@@ -227,12 +231,11 @@
 	"throw"		kw
 	"throws"	kw
 	"transient"	kw
+	"true"		lit
 	"try"		kw
 	"void"		kw
 	"volatile"	kw
 	"while"		kw
-	"true"		lit
-	"false"		lit
 done
 	"a-zA-Z0-9_"	ident
 
@@ -240,6 +243,9 @@ done
 	*		idle		noeat
 
 :kw Keyword
+	*		idle		noeat
+
+:bad_kw Bad
 	*		idle		noeat
 
 :lit Constant
