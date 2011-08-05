@@ -488,7 +488,7 @@
  Javascript
 *.js
 -autoindent
--syntax java
+-syntax js
 -smarthome
 -smartbacks
 -c_comment
