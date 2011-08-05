@@ -13,7 +13,7 @@
 =Operator	bold
 =Bad		bold red
 =Brace		magenta
-=Control
+=Control	
 
 =Methods
 
@@ -257,7 +257,7 @@ done
 :ident_end Idle
 	*		idle		noeat
 	" "		ident_end
-	"("		method_end	recolormark
+	"("		method_end	noeat recolormark
 
 :method_end Methods
 	*		idle		noeat
