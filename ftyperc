@@ -847,3 +847,9 @@
 -pound_comment
 -semi_comment
 -syntax ini
+
+ Whitespace
+*.whitespace
+-syntax whitespace
+--force
+--spaces
