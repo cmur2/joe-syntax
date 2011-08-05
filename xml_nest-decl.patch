@@ -1,0 +1,11 @@
+--- xml.jsf	2011-08-05 10:11:38.000000000 +0200
++++ xml.new.jsf	2011-08-05 10:14:15.000000000 +0200
+@@ -226,7 +226,7 @@
+ 	"!--"		comment_start	recolor=-5
+ 	"![CDATA["	cdata_start	recolor=-10
+ done
+-	"<"		decl_nest
++#	"<"		decl_nest
+ 	">"		content
+ 
+ # We allow one level of <...> nesting within declarations
