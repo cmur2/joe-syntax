@@ -15,7 +15,7 @@
 =Operator	bold
 =Bad		inverse bold red
 =Brace		magenta
-=Control
+=Control	
 
 # additional classes not present everywhere but useful
 =Methods
@@ -39,7 +39,8 @@
 :after_term Control
 	*		idle		noeat
 	" \t)"		after_term
-	"%/"		control		recolor=-1
+	"%"		control		recolor=-1
+	"/"		after_term_slash
 
 :brace Brace
 	*		idle		noeat
@@ -49,6 +50,12 @@
 
 :slash Idle
 	*		regex		noeat recolor=-2
+	"*"		comment		recolor=-2
+	"/"		line_comment	recolor=-2
+
+# allow // and /* after terms
+:after_term_slash Idle
+	*		idle		noeat
 	"*"		comment		recolor=-2
 	"/"		line_comment	recolor=-2
 
