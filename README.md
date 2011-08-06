@@ -11,10 +11,20 @@ For a description about how JOEs jsf parser works, see the header of
 Another good resource might be
 [jsf.jsf](http://joe-editor.hg.sourceforge.net/hgweb/joe-editor/joe-editor/file/tip/syntax/jsf.jsf.in).
 
-### ftyperc
+### Using
 
-To enable to enhanced *ftyperc* without overwriting '/etc/joe/ftyperc',
-you may place the modified one in '~/.joe/' as '~/.joe/ftyperc'.
+#### ftyperc
+
+To enable the enhanced *ftyperc* without overwriting '/etc/joe/ftyperc', you
+may place the modified one in '~/.joe/' as '~/.joe/ftyperc'.
+
+#### *.jsf
+
+To enable the .jsf files in this repository they need to appear in JOEs
+'syntax' directory.  This is likely to be '/usr/share/joe/syntax' when using
+Debian and APT.  A good way to achieve this is to clone this repository
+somewhere onto your hard disk and establish symlinks to all jsf files in the
+'syntax' directory
 
 ### Other Syntax Files
 
