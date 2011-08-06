@@ -55,9 +55,8 @@
 # / / regex not allowed after terms
 
 :after_term Idle
-	*		rest	noeat
-	"{}"		brace	recolor=-1
-	" 	)"	after_term
+	*		rest		noeat
+	" \t)"		after_term
 	"/%"		rest
 
 :pod_start Idle
@@ -75,19 +74,19 @@ done
 	"a-zA-Z0-9_"	pod_ident
 
 :maybe_inc Idle
-	*		after_term		noeat
+	*		after_term	noeat
 	"<"		maybe_inc1
 
 :maybe_inc1 Idle
-	*		after_term		noeat
+	*		after_term	noeat
 	"-"		allow_space
 	"'\""		quoted_inc_start	save_c recolor=-1
 	"A-Za-z_"	inc		buffer noeat
 
 :allow_space Idle
-	*		after_term		noeat
+	*		after_term	noeat
 	"'\""		quoted_inc_start_allow	save_c recolor=-1
-	"A-Za-z_"	inc_allow		buffer noeat
+	"A-Za-z_"	inc_allow	buffer noeat
 
 :quoted_inc_start Var
 	*		quoted_inc	buffer
@@ -140,7 +139,7 @@ done
 
 :next_line_allow Constant
 	*		todelim_allow	buffer
-	" 	\n"	next_line_allow
+	" \t\n"		next_line_allow
 
 :founddelim Var
 	*		idle		noeat
@@ -204,7 +203,7 @@ done
 	"."		float
 
 :maybe_float Constant
-	*		after_term	recolor=-2	noeat
+	*		after_term	noeat recolor=-2
 	"0-9"		float		recolor=-2
 
 :float Constant
@@ -290,7 +289,7 @@ done
 	*		backtick
 	"`"		after_term
 	"\\"		backtick_escape	recolor=-1
-	"$@"		backtick_subst recolor=-1
+	"$@"		backtick_subst	recolor=-1
 
 :backtick_subst Escape
 	*		backtick	noeat recolor=-1
@@ -302,7 +301,7 @@ done
 	"c"		backtick_ctrl
 	"N"		backtick_named
 	"0-7"		backtick_octal2
-	"\n"		backtick		recolor=-2
+	"\n"		backtick	recolor=-2
 
 :backtick_named Escape
 	*		backtick
@@ -316,7 +315,7 @@ done
 	*		backtick
 
 :backtick_hex1 Escape
-	*		backtick		noeat
+	*		backtick	noeat
 	"{"		backtick_unicode
 	"0-9a-fA-F"	backtick_hex2
 
@@ -325,15 +324,15 @@ done
 	"}"		backtick
 
 :backtick_hex2 Escape
-	*		backtick		noeat
+	*		backtick	noeat
 	"0-9a-fA-F"	backtick
 
 :backtick_octal2 Escape
-	*		backtick		noeat
+	*		backtick	noeat
 	"0-7"		backtick_octal3
 
 :backtick_octal3 Escape
-	*		backtick		noeat
+	*		backtick	noeat
 	"0-7"		backtick
 
 :ident	Idle
@@ -388,16 +387,16 @@ done
 	"a-zA-Z0-9_"	ident
 
 :kw Keyword
-	*	rest	noeat
+	*		rest		noeat
 
 :pstring Idle
-	*	match noeat
-	"	 " after_term noeat
-	"xrqQw"	match
+	*		match		noeat
+	" \t"		after_term	noeat
+	"xrqQw"		match
 
 :match Idle
 	*		inmatch		save_c recolor=-1
-	" 	"	match
+	" \t"		match
 
 :inmatch Constant
 	*		inmatch
@@ -410,7 +409,7 @@ done
 :subst Idle
 	*		insubst		save_c recolor=-1
 	"<([{`"		delim_insubst	save_c recolor=-1
-	" 	"	subst
+	" \t"		subst
 
 :insubst Constant
 	*		insubst
@@ -438,7 +437,7 @@ done
 
 :delim_repl Constant
 	*		repl		save_c recolor=-1
-	" 	"	delim_repl
+	" \t"		delim_repl
 
 :repl Constant
 	*		repl
