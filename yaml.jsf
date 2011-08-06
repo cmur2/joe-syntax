@@ -14,8 +14,16 @@
 =LocalType	fg_310 # brown
 =BlockDelim	bold blue
 
+=BadTab		inverse red
+
+:line_start Idle
+	*		idle		noeat
+	"\t"		bad_tab		recolor=-1
+	" "		line_start
+
 :idle Idle
 	*		idle
+	"\n"		line_start
 	"%"		directive	recolor=-1
 	"#"		line_comment	recolor=-1
 	"'"		string_sq_1	recolor=-1
@@ -26,16 +34,20 @@
 	"*&"		maybe_reference
 	"!"		maybe_typecast
 
+# mark bad tabs until the first non-whitespace
+:bad_tab BadTab
+	*		line_start	noeat
+
 :line_comment Comment
 	*		line_comment
-	"\n"		idle
+	"\n"		line_start
 
 :brace Brace
 	*		idle		noeat
 
 :directive Directive
 	*		directive
-	"\n"		idle
+	"\n"		line_start
 
 :string_sq_1 Constant
 	*		string_sq	noeat
