@@ -5,11 +5,6 @@
 
 # TODO: regex escape highlighter ignored \x (and other?) sequences
 
-# BUG: The regex has currently some SERIOUS problems - enabled
-#      or disabled: calc(a / b) vs match(/'/) - one of the two fails,
-#      need "after_term" support like in ruby.jsf
-
-
 =Idle		
 =Comment	green
 =CommentLabel	bold green
@@ -18,9 +13,9 @@
 =Type		bold
 =Keyword	bold
 =Operator	bold
-=Bad		bold red
+=Bad		inverse bold red
 =Brace		magenta
-=Control	
+=Control
 
 # additional classes not present everywhere but useful
 =Methods
@@ -37,7 +32,14 @@
 	"'"		char		recolor=-1
 	"a-zA-Z_"	ident		mark buffer
 	"{}"		brace		recolor=-1
-	",:;=()><[]*&|!~+\-%^"	control	recolor=-1
+	",:;=()><[]*&|!?~+\-%^"	control	recolor=-1
+
+# / / regex not allowed after terms
+# class Control to handle ')' right
+:after_term Control
+	*		idle		noeat
+	" \t)"		after_term
+	"%/"		control		recolor=-1
 
 :brace Brace
 	*		idle		noeat
@@ -46,10 +48,7 @@
 	*		idle		noeat
 
 :slash Idle
-	*		idle		noeat
-
-	# the "noeat recolor=-2" is needed since _this_ char maybe '\'
-#	*		regex		noeat recolor=-2
+	*		regex		noeat recolor=-2
 	"*"		comment		recolor=-2
 	"/"		line_comment	recolor=-2
 
@@ -70,20 +69,20 @@
 	"BFHNTX"	line_comment	noeat call=.comment_todo()
 	"\n"		idle
 
-#:regex Constant
-#	*		regex
-#	"\\"		regex_esc	recolor=-1
-#	"/"		regex_mod
-#
-#:regex_esc Escape
-#	*		regex
-#
-#:regex_mod Constant
-#	*		idle		noeat
-#	"igm"		regex_mod
+:regex Constant
+	*		regex
+	"\\"		regex_quote	recolor=-1
+	"/"		regex_mod
+
+:regex_quote Escape
+	*		regex
+
+:regex_mod Constant
+	*		after_term	noeat
+	"igm"		regex_mod
 
 :first_digit Number
-	*		idle		noeat
+	*		after_term	noeat
 	"xX"		hex
 	"."		float
 	"eE"		epart
@@ -91,44 +90,44 @@
 	"89"		bad_number	recolor=-1
 
 :bad_number Bad
-	*		idle		noeat
+	*		after_term	noeat
 	"0-9"		bad_number
 
 :octal Number
-	*		idle		noeat
+	*		after_term	noeat
 	"0-7"		octal
 	"89"		bad_number	recolor=-1
 
 :hex Number
-	*		idle		noeat
+	*		after_term	noeat
 	"0-9A-Fa-f"	hex
 
 :decimal Number
-	*		idle		noeat
+	*		after_term	noeat
 	"0-9"		decimal
 	"eE"		epart
 	"."		float
 
 :maybe_float Number
-	*		idle		recolor=-2 noeat
+	*		after_term	recolor=-2 noeat
 	"0-9"		float		recolor=-2
 
 :float Number
-	*		idle		noeat
+	*		after_term	noeat
 	"eE"		epart
 	"0-9"		float
 
 :epart Number
-	*		idle		noeat
+	*		after_term	noeat
 	"0-9+\-"	enum
 
 :enum Number
-	*		idle		noeat
+	*		after_term	noeat
 	"0-9"		enum
 
 :string	Constant
 	*		string
-	"\""		idle
+	"\""		after_term
 	"\\"		string_escape	recolor=-1
 	"%"		string_control	recolor=-1
 
@@ -162,7 +161,7 @@
 :char Constant
 	*		char
 	"\n"		reset
-	"'"		idle
+	"'"		after_term
 	"\\"		char_escape	recolor=-1
 
 :char_escape	Escape
@@ -228,23 +227,25 @@
 	"void"		kw
 	"while"		kw
 	"with"		kw
+	# quasi-keywords
+	"prototype"	kw
 done
 	"a-zA-Z0-9_"	ident
 
 :type Type
-	*		idle		noeat
+	*		after_term	noeat
 
 :kw Keyword
 	*		idle		noeat
 
 :lit Constant
-	*		idle		noeat
+	*		after_term	noeat
 
 :operator Operator
 	*		idle		noeat
 
 :ident_end Idle
-	*		idle		noeat
+	*		after_term	noeat
 	" "		ident_end
 	"("		method_end	noeat recolormark
 
