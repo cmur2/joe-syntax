@@ -11,14 +11,14 @@ For a description about how JOEs jsf parser works, see the header of
 Another good resource might be
 [jsf.jsf](http://joe-editor.hg.sourceforge.net/hgweb/joe-editor/joe-editor/file/tip/syntax/jsf.jsf.in).
 
-### Using
+## Using
 
-#### ftyperc
+### ftyperc
 
 To enable the enhanced *ftyperc* without overwriting '/etc/joe/ftyperc', you
 may place the modified one in '~/.joe/' as '~/.joe/ftyperc'.
 
-#### *.jsf
+### *.jsf
 
 To enable the .jsf files in this repository they need to appear in JOEs
 'syntax' directory.  This is likely to be '/usr/share/joe/syntax' when using
@@ -26,10 +26,10 @@ Debian and APT.  A good way to achieve this is to clone this repository
 somewhere onto your hard disk and establish symlinks to all jsf files in the
 'syntax' directory
 
-### Other Syntax Files
+## Other Syntax Files
 
 * [d.jsf](https://gist.github.com/1032393)
 
-### How JOE syntax highlighting works
+## How JOE syntax highlighting works
 
 See [HowItWorks.md](https://github.com/cmur2/joe-syntax/blob/master/HowItWorks.md).
