@@ -124,7 +124,7 @@ done
   "a-zA-Z_" method  recolor=-1
 
 :idle_qmark Idle
-	*		idle
+	*		idle		noeat
 	">"		idle recolor=-2 return
 
 :idle_hash Idle
