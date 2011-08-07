@@ -1,0 +1,90 @@
+# JOE syntax highlight file for assembly language (AT&T syntax)
+
+=Idle		
+=Bad		bold red
+=Comment	green
+=Constant	cyan
+=Escape		bold cyan
+
+=Directive	red
+=Label		magenta
+=Instruction	bold
+=Register	yellow
+
+:line_start Idle
+	*		statement	noeat
+	"\n"		line_start
+	" \t\r"		line_start # leading spaces
+
+:line_comment Comment
+	*		line_comment
+	"\n"		line_start
+
+:statement Idle
+	*		error
+	"a-zA-Z_"	maybe_label_i	mark
+	"."		maybe_label_d	mark
+	" \t"		statement
+	"\n"		line_start
+	";#"		line_comment	recolor=-1
+
+:maybe_label_d Idle
+	# eaten an directive (leading .) since it has no : at end
+	*		directive	noeat recolormark
+	":"		end_label	noeat recolormark
+	"a-zA-Z_0-9"	maybe_label_d
+
+:maybe_label_i Idle
+	# eaten an instruction since it has no : at end
+	*		instr		noeat recolormark
+	":"		end_label	noeat recolormark
+	"a-zA-Z_0-9"	maybe_label_i
+
+:end_label Label
+	*		statement	noeat
+	":"		end_label
+
+# two possible "key symbols": directive or instruction
+
+:directive Directive
+	*		directive
+	" \t"		d_rest
+	"\n"		line_start
+	";#"		line_comment	recolor=-1
+
+:d_rest Idle
+	*		d_rest
+	"\n"		line_start
+	";#"		line_comment	recolor=-1
+
+:instr Instruction
+	*		instr
+	" \t"		operands
+	"\n"		line_start
+	";#"		line_comment	recolor=-1
+
+:operands Idle
+	*		normal_op
+	", \t"		operands
+	"$"		number_op
+	"%"		register_op
+	"\n"		line_start
+	";#"		line_comment	recolor=-1
+
+:normal_op Idle
+	*		normal_op
+	", \t"		operands	noeat
+	"\n"		line_start
+	";#"		line_comment	recolor=-1
+
+:number_op Constant
+	*		number_op
+	", \t"		operands	noeat
+	"\n"		line_start
+	";#"		line_comment	recolor=-1
+
+:register_op Register
+	*		register_op
+	", \t"		operands	noeat
+	"\n"		line_start
+	";#"		line_comment	recolor=-1
