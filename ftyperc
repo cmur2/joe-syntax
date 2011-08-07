@@ -851,5 +851,5 @@
  Whitespace
 *.whitespace
 -syntax whitespace
---force
---spaces
+ --force
+ --spaces
