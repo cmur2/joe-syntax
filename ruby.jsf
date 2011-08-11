@@ -397,7 +397,9 @@ done
 	"attr_writer"	kw
 	"module_function"	kw
 done
-	"a-zA-Z0-9_"	ident
+	# allowing ?! is not nearly correct but fixes more than
+	# it destructs
+	"a-zA-Z0-9_?!"	ident
 
 :kw Keyword
 	*		rest		noeat
