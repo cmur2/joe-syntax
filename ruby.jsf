@@ -20,7 +20,7 @@
 =Symbol		red
 =ProcArg	#yellow
 =ClassMember	fg_310 # brown
-=GlobalVar	yellow
+=GlobalVar	#yellow
 
 # Detect pod
 
@@ -344,6 +344,7 @@ done
 	"begin"		kw
 	"break"		kw
 	"case"		kw
+	"catch"		kw
 	"class"		kw
 	"def"		kw
 	"defined"	kw
@@ -352,15 +353,22 @@ done
 	"elsif"		kw
 	"end"		kw
 	"ensure"	kw
+	"fail"		kw
 	"false"		kw
 	"for"		kw
 	"if"		kw
 	"in"		kw
+	"lambda"	kw
 	"module"	kw
 	"next"		kw
 	"nil"		kw
 	"not"		kw
 	"or"		kw
+	"private"	kw
+	"proc"		kw
+	"protected"	kw
+	"public"	kw
+	"raise"		kw
 	"redo"		kw
 	"rescue"	kw
 	"retry"		kw
@@ -368,6 +376,7 @@ done
 	"self"		kw
 	"super"		kw
 	"then"		kw
+	"throw"		kw
 	"true"		kw
 	"undef"		kw
 	"unless"	kw
@@ -377,12 +386,16 @@ done
 	"yield"		kw
 	# quasi-keywords (Module or Kernel methods)
 	"require"	kw
+	"autoload"	kw
+	"load"		kw
+	"extend"	kw
 	"include"	kw
 	"puts"		kw
 	"exit"		kw
 	"attr_accessor"	kw
 	"attr_reader"	kw
 	"attr_writer"	kw
+	"module_function"	kw
 done
 	"a-zA-Z0-9_"	ident
 
