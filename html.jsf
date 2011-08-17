@@ -204,7 +204,11 @@ done
 	"-A-Za-z0-9._:"		ytag_value
 
 :ytag_end TagEdge
+.ifdef php
+	*	tag_begin	call=css.css(php)
+.else
 	*	tag_begin	call=css.css()
+.endif
 
 :ytag_done TagEdge
 	*	tag_name_first	buffer noeat

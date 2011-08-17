@@ -13,6 +13,9 @@
 =Keyword  bold
 =HTML
 
+# from html.jsf to support <?php?>
+=TagEdge        green
+
 :begin Idle
 	*	begin	noeat call=.css()
 
@@ -24,15 +27,26 @@
 
 :reset HTML
 	*		  reset
-	"<"	maybe_done
+	"<"	maybe_done recolor=-1
 	"/"		slash
 	"#"   id_block recolor=-1
 	"."   class_block recolor=-1
 	"a-zA-Z"  tag_block recolor=-1
 
-:maybe_done HTML
-	*	reset noeat
+:maybe_done TagEdge
+	*	reset_html noeat
 	"/"	reset noeat return recolor=-2
+.ifdef php
+	"?%"	rtn_php call=php.php()
+.endif
+
+# fix needed to produce similar output without php
+:reset_html HTML
+	*	reset	noeat recolor=-2
+
+# this state allows php and perl to recolor the ?> %> or &> properly.
+:rtn_php TagEdge
+	*	reset noeat
 
 :slash Idle
 	*		reset		noeat
