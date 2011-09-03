@@ -16,13 +16,15 @@
 =Bad		bold red
 =Brace		magenta
 
+=PrivateMember	fg_310 # brown
+
 :idle Idle
 	*		idle
 	"#"		comment		recolor=-1
 	"0-9"		first_digit	recolor=-1
 	"'"		string_sq_1	recolor=-1
 	"\""		string_dq_1	recolor=-1
-	"a-zA-Z_"	ident		buffer
+	"a-zA-Z_"	ident		noeat
 	"{}"		brace		recolor=-1
 
 :brace Brace
@@ -139,6 +141,10 @@
 	"0-9"		enum
 
 :ident Idle
+	*		ident1		noeat buffer
+	"_"		priv_member	recolor=-1
+
+:ident1 Idle
 	*		idle		noeat strings
 	"and"		kw
 	"assert"	kw
@@ -170,10 +176,14 @@
 	"while"		kw
 	"yield"		kw
 done
-	"a-zA-Z0-9_"	ident
+	"a-zA-Z0-9_"	ident1
 
 :kw Keyword
 	*	idle	noeat
+
+:priv_member PrivateMember
+	*		idle		noeat
+	"a-zA-Z0-9_"	priv_member
 
 .subr comment_todo
 # initial state
