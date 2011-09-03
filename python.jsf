@@ -6,11 +6,15 @@
 
 =Idle
 =Comment 	green
+=CommentLabel	bold green
 =Docstring	cyan
+=DocstringLabel	bold cyan
 =DocEscape	bold cyan
 =Constant 	cyan
 =Escape 	bold cyan
 =Keyword 	bold
+=Bad		bold red
+=Brace		magenta
 
 :idle Idle
 	*		idle
@@ -19,9 +23,15 @@
 	"'"		string_sq_1	recolor=-1
 	"\""		string_dq_1	recolor=-1
 	"a-zA-Z_"	ident		buffer
+	"{}"		brace		recolor=-1
+
+:brace Brace
+	*		idle		noeat
 
 :comment Comment
 	*		comment
+	# might be TODO label
+	"BFHNTX"	comment		noeat call=.comment_todo()
 	"\n"		idle
 
 :string_sq_1 Constant
@@ -43,6 +53,8 @@
 
 :docstr_sq Docstring
 	*		docstr_sq
+	# might be TODO label
+	"BFHNTX"	docstr_sq	noeat call=.comment_todo_docstr()
 	"\\"		docstr_sq_esc	recolor=-1
 	"'"		docstr_sq_1
 
@@ -77,6 +89,8 @@
 
 :docstr_dq Docstring
 	*		docstr_dq
+	# might be TODO label
+	"BFHNTX"	docstr_dq	noeat call=.comment_todo_docstr()
 	"\\"		docstr_dq_esc	recolor=-1
 	"\""		docstr_dq_1
 
@@ -160,3 +174,51 @@ done
 
 :kw Keyword
 	*	idle	noeat
+
+.subr comment_todo
+# initial state
+:comment_todo_init Comment
+	*		comment_todo_guess	buffer
+
+# highlight common TODO labels
+:comment_todo_guess Comment
+	*		comment_todo_unknown	noeat strings
+	"BUG"		comment_todo
+	"FIXME"		comment_todo
+	"HACK"		comment_todo
+	"NOTE"		comment_todo
+	"TODO"		comment_todo
+	"XXX"		comment_todo
+done
+	"A-Z"		comment_todo_guess
+
+:comment_todo_unknown Comment
+	*		NULL		noeat return
+
+:comment_todo CommentLabel
+	*		NULL		noeat return
+.end
+
+.subr comment_todo_docstr
+# initial state
+:comment_todo_init Docstring
+	*		comment_todo_guess	buffer
+
+# highlight common TODO labels
+:comment_todo_guess Docstring
+	*		comment_todo_unknown	noeat strings
+	"BUG"		comment_todo
+	"FIXME"		comment_todo
+	"HACK"		comment_todo
+	"NOTE"		comment_todo
+	"TODO"		comment_todo
+	"XXX"		comment_todo
+done
+	"A-Z"		comment_todo_guess
+
+:comment_todo_unknown Docstring
+	*		NULL		noeat return
+
+:comment_todo DocstringLabel
+	*		NULL		noeat return
+.end
