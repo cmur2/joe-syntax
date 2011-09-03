@@ -17,6 +17,7 @@
 =Brace		magenta
 
 =PrivateMember	fg_310 # brown
+=Decorator	red
 
 :idle Idle
 	*		idle
@@ -26,9 +27,15 @@
 	"\""		string_dq_1	recolor=-1
 	"a-zA-Z_"	ident		noeat
 	"{}"		brace		recolor=-1
+	"@"		decorator	recolor=-1
 
 :brace Brace
 	*		idle		noeat
+
+# annotations
+:decorator Decorator
+	*		decorator
+	" \t\r\n"	idle		noeat
 
 :comment Comment
 	*		comment
@@ -175,11 +182,18 @@
 	"try"		kw
 	"while"		kw
 	"yield"		kw
+	# quasi-keywords
+	"False"		lit
+	"None"		lit
+	"True"		lit
 done
 	"a-zA-Z0-9_"	ident1
 
 :kw Keyword
-	*	idle	noeat
+	*		idle		noeat
+
+:lit Keyword
+	*		idle		noeat
 
 :priv_member PrivateMember
 	*		idle		noeat
