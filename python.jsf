@@ -7,8 +7,8 @@
 =Idle
 =Comment 	green
 =CommentLabel	bold green
-=Docstring	cyan
-=DocstringLabel	bold cyan
+=Docstring	green
+=DocstringLabel	bold green
 =DocEscape	bold cyan
 =Constant 	cyan
 =Escape 	bold cyan
