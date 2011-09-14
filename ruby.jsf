@@ -20,7 +20,7 @@
 =Symbol		red
 =ProcArg	#yellow
 =ClassMember	fg_310 # brown
-=GlobalVar	#yellow
+=GlobalVar	yellow
 
 # Detect pod
 
