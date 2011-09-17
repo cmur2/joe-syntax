@@ -21,6 +21,7 @@
 =ProcArg	#yellow
 =ClassMember	fg_310 # brown
 =GlobalVar	yellow
+=ClassDecl	bold blue
 
 # Detect pod
 
@@ -345,7 +346,7 @@ done
 	"break"		kw
 	"case"		kw
 	"catch"		kw
-	"class"		kw
+	"class"		kw_class
 	"def"		kw
 	"defined"	kw
 	"do"		kw
@@ -403,6 +404,23 @@ done
 
 :kw Keyword
 	*		rest		noeat
+
+:kw_class Keyword
+	*		rest		noeat
+	" \t\n"		kw_class_space
+
+:kw_class_space Idle
+	*		kw_class_decl1	noeat
+	" \t\n"		kw_class_space
+
+:kw_class_decl1 ClassDecl
+	*		rest		noeat
+	# first char should be uppercase letter
+	"a-zA-Z_"	kw_class_decl1
+
+:kw_class_decl ClassDecl
+	*		rest		noeat
+	"a-zA-Z0-9_"	kw_class_decl
 
 :pstring Idle
 	*		match		noeat
