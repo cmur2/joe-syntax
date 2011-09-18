@@ -38,6 +38,7 @@
 	"{}"		brace		recolor=-1
 	"0"		first_digit	recolor=-1
 	"1-9"		decimal		recolor=-1
+	"."		ident_no_kw
 	"\""		string		recolor=-1
 	"'"		char		recolor=-1
 	"`"		backtick	recolor=-1
@@ -330,6 +331,10 @@ done
 :backtick_octal3 Escape
 	*		backtick	noeat
 	"0-7"		backtick
+
+:ident_no_kw Idle
+	*		after_term	noeat
+	"a-zA-Z0-9_?!"	ident_no_kw
 
 :ident	Idle
 	*		after_term	noeat strings
