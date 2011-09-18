@@ -9,4 +9,4 @@ else
 	num=$1
 fi
 
-tar cvf "${PREFIX}_$num.tar" --exclude="*.part.jsf" *.jsf
+tar cvf "${PREFIX}_$num.tar" --exclude="*.part.jsf" ./*.jsf
