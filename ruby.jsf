@@ -38,7 +38,6 @@
 	"{}"		brace		recolor=-1
 	"0"		first_digit	recolor=-1
 	"1-9"		decimal		recolor=-1
-	"."		maybe_float
 	"\""		string		recolor=-1
 	"'"		char		recolor=-1
 	"`"		backtick	recolor=-1
@@ -202,10 +201,6 @@ done
 	"0-9_"		decimal
 	"eE"		epart
 	"."		float
-
-:maybe_float Constant
-	*		after_term	noeat recolor=-2
-	"0-9"		float		recolor=-2
 
 :float Constant
 	*		after_term	noeat
