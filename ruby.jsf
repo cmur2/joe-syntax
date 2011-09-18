@@ -334,7 +334,13 @@ done
 
 :ident_no_kw Idle
 	*		after_term	noeat
-	"a-zA-Z0-9_?!"	ident_no_kw
+	"0"		first_digit	recolor=-1
+	"1-9"		decimal		recolor=-1
+	"a-zA-Z_"	ident_no_kw1
+
+:ident_no_kw1 Idle
+	*		after_term	noeat
+	"a-zA-Z0-9_?!"	ident_no_kw1
 
 :ident	Idle
 	*		after_term	noeat strings
