@@ -49,7 +49,7 @@
 	"a-zA-Z_"	ident		buffer
 
 	# higher level, ruby specific
-	":"		maybe_symbol	noeat
+	":"		maybe_symbol
 	"|"		proc_arg
 	"@"		class_member1
 
@@ -479,20 +479,16 @@ done
 
 :maybe_symbol Idle
 	*		rest		noeat
-	":"		maybe_symbol2
-
-:maybe_symbol2 Idle
-	*		rest		noeat
 	# prevent wrong Module::Member detection
 	":"		rest
 	# first char mustn't be 0-9
-	"a-zA-Z_"	symbol
+	"a-zA-Z_"	symbol		recolor=-2
 #	# might be a :"symbol"
 #	"\""
 
 :symbol Symbol
 	*		rest		noeat
-	"a-zA-Z0-9_"	symbol		recolor=-3
+	"a-zA-Z0-9_"	symbol
 
 :proc_arg ProcArg
 	*		rest		noeat
