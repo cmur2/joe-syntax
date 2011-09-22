@@ -1,8 +1,8 @@
  File Type table.  This is :included by the joerc file.
 
  No '.' in file name?  Assume it's a text file and we want wordwrap on.
-*
--wordwrap
+ *
+ -wordwrap
 
  File name with '.'?  It's probably not a text file.
 *.*
