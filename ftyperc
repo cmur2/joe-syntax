@@ -157,6 +157,13 @@
 -syntax ruby
 -text_delimiters do=end
 
+*
++#!\+\[ 	]\+\[a-z/]/ruby\>
+-autoindent
+-pound_comment
+-syntax ruby
+-text_delimiters do=end
+
 *.gemspec
 -autoindent
 -pound_comment
