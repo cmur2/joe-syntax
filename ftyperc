@@ -158,7 +158,7 @@
 -text_delimiters do=end
 
 *
-+#!\+\[ 	]\+\[a-z/]/ruby\>
++#!\+\[ 	]\+\[a-z/ ]ruby\>
 -autoindent
 -pound_comment
 -syntax ruby
