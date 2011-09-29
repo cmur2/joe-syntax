@@ -18,6 +18,7 @@
 =Brace		magenta
 
 =Symbol		red
+=SymbolEscape	bold red
 =ProcArg	#yellow
 =ClassMember	fg_310 # brown
 =GlobalVar	yellow
@@ -489,12 +490,29 @@ done
 	":"		rest
 	# first char mustn't be 0-9
 	"a-zA-Z_"	symbol		recolor=-2
-#	# might be a :"symbol"
-#	"\""
+	"\""		symbol_str	recolor=-2
+	"'"		symbol_str_sq	recolor=-2
 
 :symbol Symbol
 	*		rest		noeat
 	"a-zA-Z0-9_"	symbol
+
+:symbol_str Symbol
+	*		symbol_str
+	"\""		after_term
+	"#"		symbol_maybe_str_subst	recolor=-1
+
+:symbol_maybe_str_subst Symbol
+	*		symbol_str
+	"{"		symbol_str_subst	recolor=-2
+
+:symbol_str_subst SymbolEscape
+	*		symbol_str_subst
+	"}"		symbol_str
+
+:symbol_str_sq Symbol
+	*		symbol_str_sq
+	"'"		after_term
 
 :proc_arg ProcArg
 	*		rest		noeat
