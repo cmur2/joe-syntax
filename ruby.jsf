@@ -495,7 +495,7 @@ done
 
 :symbol Symbol
 	*		rest		noeat
-	"a-zA-Z0-9_"	symbol
+	"a-zA-Z0-9_?!"	symbol
 
 :symbol_str Symbol
 	*		symbol_str
