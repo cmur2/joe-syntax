@@ -11,8 +11,9 @@ Using
 
 To enable the .jsf files in this repository they need to appear in JOEs
 *syntax* directory.  This is likely to be '/usr/share/joe/syntax' when using
-Debian and APT.  You may download the
-[latest jsf-bundle](https://github.com/downloads/cmur2/joe-syntax/jsf-bundle_1.tar)
+Debian and APT or '/usr/local/Cellar/joe/3.7/share/joe/syntax' when using brew
+on Mac OS X.  You may download the
+[latest jsf-bundle](https://github.com/downloads/cmur2/joe-syntax/jsf-bundle_2.tar)
 and place it's contents into the *syntax* directory (Note: this bundle might
 be outdated compared to the repository's state).
 
