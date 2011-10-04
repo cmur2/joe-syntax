@@ -10,8 +10,8 @@ Using
 ### *.jsf
 
 To enable the .jsf files in this repository they need to appear in JOEs
-*syntax* directory.  This is likely to be '/usr/share/joe/syntax' when using
-Debian and APT or '/usr/local/Cellar/joe/3.7/share/joe/syntax' when using brew
+*syntax* directory.  This is likely to be */usr/share/joe/syntax* when using
+Debian and APT or */usr/local/Cellar/joe/3.7/share/joe/syntax* when using brew
 on Mac OS X.  You may download the
 [latest jsf-bundle](https://github.com/downloads/cmur2/joe-syntax/jsf-bundle_2.tar)
 and place it's contents into the *syntax* directory (Note: this bundle might
@@ -25,8 +25,8 @@ directory.
 
 To enable the enhanced *ftyperc* from this repository to gain syntax
 highlighting support for new languages without overwriting
-'/etc/joe/ftyperc', you may place the modified one in '~/.joe/' as
-'~/.joe/ftyperc'.
+*/etc/joe/ftyperc*, you may place the modified one in *~/.joe/* as
+*~/.joe/ftyperc*.
 
 How JOE syntax highlighting works
 ---------------------------------
