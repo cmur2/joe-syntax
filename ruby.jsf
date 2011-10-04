@@ -26,13 +26,16 @@
 
 # Detect pod
 
-:idle Idle
+:pre_idle Idle
 	*		NULL		noeat call=.ruby()
+
+.subr ruby
+
+:idle Idle
+	*		rest		noeat
 	"="		pod_start
 
 # Rest of line
-
-.subr ruby
 
 :rest Idle
 	*		rest
