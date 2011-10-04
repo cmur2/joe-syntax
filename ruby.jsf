@@ -27,10 +27,12 @@
 # Detect pod
 
 :idle Idle
-	*		rest		noeat
+	*		NULL		noeat call=.ruby()
 	"="		pod_start
 
 # Rest of line
+
+.subr ruby
 
 :rest Idle
 	*		rest
@@ -59,7 +61,16 @@
 :after_term Idle
 	*		rest		noeat
 	" \t)"		after_term
+.ifdef erb
+	"/"		rest
+	"%"		after_term_erb_end
+.else
 	"/%"		rest
+.endif
+
+:after_term_erb_end Idle
+	*		rest		noeat
+	">"		NULL		recolor=-2 return
 
 :pod_start Idle
 	*		pod_start
@@ -430,6 +441,9 @@ done
 	*		match		noeat
 	" \t"		after_term	noeat
 	"xrqQw"		match
+.ifdef erb
+	">"		NULL		recolor=-2 return
+.endif
 
 :match Idle
 	*		inmatch		save_c recolor=-1
@@ -538,6 +552,8 @@ done
 :global_var GlobalVar
 	*		rest		noeat
 	"a-zA-Z0-9_"	global_var
+
+.end
 
 .subr comment_todo
 # initial state

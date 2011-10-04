@@ -860,3 +860,11 @@
 -syntax whitespace
  --force
  --spaces
+
+ plain ERB
+*.erb
+-syntax erb
+
+ .html.erb
+*.html.erb
+-syntax htmlerb

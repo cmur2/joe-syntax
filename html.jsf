@@ -81,10 +81,17 @@
 .else
 	"?"			xml_pi recolor=-2
 .endif
+.ifdef erb
+	"%"			maybe_erb_eq
+.endif
 
 # this state allows php and perl to recolor the ?> %> or &> properly.
 :rtn_php TagEdge
 	*			idle noeat
+
+:maybe_erb_eq TagEdge
+	*			rtn_php noeat call=ruby.ruby(erb)
+	"="			rtn_php call=ruby.ruby(erb)
 
 :tag_name_first Mystery
 	*			tag_idle noeat
