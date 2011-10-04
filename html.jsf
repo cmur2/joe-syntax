@@ -29,9 +29,9 @@
 =Background
 =Text
 =TagEdge	green
-=TagName	cyan
-=TagParam	green
-=TagDelim	bold green
+=TagName	green #cyan
+=TagParam	#green
+=TagDelim	#bold green
 =TagValue	cyan
 =TagEntity	bold blue
 =SGMLtag	magenta
