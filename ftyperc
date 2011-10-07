@@ -51,6 +51,10 @@
 -wordwrap
 -syntax troff
 
+ System RC file
+*rc
+-syntax conf
+
  TeX
 *.tex
 -wordwrap
@@ -594,7 +598,7 @@
 -pound_comment
 -text_delimiters do=done:if=elif=else=fi:case=esac
 
-*.bash
+*.bashrc
 -autoindent
 -syntax sh
 -pound_comment
@@ -756,10 +760,6 @@
 *tmp/mutt-*
 -wordwrap
 -syntax mail
-
- System RC file
-*rc
--syntax conf
 
  JOERC file
 *ftyperc
