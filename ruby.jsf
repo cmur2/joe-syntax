@@ -178,9 +178,15 @@ done
 
 :line_comment Comment
 	*		line_comment
+.ifdef erb
+	"%"		line_comment_maybe_erb_end
+.endif
 	# might be TODO label
 	"BFHNTX"	line_comment	noeat call=.comment_todo()
 	"\n"		idle
+
+:line_comment_maybe_erb_end Comment
+	">"		NULL		recolor=-2 return
 
 :end_of_file_comment Comment
 	*		end_of_file_comment
