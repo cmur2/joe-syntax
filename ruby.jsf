@@ -244,7 +244,7 @@ done
 	"#"		maybe_string_subst	recolor=-1
 
 :maybe_string_subst Constant
-	*		string
+	*		string		noeat
 	"{"		string_subst	recolor=-2
 
 :string_subst Escape
