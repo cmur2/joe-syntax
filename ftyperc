@@ -63,7 +63,6 @@
 -no_double_quoted
 
 *.sty
--wordwrap
 -syntax tex
 -tex_comment
 -no_double_quoted
@@ -464,13 +463,15 @@
 
  XML
 *.xml
--wordwrap
 -autoindent
 -syntax xml
 
- XML
 *.xsd
--wordwrap
+-autoindent
+-syntax xml
+
+ Apple plists
+*.plist
 -autoindent
 -syntax xml
 
