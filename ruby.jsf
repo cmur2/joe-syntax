@@ -40,7 +40,11 @@
 :rest Idle
 	*		rest
 	"#"		line_comment	recolor=-1
+.ifdef haml
+	"\n"		NULL		return
+.else
 	"\n"		idle
+.endif
 	"{}"		brace		recolor=-1
 	"0"		first_digit	recolor=-1
 	"1-9"		decimal		recolor=-1
@@ -183,7 +187,11 @@ done
 .endif
 	# might be TODO label
 	"BFHNTX"	line_comment	noeat call=.comment_todo()
+.ifdef haml
+	"\n"		NULL		return
+.else
 	"\n"		idle
+.endif
 
 :line_comment_maybe_erb_end Comment
 	">"		NULL		recolor=-2 return

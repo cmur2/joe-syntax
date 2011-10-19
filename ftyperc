@@ -866,6 +866,15 @@
 *.erb
 -syntax erb
 
- .html.erb
+ ERB within HTML
 *.html.erb
 -syntax htmlerb
+
+ Haml
+*.haml
+-syntax haml
+-istep 2
+-indentc 32
+-autoindent
+-smarthome
+-smartbacks
