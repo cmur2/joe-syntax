@@ -13,11 +13,12 @@
 =Reference	yellow
 =LocalType	fg_310 # brown
 =BlockDelim	bold blue
+=Key		fg_310
 
 =BadTab		inverse red
 
 :line_start Idle
-	*		idle		noeat
+	*		maybe_key	noeat
 	"\t"		bad_tab		recolor=-1
 	" "		line_start
 
@@ -29,10 +30,26 @@
 	"'"		string_sq_1	recolor=-1
 	"\""		string_dq_1	recolor=-1
 	"{[]}"		brace		recolor=-1
-	"-"		maybe_block1
-	"."		maybe_block_end1
 	"*&"		maybe_reference
 	"!"		maybe_typecast
+
+:maybe_key Idle
+	*		maybe_key1	mark
+	"\n%#{[]}."	idle		noeat
+	"-"		maybe_block1	mark
+	"."		maybe_block_end1
+
+:maybe_key1 Idle
+	*		idle		noeat
+	":"		key
+	" a-zA-Z0-9_-"	maybe_key1
+
+# necessary to include the :
+:key Idle
+	*		key_end		noeat recolormark
+
+:key_end Key
+	*		idle		noeat
 
 # mark bad tabs until the first non-whitespace
 :bad_tab BadTab
@@ -74,11 +91,11 @@
 	"\n"		string_dq	recolor=-2
 
 :maybe_block1 Idle
-	*		idle		noeat
+	*		maybe_key1	noeat
 	"-"		maybe_block2
 
 :maybe_block2 Idle
-	*		idle		noeat
+	*		maybe_key1	noeat
 	"-"		block		recolor=-3
 
 :block BlockDelim
