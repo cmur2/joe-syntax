@@ -1,0 +1,95 @@
+# JOE syntax highlight file for Erlang
+
+=Idle
+=Comment	green
+=Constant	cyan
+=Escape		bold cyan
+=Keyword	bold
+=Bad		bold red
+=Brace		magenta
+
+=Variable	fg_310
+=Attribute	magenta
+
+:idle Idle
+	*		idle
+	"A-Z"		variable	noeat
+	"%"		line_comment	noeat
+	"\""		string		recolor=-1
+	"'"		quoted_atom	recolor=-1
+	"0-9"		decimal		recolor=-1
+	"{[]}"		brace		recolor=-1
+	"-"		maybe_attribute	mark
+	"a-z"		atom		buffer
+
+:line_comment Comment
+	*		line_comment
+	"\n"		idle
+
+:variable Variable
+	*		idle		noeat
+	"a-zA-Z"	variable
+
+:string Constant
+	*		string
+	"\""		idle
+
+:decimal Constant
+	*		idle		noeat
+	"0-9"		decimal
+	"."		float
+
+:float Constant
+	*		idle		noeat
+	"0-9"		float
+
+:brace Brace
+	*		idle		noeat
+
+:maybe_attribute Idle
+	*		idle		noeat
+	"a-z"		maybe_attribute
+	"("		attribute	recolormark
+
+:attribute Attribute
+	*		idle		noeat
+
+:atom Idle
+	*		idle		noeat strings
+	"after"		kw
+	"and"		kw
+	"andalso"	kw
+	"band"		kw
+	"begin"		kw
+	"bnot"		kw
+	"bor"		kw
+	"bsl"		kw
+	"bsr"		kw
+	"bxor"		kw
+	"case"		kw
+	"catch"		kw
+	"cond"		kw
+	"div"		kw
+	"end"		kw
+	"fun"		kw
+	"if"		kw
+	"let"		kw
+	"not"		kw
+	"of"		kw
+	"or"		kw
+	"orelse"	kw
+	"query"		kw
+	"receive"	kw
+	"rem"		kw
+	"try"		kw
+	"when"		kw
+	"xor"		kw
+done
+	"a-zA-Z0-9_@"	atom
+
+:kw Keyword
+	*		idle		noeat
+
+:quoted_atom Idle
+	*		quoted_atom
+	"'"		idle

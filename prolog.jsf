@@ -4,11 +4,11 @@
 =Comment	green
 =Constant	cyan
 =Escape		bold cyan
-=Variable	cyan
 =Keyword	bold
 =Bad		bold red
 
-=Brace
+=Brace		#magenta
+=Variable	fg_310
 =Predicate	red
 
 :idle Idle

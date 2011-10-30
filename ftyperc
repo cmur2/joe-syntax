@@ -878,3 +878,8 @@
 -autoindent
 -smarthome
 -smartbacks
+
+ Erlang
+*.erl
+-syntax erlang
+-autoindent
