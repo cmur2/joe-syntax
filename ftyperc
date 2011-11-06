@@ -477,14 +477,16 @@
 
  HTML
 *.htm
--wordwrap
 -autoindent
 -syntax html
 
 *.html
--wordwrap
 -autoindent
 -syntax html
+
+ CSS
+*.css
+-syntax css
 
  Java
 *.java
