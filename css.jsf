@@ -5,10 +5,14 @@
 
 =Idle
 =Comment 	green
+=Constant	cyan
+=Escape		bold cyan
+=Keyword	bold
+=Bad		bold red
+
 =Class		cyan
 =Id		red
 =Tag		magenta
-=Keyword	bold
 =HTML
 
 # from html.jsf to support <?php?>
@@ -59,6 +63,7 @@
 	"/"		reset
 	"*"		maybe_end_comment
 
+# CSS selectors
 :id_block Id
 	*		id_block
 	" "		id_block_reset
@@ -84,20 +89,13 @@
 :tag_sep Idle
 	*		tag_block	recolor=-1
 
+# everything inside "{ ... }", containing many "key: value;" pairs
 :style_block Idle
 	*		style_block
 	"}"		reset
 	"/"		maybe_style_comment
 	"a-zA-Z-"	style_word	recolor=-1
 
-:style_word Keyword
-	*		style_word
-	":"		style_value	recolor=-1
-
-:style_value Idle
-	*		style_value
-	";"		style_block
-  
 :maybe_style_comment Idle
 	*		style_block	recolor=-1
 	"*"		style_comment	recolor=-2
@@ -110,5 +108,35 @@
 	*		comment
 	"/"		style_block
 	"*"		maybe_end_style_comment
+
+# property-key
+:style_word Keyword
+	*		style_word
+	":"		style_value	recolor=-1
+
+# property-value
+:style_value Idle
+	*		style_value
+	";"		style_block
+	"#"		color		recolor=-1
+	"-0-9"		decimal		recolor=-1
+	"a-zA-Z_"	ident
+
+:color Constant
+	*		style_value	noeat
+	"0-9a-f"	color
+
+:decimal Constant
+	*		style_value	noeat
+	"0-9"		decimal
+	"a-zA-Z"	decimal_unit
+
+:decimal_unit Constant
+	*		style_value	noeat
+	"a-zA-Z"	decimal_unit
+
+:ident Idle
+	*		style_value	noeat
+	"a-ZA-Z0-9_-"	ident
 
 .end
