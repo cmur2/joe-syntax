@@ -883,3 +883,8 @@
 *.erl
 -syntax erlang
 -autoindent
+
+ Sieve (ManageSieve)
+*.sieve
+-syntax sieve
+-autoindent

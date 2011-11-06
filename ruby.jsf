@@ -371,7 +371,7 @@ done
 	*		after_term	noeat
 	"a-zA-Z0-9_?!"	ident_no_kw1
 
-:ident	Idle
+:ident Idle
 	*		after_term	noeat strings
 	"BEGIN"		kw
 	"END"		kw
