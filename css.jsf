@@ -118,18 +118,31 @@
 :style_value Idle
 	*		style_value
 	";"		style_block
+	# treat } without previous ; like ;}
+	"}"		style_block	noeat
 	"#"		color		recolor=-1
-	"-0-9"		decimal		recolor=-1
+	"0-9"		decimal		recolor=-1
+	"."		maybe_float
 	"a-zA-Z_"	ident
 
 :color Constant
 	*		style_value	noeat
-	"0-9a-f"	color
+	"0-9a-fA-F"	color
 
 :decimal Constant
 	*		style_value	noeat
 	"0-9"		decimal
-	"a-zA-Z"	decimal_unit
+	"."		float
+	"a-zA-Z%"	decimal_unit
+
+:maybe_float Constant
+	*		style_value	noeat recolor=-2
+	"0-9"		float		recolor=-2
+
+:float Constant
+	*		style_value	noeat
+	"0-9"		float
+	"a-zA-Z%"	decimal_unit
 
 :decimal_unit Constant
 	*		style_value	noeat
