@@ -34,7 +34,7 @@
 	"!"		maybe_typecast
 
 :maybe_key Idle
-	*		maybe_key1	mark
+	*		maybe_key1	recolor=-1 mark
 	"\n%#'\"{[]}*&!"	idle		noeat
 	"-"		maybe_block1	mark
 
