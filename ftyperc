@@ -57,7 +57,7 @@
 
  TeX
 *.tex
--wordwrap
+ -wordwrap
 -syntax tex
 -tex_comment
 -no_double_quoted
