@@ -470,6 +470,11 @@
 -autoindent
 -syntax xml
 
+*
++<\?xml
+-autoindent
+-syntax xml
+
  Apple plists
 *.plist
 -autoindent
