@@ -60,7 +60,7 @@
 
 	# higher level, ruby specific
 	":"		maybe_symbol
-	"|"		proc_arg
+#	"|"		proc_arg
 	"@"		class_member1
 
 # / / regex not allowed after terms
