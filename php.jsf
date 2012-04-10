@@ -96,13 +96,13 @@ done
 :var_indqstring Var
   *     string_dq recolor=-1
   "a-zA-Z_" var_indqstring
-  "\""  idle
+  "\""  string_dq noeat
 	"\\"		string_dq_esc	recolor=-1
 
 :var_inbqstring Var
   *     string_bq recolor=-1
   "a-zA-Z_" var_inbqstring
-  "\`"  idle
+  "\`"  string_sq noeat
 	"\\"		string_bq_esc	recolor=-1
 
 :maybe_method Methods
