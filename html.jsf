@@ -172,7 +172,7 @@ done
 
 :stag_end TagEdge
 .ifdef php
-	*	tag_begin	call=php.php(script)
+	*	tag_begin	call=js.js(php)
 .else
 	*	tag_begin	call=js.js(html)
 .endif

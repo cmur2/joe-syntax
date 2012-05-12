@@ -21,6 +21,9 @@
 =Methods
 =Number		cyan #fg_520 # orange
 
+# from html.jsf to support <?php?>
+=TagEdge	green
+
 :begin Idle
 	*		begin		noeat call=.js()
 
@@ -39,9 +42,14 @@
 	"{}"		brace		recolor=-1
 .ifdef html
 	",:;=()>[]*&|!?~+\-%^"	control	recolor=-1
-	"<"		maybe_done
+	"<"		maybe_done	recolor=-1
+.else
+.ifdef php
+	",:;=()>[]*&|!?~+\-%^"	control	recolor=-1
+	"<"		maybe_done	recolor=-1
 .else
 	",:;=()><[]*&|!?~+\-%^"	control recolor=-1
+.endif
 .endif
 
 # / / regex not allowed after terms
@@ -52,9 +60,16 @@
 	"%"		control		recolor=-1
 	"/"		after_term_slash
 
-:maybe_done Control
+:maybe_done TagEdge
 	*		idle		noeat
 	"/"		idle		noeat return recolor=-2
+.ifdef php
+	"?%"		rtn_php		call=php.php()
+.endif
+
+# this state allows php and perl to recolor the ?> %> or &> properly.
+:rtn_php TagEdge
+	*		idle		noeat
 
 :brace Brace
 	*		idle		noeat
