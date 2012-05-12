@@ -21,6 +21,11 @@
 =Methods
 =Number		cyan #fg_520 # orange
 
+:begin Idle
+	*		begin		noeat call=.js()
+
+.subr js
+
 :idle Idle
 	*		idle
 	"\n"		idle
@@ -32,7 +37,12 @@
 	"'"		char		recolor=-1
 	"a-zA-Z_"	ident		mark buffer
 	"{}"		brace		recolor=-1
-	",:;=()><[]*&|!?~+\-%^"	control	recolor=-1
+.ifdef html
+	",:;=()>[]*&|!?~+\-%^"	control	recolor=-1
+	"<"		maybe_done
+.else
+	",:;=()><[]*&|!?~+\-%^"	control recolor=-1
+.endif
 
 # / / regex not allowed after terms
 # class Control to handle ')' right
@@ -41,6 +51,10 @@
 	" \t)"		after_term
 	"%"		control		recolor=-1
 	"/"		after_term_slash
+
+:maybe_done Control
+	*		idle		noeat
+	"/"		idle		noeat return recolor=-2
 
 :brace Brace
 	*		idle		noeat
@@ -258,6 +272,8 @@ done
 
 :method_end Methods
 	*		idle		noeat
+
+.end
 
 .subr comment_todo
 # initial state

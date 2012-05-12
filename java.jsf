@@ -37,12 +37,7 @@
 	"'"		char		recolor=-1
 	"a-zA-Z_"	ident		mark buffer
 	"{}"		brace		recolor=-1
-.ifdef script
-	",:;=()>[]*&|!~+\-%^"	control	recolor=-1
-	"<"		maybe_done
-.else
 	",:;=()><[]*&|!~+\-%^"	control	recolor=-1
-.endif
 
 :maybe_done Control
 	*		idle		noeat
