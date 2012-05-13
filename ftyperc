@@ -504,6 +504,11 @@
 -purify
 -cpara >#!;*/%
 
+ JNLP
+*.jnlp
+-autoindent
+-syntax xml
+
  Javascript
 *.js
 -autoindent
