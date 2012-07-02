@@ -895,6 +895,32 @@
 *.erl
 -syntax erlang
 -autoindent
+-tab 4
+
+*.eterm
+-syntax erlang
+-autoindent
+-tab 4
+
+*.app.src
+-syntax erlang
+-autoindent
+-tab 4
+
+*rebar.config
+-syntax erlang
+-autoindent
+-tab 4
+
+*.hrl
+-syntax erlang
+-autoindent
+-tab 4
+
+*.erlang
+-syntax erlang
+-autoindent
+-tab 4
 
  Sieve (ManageSieve)
 *.sieve
