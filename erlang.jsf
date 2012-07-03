@@ -1,26 +1,33 @@
 # JOE syntax highlight file for Erlang
 
 =Idle
-=Comment	green
-=Constant	cyan
-=Escape		bold cyan
+=Comment	fg_030
+=String		fg_110
+=String_mod	fg_300 bold
+=Int		fg_033
+=Record		fg_530
+=Recatt		fg_530
+=Fun		fg_115
+=Module		fg_101
 =Keyword	bold
-=Bad		bold red
-=Brace		magenta
+=Brace		fg_555 bold
+=Brack		fg_222
 
 =Variable	fg_310
-=Attribute	magenta
+=Attribute	fg_505
 
 :idle Idle
 	*		idle
-	"A-Z"		variable	noeat
+	"A-Z_"		variable	noeat
 	"%"		line_comment	noeat
 	"\""		string		recolor=-1
 	"'"		quoted_atom	recolor=-1
 	"0-9"		decimal		recolor=-1
-	"{[]}"		brace		recolor=-1
+        "[]"            brack           recolor=-1
+	"{}"		brace		recolor=-1
 	"-"		maybe_attribute	mark
-	"a-z"		atom		buffer
+	"a-z"		atom		buffer mark noeat
+	"#"		record		recolor=-1
 
 :line_comment Comment
 	*		line_comment
@@ -28,28 +35,50 @@
 
 :variable Variable
 	*		idle		noeat
-	"a-zA-Z"	variable
+	"a-zA-Z0-9_"	variable
 
-:string Constant
+:record Record
+	*		idle		noeat
+	"a-zA-z_"	record
+	"."		recatt		recolor=-1
+
+:recatt Recatt
+	*		idle		noeat
+	"a-zA-Z_"	recatt
+
+:string String
 	*		string
+	"\\"		string_escape
+	"~"		string_mod	recolor=-1
 	"\""		idle
 
-:decimal Constant
+:string_escape	String
+	*		string
+	"\""		string
+
+:string_mod String_mod
+	*		string		noeat recolor=-2
+	"cfegswpWPBX#bx+ni"	string
+
+:decimal Int
 	*		idle		noeat
 	"0-9"		decimal
 	"."		float
 
-:float Constant
+:float Int
 	*		idle		noeat
 	"0-9"		float
 
 :brace Brace
 	*		idle		noeat
 
+:brack Brack
+	*		idle		noeat
+
 :maybe_attribute Idle
 	*		idle		noeat
-	"a-z"		maybe_attribute
-	"("		attribute	recolormark
+	"a-z_"		maybe_attribute
+	"(."		attribute	recolormark noeat
 
 :attribute Attribute
 	*		idle		noeat
@@ -84,8 +113,16 @@
 	"try"		kw
 	"when"		kw
 	"xor"		kw
-done
+done 
+	"("		function	recolormark noeat
+	":"		module		recolormark noeat
 	"a-zA-Z0-9_@"	atom
+
+:module Module
+	*		idle		noeat
+
+:function Fun
+	*		idle		noeat
 
 :kw Keyword
 	*		idle		noeat
