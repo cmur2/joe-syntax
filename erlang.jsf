@@ -3,8 +3,8 @@
 =Idle
 =Comment	fg_030
 =String		fg_110
-=String_mod	fg_300 bold
-=String_esc	fg_024 bold
+=String_mod	fg_200 bold
+=String_esc	fg_000 bold
 =Int		fg_033
 =Record		fg_530
 =Recatt		fg_530
