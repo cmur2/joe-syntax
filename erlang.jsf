@@ -4,6 +4,7 @@
 =Comment	fg_030
 =String		fg_110
 =String_mod	fg_300 bold
+=String_esc	fg_024 bold
 =Int		fg_033
 =Record		fg_530
 =Recatt		fg_530
@@ -46,20 +47,36 @@
 	*		idle		noeat
 	"a-zA-Z_"	recatt
 
+# STRINGS
 :string String
 	*		string
-	"\\"		string_escape
-	"~"		string_mod	recolor=-1
+	"\\"		string_escape	recolor=-1
+	"~"		string_		mark
 	"\""		idle
 
-:string_escape	String
+:string_escape String_esc
 	*		string
-	"\""		string
 
-:string_mod String_mod
-	*		string		noeat recolor=-2
-	"cfegswpWPBX#bx+ni"	string
+:string_ String
+	*		string_mod	noeat
+	"0-9"		string_f
+	"t"		string_mod
+:string_f String
+	*		string_mod	noeat          
+	"0-9*"		string_f
+	"."		string_p
 
+:string_p String
+	*		string_mod	noeat
+	"0-9*"		string_p
+
+:string_mod String
+	*		string
+	"cfegswpWPBX#bx+ni"	string_modifier recolormark noeat
+
+:string_modifier String_mod
+	*		string
+# END STRINGS
 :decimal Int
 	*		idle		noeat
 	"0-9"		decimal
