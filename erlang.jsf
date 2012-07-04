@@ -4,7 +4,7 @@
 =Comment	fg_030
 =String		fg_110
 =String_format	fg_200 bold
-=String_esc	fg_000 bold
+=String_esc	fg_110 bold
 =Int		fg_033
 =Record		fg_530
 =Recatt		fg_530
@@ -71,7 +71,7 @@
 	"0-9*"		string_p
 
 :string_mod String
-	*		string
+	*		string		noeat
 	"cfegswpWPBX#bx+ni"	string_format recolormark noeat
 
 :string_format String_format
