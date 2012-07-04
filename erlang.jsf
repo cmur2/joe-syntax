@@ -3,7 +3,7 @@
 =Idle
 =Comment	fg_030
 =String		fg_110
-=String_mod	fg_200 bold
+=String_format	fg_200 bold
 =String_esc	fg_000 bold
 =Int		fg_033
 =Record		fg_530
@@ -47,7 +47,7 @@
 	*		idle		noeat
 	"a-zA-Z_"	recatt
 
-# STRINGS
+# STRINGS (not complete)
 :string String
 	*		string
 	"\\"		string_escape	recolor=-1
@@ -72,9 +72,9 @@
 
 :string_mod String
 	*		string
-	"cfegswpWPBX#bx+ni"	string_modifier recolormark noeat
+	"cfegswpWPBX#bx+ni"	string_format recolormark noeat
 
-:string_modifier String_mod
+:string_format String_format
 	*		string
 # END STRINGS
 :decimal Int
