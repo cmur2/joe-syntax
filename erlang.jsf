@@ -101,7 +101,7 @@
 	*		idle		noeat
 
 :atom Idle
-	*		maybe_function	noeat strings
+	*		no_atom		noeat strings
 	"after"		kw
 	"and"		kw
 	"andalso"	kw
@@ -131,16 +131,16 @@
 	"when"		kw
 	"xor"		kw
 done 
-	":"		module		recolormark noeat
 	"a-zA-Z0-9_@"	atom
+
+:no_atom Idle
+	*		idle		noeat
+	" "		no_atom
+	"("		function	recolormark noeat
+	":"		module		recolormark noeat
 
 :module Module
 	*		idle		noeat
-
-:maybe_function Idle
-	*		idle		noeat
-	" "		maybe_function
-	"("		function	recolormark noeat
 
 :function Fun
 	*		idle		noeat
