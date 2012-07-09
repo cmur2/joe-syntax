@@ -3,8 +3,8 @@
 =Idle
 =Comment	fg_030
 =String		fg_110
-=String_format	fg_200 bold
-=String_esc	fg_110 bold
+=String_mod	fg_200 bold
+=String_esc	fg_000 bold
 =Int		fg_033
 =Record		fg_530
 =Recatt		fg_530
@@ -47,7 +47,7 @@
 	*		idle		noeat
 	"a-zA-Z_"	recatt
 
-# STRINGS (not complete)
+# STRINGS
 :string String
 	*		string
 	"\\"		string_escape	recolor=-1
@@ -71,10 +71,10 @@
 	"0-9*"		string_p
 
 :string_mod String
-	*		string		noeat
-	"cfegswpWPBX#bx+ni"	string_format recolormark noeat
+	*		string
+	"cfegswpWPBX#bx+ni"	string_modifier recolormark noeat
 
-:string_format String_format
+:string_modifier String_mod
 	*		string
 # END STRINGS
 :decimal Int
@@ -101,7 +101,7 @@
 	*		idle		noeat
 
 :atom Idle
-	*		idle		noeat strings
+	*		no_atom		noeat strings
 	"after"		kw
 	"and"		kw
 	"andalso"	kw
@@ -131,9 +131,13 @@
 	"when"		kw
 	"xor"		kw
 done 
+	"a-zA-Z0-9_@"	atom
+
+:no_atom Idle
+	*		idle		noeat
+	" "		no_atom
 	"("		function	recolormark noeat
 	":"		module		recolormark noeat
-	"a-zA-Z0-9_@"	atom
 
 :module Module
 	*		idle		noeat
