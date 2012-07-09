@@ -97,10 +97,38 @@
 	"undef"		kw
 	# prominent attrs
 	"ensure"	kw_attr
+	"default"	kw_attr
 	# methods
+	"alert"		method
+	"create_resources"	method
+	"crit"		method
+	"debug"		method
+	"defined"	method
+	"emerg"		method
+	"err"		method
+	"extlookup"	method
 	"fail"		method
+	"file"		method
+	"fqdn_rand"	method
+	"generate"	method
+	"include"	method
+	"info"		method
+	"inline_template"	method
+	"md5"		method
 	"notice"	method
+	"realize"	method
+	"regsubst"	method
+	"require"	method
+	"search"	method
+	"sha1"		method
+	"shellquote"	method
+	"split"		method
+	"sprintf"	method
+	"tag"		method
+	"tagged"	method
 	"template"	method
+	"versioncmp"	method
+	"warning"	method
 done
 	"a-zA-Z0-9_"	ident
 
