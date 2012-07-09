@@ -95,6 +95,7 @@
 :maybe_attribute Idle
 	*		idle		noeat
 	"a-z_"		maybe_attribute
+	" "		maybe_attribute
 	"(."		attribute	recolormark noeat
 
 :attribute Attribute
