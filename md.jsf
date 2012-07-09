@@ -5,6 +5,7 @@
 # bold parsing is not that perfect since this works: **bold__
 
 =Idle
+=Tag		fg_030
 =Escape bold
 =Bad bold red
 
@@ -12,9 +13,14 @@
 
 :idle Idle
 	*		idle
+	"<"		tag		recolor=-1
 	"\\"		escape		recolor=-1
 	"*_"		maybe_bold1
 
+:tag Tag
+	*		idle
+	"a-z0-9 /"	tag
+	">"		idle
 # do escaping of *_ and so on
 :escape Escape
 	*		idle
