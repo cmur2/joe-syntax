@@ -142,6 +142,11 @@ done
 :module Module
 	*		idle		noeat
 
+:maybe_function Idle
+	*		idle		noeat
+	" "		maybe_function
+	"("		function	recolormark noeat
+
 :function Fun
 	*		idle		noeat
 
