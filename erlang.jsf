@@ -7,7 +7,7 @@
 =String_esc	fg_000 bold
 =Int		fg_033
 =Record		fg_530
-=Recatt		fg_530
+=Recatt		
 =Fun		fg_115
 =Module		fg_101
 =Keyword	bold
