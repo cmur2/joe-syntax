@@ -59,7 +59,7 @@
 	"@doc"		edoc
 	"@end"		edoc
 done
-	"a-z@"		is_edoc
+	"A-Za-z@"		is_edoc
 
 :edoc Keyword
 	*		line_comment	noeat
