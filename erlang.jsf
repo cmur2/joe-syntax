@@ -2,7 +2,6 @@
 
 =Idle
 =Comment	fg_030
-=Edoc		fg_033
 =String		fg_110
 =String_mod	fg_200 bold
 =String_esc	fg_000 bold
