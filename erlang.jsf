@@ -2,6 +2,7 @@
 
 =Idle
 =Comment	fg_030
+=Edoc		fg_033
 =String		fg_110
 =String_mod	fg_200 bold
 =String_esc	fg_000 bold
@@ -32,7 +33,37 @@
 
 :line_comment Comment
 	*		line_comment
+	"@"		is_edoc		noeat buffer 
 	"\n"		idle
+
+:is_edoc Comment
+	*		line_comment	noeat strings
+	"@clear"	edoc
+	"@docfile"	edoc
+	"@headerfle"	edoc
+	"@todo"		edoc
+	"@TODO"		edoc
+	"@type"		edoc
+	"@reference"	edoc
+	"@see"		edoc
+	"@since"	edoc
+	"@deprecated"	edoc
+	"@hidden"	edoc
+	"@private"	edoc
+	"@equiv"	edoc
+	"@throws"	edoc
+	"@author"	edoc
+	"@copyright"	edoc
+	"@version"	edoc
+	"@title"	edoc
+	"@spec"		edoc
+	"@doc"		edoc
+	"@end"		edoc
+done
+	"a-z@"		is_edoc
+
+:edoc Keyword
+	*		line_comment	noeat
 
 :variable Variable
 	*		idle		noeat
@@ -95,7 +126,6 @@
 :maybe_attribute Idle
 	*		idle		noeat
 	"a-z_"		maybe_attribute
-	" "		maybe_attribute
 	"(."		attribute	recolormark noeat
 
 :attribute Attribute
