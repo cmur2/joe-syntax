@@ -174,7 +174,7 @@ done
 
 :not_string Idle
 	*		rest		noeat
-	"A-Za-z_"	global_var	recolor=-2
+	"a-zA-Z0-9_"	global_var	recolor=-2
 	"\"'`#/"	rest
 
 :brace Brace
