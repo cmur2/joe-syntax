@@ -12,7 +12,7 @@
 =Module		fg_101
 =Keyword	bold
 =Brace		fg_505
-=Brack		fg_222
+=Brack		fg_055
 
 =Variable	fg_310
 =Attribute	fg_505
@@ -59,7 +59,7 @@
 	"@doc"		edoc
 	"@end"		edoc
 done
-	"A-Za-z@"		is_edoc
+	"A-Za-z@"	is_edoc
 
 :edoc Keyword
 	*		line_comment	noeat
