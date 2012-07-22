@@ -171,6 +171,11 @@ done
 	"-behaviour"	attribute
 	"-record"	attribute
 	"-on_load"	attribute
+	"-connect_all"	attribute
+	"-hidden"	attribute
+	"-name"		attribute
+	"-setcookie"	attribute
+	"-sname"	attribute
 done
 	"a-z_"		maybe_attribute
 
@@ -193,6 +198,9 @@ done
 	*		idle		noeat
 
 :guard Guard
+	*		idle		noeat
+
+:rterr Guard
 	*		idle		noeat
 
 :bif Bif
@@ -234,6 +242,19 @@ done
 	"try"		kw
 	"when"		kw
 	"xor"		kw
+	"badarg"	rterr
+	"badarith"	rterr
+	"badmatch"	rterr
+	"function_clause"	rterr
+	"if_clause"	rterr
+	"try_clause"	rterr
+	"undef"		rterr
+	"badfun"	rterr
+	"badarity"	rterr
+	"timeout_value"	rterr
+	"noproc"	rterr
+	"nocatch"	rterr
+	"system_limit"	rterr
 	"is_atom"	guard
 	"is_binary"	guard
 	"is_bitstream"	guard
