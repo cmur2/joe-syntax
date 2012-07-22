@@ -79,20 +79,23 @@
 
 :variable Var
 	*		idle		noeat
-	"a-zA-Z0-9_:"	variable
+	"a-z0-9_"	variable
 
 :type Type
 	*		idle		noeat
-	"a-zA-Z0-9_"	type
+	"a-z0-9_"	type
 
 :ident Idle
 	*		idle		noeat strings
 	"case"		kw
 	"class"		kw
+	"define"	kw
 	"else"		kw
 	"elsif"		kw
 	"false"		kw
 	"if"		kw
+	"in"		kw
+	"inherits"	kw
 	"true"		kw
 	"undef"		kw
 	# prominent attrs
