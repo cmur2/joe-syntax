@@ -152,9 +152,13 @@ done
 	*		idle		noeat strings
 	"-module"	attribute
 	"-export"	attribute
+	"-import"	attribute
 	"-compile"	attribute
 	"-ifdef"	attribute
 	"-endif"	attribute
+	"-define"	attribute
+	"-file"		attribute
+	"-type"		attribute
 	"-spec"		attribute
 	"-author"	attribute
 	"-copyright"	attribute
@@ -163,6 +167,7 @@ done
 	"-vsn"		attribute
 	"-behaviour"	attribute
 	"-record"	attribute
+	"-on_load"	attribute
 done
 	"a-z_"		maybe_attribute
 
