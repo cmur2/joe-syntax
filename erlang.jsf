@@ -18,7 +18,7 @@
 
 =Variable	fg_310
 =Attribute	fg_505
-=Dunno		fg_330 bold
+=Char		fg_330 bold
 
 :idle Idle
 	*		idle
@@ -32,13 +32,13 @@
 	"-"		maybe_attribute	buffer
 	"a-z"		atom		buffer mark noeat
 	"#"		record		recolor=-1
-	"$"		dunno		recolor=-1
+	"$"		char		recolor=-1
 
-:dunno Dunno
+:char Char
 	*		idle
-	"\\"		dunnoesc
+	"\\"		charesc
 
-:dunnoesc Dunno
+:charesc Char
 	*		idle
 
 :line_comment Comment
@@ -123,6 +123,7 @@ done
 	"0-9"		decimal
 	"."		float
 	"#"		base
+	"Ee"		eintval
 
 :float Int
 	*		idle		noeat
@@ -130,7 +131,16 @@ done
 
 :base Int
 	*		idle		noeat
-	"0-9A-F"	base
+	"0-9A-Fa-f"	base
+	"Ee"		eintval
+
+:eintval Int
+	*		eint		noeat
+	"-"		eint
+
+:eint Int
+	*		idle		noeat
+	"0-9"		eint
 
 :brace Brace
 	*		idle		noeat
