@@ -169,6 +169,7 @@ done
 	"-include_lib"	attribute
 	"-vsn"		attribute
 	"-behaviour"	attribute
+	"-behavior"	attribute
 	"-record"	attribute
 	"-on_load"	attribute
 	"-connect_all"	attribute
@@ -246,6 +247,7 @@ done
 	"badarith"	rterr
 	"badmatch"	rterr
 	"function_clause"	rterr
+	"case_clause"	rterr
 	"if_clause"	rterr
 	"try_clause"	rterr
 	"undef"		rterr
