@@ -87,6 +87,7 @@ done
 :recatt Recatt
 	*		idle		noeat
 	"a-zA-Z_"	recatt
+	"#"		record
 
 # STRINGS
 :string String
@@ -159,6 +160,8 @@ done
 	"-define"	attribute
 	"-file"		attribute
 	"-type"		attribute
+	"-opaque"	attribute
+	"-export_type"	attribute
 	"-spec"		attribute
 	"-author"	attribute
 	"-copyright"	attribute
