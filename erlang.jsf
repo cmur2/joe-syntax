@@ -18,6 +18,7 @@
 
 =Variable	fg_310
 =Attribute	fg_505
+=Dunno		fg_330 bold
 
 :idle Idle
 	*		idle
@@ -28,9 +29,17 @@
 	"0-9"		decimal		recolor=-1
         "[]"            brack           recolor=-1
 	"{}"		brace		recolor=-1
-	"-"		maybe_attribute	mark
+	"-"		maybe_attribute	buffer
 	"a-z"		atom		buffer mark noeat
 	"#"		record		recolor=-1
+	"$"		dunno		recolor=-1
+
+:dunno Dunno
+	*		idle
+	"\\"		dunnoesc
+
+:dunnoesc Dunno
+	*		idle
 
 :line_comment Comment
 	*		line_comment
@@ -113,10 +122,15 @@ done
 	*		idle		noeat
 	"0-9"		decimal
 	"."		float
+	"#"		base
 
 :float Int
 	*		idle		noeat
 	"0-9"		float
+
+:base Int
+	*		idle		noeat
+	"0-9A-F"	base
 
 :brace Brace
 	*		idle		noeat
@@ -125,9 +139,22 @@ done
 	*		idle		noeat
 
 :maybe_attribute Idle
-	*		idle		noeat
+	*		idle		noeat strings
+	"-module"	attribute
+	"-export"	attribute
+	"-compile"	attribute
+	"-ifdef"	attribute
+	"-endif"	attribute
+	"-spec"		attribute
+	"-author"	attribute
+	"-copyright"	attribute
+	"-include"	attribute
+	"-include_lib"	attribute
+	"-vsn"		attribute
+	"-behaviour"	attribute
+	"-record"	attribute
+done
 	"a-z_"		maybe_attribute
-	"(."		attribute	recolormark noeat
 
 :attribute Attribute
 	*		idle		noeat
