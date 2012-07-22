@@ -11,6 +11,8 @@
 =Fun		fg_115
 =Module		fg_101
 =Keyword	bold
+=Guard		fg_200
+=Bif		fg_501
 =Brace		fg_505
 =Brack		fg_055
 
@@ -130,6 +132,33 @@ done
 :attribute Attribute
 	*		idle		noeat
 
+:no_atom Idle
+	*		idle		noeat
+	" "		no_atom
+	"("		function	recolormark noeat
+	":"		module		recolormark noeat
+
+:module Module
+	*		idle		noeat
+
+:function Fun
+	*		idle		noeat
+
+:kw Keyword
+	*		idle		noeat
+
+:guard Guard
+	*		idle		noeat
+
+:bif Bif
+	*		idle		recolormark noeat
+	" "		bif
+	"("		idle		noeat
+
+:quoted_atom Idle
+	*		quoted_atom
+	"'"		idle
+
 :atom Idle
 	*		no_atom		noeat strings
 	"after"		kw
@@ -160,24 +189,165 @@ done
 	"try"		kw
 	"when"		kw
 	"xor"		kw
+	"is_atom"	guard
+	"is_binary"	guard
+	"is_bitstream"	guard
+	"is_boolean"	guard
+	"is_float"	guard
+	"is_function"	guard
+	"is_integer"	guard
+	"is_list"	guard
+	"is_number"	guard
+	"is_pid"	guard
+	"is_port"	guard
+	"is_record"	guard
+	"is_reference"	guard
+	"is_tuple"	guard
+	"abs"		bif
+	"adler32"	bif
+	"adler32_combine"	bif
+	"append_element"	bif
+	"apply"		bif
+	"atom_to_binary"	bif
+	"atom_to_list"	bif
+	"binary_part"	bif
+	"binary_to_atom"	bif
+	"binary_to_existing_atom"	bif
+	"binary_to_list"	bif
+	"bitstring_to_list"	bif
+	"binary_to_term"	bif
+	"bit_size"	bif
+	"bump_reductions"	bif
+	"byte_size"	bif
+	"cancel_timer"	bif
+	"check_old_code"	bif
+	"check_process_code"	bif
+	"crc32"		bif
+	"crc32_combine"	bif
+	"date"		bif
+	"decode_packet"	bif
+	"delete_module"	bif
+	"demonitor"	bif
+	"disconnect_node"	bif
+	"display"	bif
+	"element"	bif
+	"erase"		bif
+	"error"		bif
+	"exit"		bif
+	"external_size"	bif
+	"float"		bif
+	"float_to_list"	bif
+	"fun_info"	bif
+	"fun_to_list"	bif
+	"function_exported"	bif
+	"garbage_collect"	bif
+	"get"		bif
+	"get_cookie"	bif
+	"get_keys"	bif
+	"get_stacktrace"	bif
+	"group_leader"	bif
+	"halt"		bif
+	"hash"		bif
+	"hd"		bif
+	"hibernate"	bif
+	"integer_to_list"	bif
+	"iolist_to_binary"	bif
+	"iolist_size"	bif
+	"is_alive"	bif
+	"is_builtin"	bif
+	"is_process_alive"	bif
+	"length"	bif
+	"link"		bif
+	"list_to_atom"	bif
+	"list_to_binary"	bif
+	"list_to_bitstring"	bif
+	"list_to_existing_atom"	bif
+	"list_to_float"	bif
+	"list_to_integer"	bif
+	"list_to_pid"	bif
+	"list_to_tuple"	bif
+	"load_module"	bif
+	"load_nif"	bif
+	"loaded"	bif
+	"local_time"	bif
+	"local_time_to_universaltime"	bif
+	"make_ref"	bif
+	"make_tuple"	bif
+	"max"		bif
+	"md5"		bif
+	"md5_final"	bif
+	"md5_init"	bif
+	"md5_update"	bif
+	"memory"	bif
+	"min"		bif
+	"module_loaded"	bif
+	"monitor"	bif
+	"monitor_node"	bif
+	"nif_error"	bif
+	"node"		bif
+	"nodes"		bif
+	"now"		bif
+	"open_port"	bif
+	"phash"		bif
+	"phash2"	bif
+	"pid_to_list"	bif
+	"port_close"	bif
+	"port_command"	bif
+	"port_connect"	bif
+	"port_control"	bif
+	"port_call"	bif
+	"port_info"	bif
+	"port_to_list"	bif
+	"ports"		bif
+	"pre_loaded"	bif
+	"process_display"	bif
+	"process_flag"	bif
+	"process_info"	bif
+	"processes"	bif
+	"purge_module"	bif
+	"put"		bif
+	"raise"		bif
+	"read_timer"	bif
+	"ref_to_list"	bif
+	"register"	bif
+	"registered"	bif
+	"resume_process"	bif
+	"round"		bif
+	"self"		bif
+	"send"		bif
+	"send_after"	bif
+	"send_nosuspend"	bif
+	"set_cookie"	bif
+	"setelement"	bif
+	"size"		bif
+	"spawn"		bif
+	"spawn_link"	bif
+	"spawn_monitor"	bif
+	"spawn_opt"	bif
+	"split_binary"	bif
+	"start_timer"	bif
+	"statistics"	bif
+	"suspended_process"	bif
+	"system_flag"	bif
+	"system_info"	bif
+	"system_monitor"	bif
+	"system_profile"	bif
+	"term_to_binary"	bif
+	"throw"		bif
+	"time"		bif
+	"tl"		bif
+	"trace"		bif
+	"trace_deliviered"	bif
+	"trace_info"	bif
+	"trace_pattern"	bif
+	"trunc"		bif
+	"tuple_size"	bif
+	"tuple_to_list"	bif
+	"universaltime"		bif
+	"universaltime_to_localtime"	bif
+	"unlink"	bif
+	"unregister"	bif
+	"whereis"	bif
+	"yield"		bif
 done 
 	"a-zA-Z0-9_@"	atom
-
-:no_atom Idle
-	*		idle		noeat
-	" "		no_atom
-	"("		function	recolormark noeat
-	":"		module		recolormark noeat
-
-:module Module
-	*		idle		noeat
-
-:function Fun
-	*		idle		noeat
-
-:kw Keyword
-	*		idle		noeat
-
-:quoted_atom Idle
-	*		quoted_atom
-	"'"		idle
