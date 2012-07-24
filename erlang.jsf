@@ -13,6 +13,7 @@
 =Keyword	bold
 =Guard		fg_200
 =Bif		fg_501
+=Type		fg_141
 =Brace		fg_440
 =Brack		fg_311
 
@@ -217,10 +218,18 @@ done
 	" "		bif
 	"("		idle		noeat
 
+:type Type
+	*		idle		recolormark noeat
+	"("		idle		noeat
+	":"		module		recolormark noeat
+
 :quoted_atom Idle
 	*		quoted_atom
 	"'"		idle
 
+# This implementation is sort of funky.
+# Most of the cases it's correct but some highlighting may be wrong.
+# Should be looked over...
 :atom Idle
 	*		no_atom		noeat strings
 	"after"		kw
@@ -251,6 +260,35 @@ done
 	"try"		kw
 	"when"		kw
 	"xor"		kw
+	"any"		type
+	"none"		type
+	"pid"		type
+	"port"		type
+	"reference"	type
+	"float"		type
+	"atom"		type
+	"binary"	type
+	"integer"	type
+	"list"		type
+	"improper_list"	type
+	"maybe_improper_list"	type
+	"tuple"		type
+	"term"		type
+	"boolean"	type
+	"byte"		type
+	"char"		type
+	"non_neg_integer"	type
+	"pos_integer"	type
+	"neg_integer"	type
+	"number"	type
+	"string"	type
+	"nonempty_string"	type
+	"iolist"	type
+	"module"	type
+	"mfa"		type
+	#interfears with the bif "node"		type
+	"timeout"	type
+	"no_return"	type
 	"badarg"	rterr
 	"badarith"	rterr
 	"badmatch"	rterr
