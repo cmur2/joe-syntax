@@ -16,23 +16,37 @@
 :idle Idle
 	*		idle
 	"\n"		idle
-	"#"		comment		recolor=-1
+	"#"		line_comment	recolor=-1
 	"{[]}"		brace		recolor=-1
 	"0"		first_digit	recolor=-1
 	"1-9"		decimal		recolor=-1
 	"\""		string		recolor=-1
 	"'"		char		recolor=-1
-	"/"		regex		recolor=-1
+	"/"		slash
 	"$"		variable	recolor=-1
 	"A-Z"		type		recolor=-1
 	"a-z"		ident		buffer
 	
-:comment Comment
+:line_comment Comment
 	*		comment
 	"\n"		idle
 
+:comment Comment
+	*		comment
+	"*"		maybe_end_comment
+
+:maybe_end_comment Comment
+	*		comment		noeat
+	"/"		idle
+	"*"		maybe_end_comment
+
 :brace Brace
 	*		idle		noeat
+
+# that's not completely accurate since a regex may start with a * too
+:slash Idle
+	*		regex		noeat recolor=-2
+	"*"		comment		recolor=-2
 
 :first_digit Constant
 	*		idle		noeat
