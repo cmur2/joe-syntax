@@ -28,7 +28,7 @@
 	"a-z"		ident		buffer
 	
 :line_comment Comment
-	*		comment
+	*		line_comment
 	"\n"		idle
 
 :comment Comment
