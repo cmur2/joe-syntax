@@ -1,4 +1,8 @@
 # JOE syntax highlight file for Erlang
+# TODO Handle type information ::
+# TODO implement subroutines for cleaner and more correct implementation.
+# TODO Probably use less colors to be less distractive.
+
 
 =Idle
 =Comment	fg_030
@@ -16,7 +20,7 @@
 =Type		fg_141
 =Brace		fg_440
 =Brack		fg_311
-
+=Macro		fg_330
 =Variable	fg_310
 =Attribute	fg_505
 =Char		fg_330 bold
@@ -26,7 +30,7 @@
 	"A-Z_"		variable	noeat
 	"%"		line_comment	noeat
 	"\""		string		recolor=-1
-	"'"		quoted_atom	recolor=-1
+	"'"		quoted_atom	mark
 	"0-9"		decimal		recolor=-1
         "[]"            brack           recolor=-1
 	"{}"		brace		recolor=-1
@@ -34,6 +38,26 @@
 	"a-z"		atom		buffer mark noeat
 	"#"		record		recolor=-1
 	"$"		char		recolor=-1
+	"?"		is_macro	mark
+	"<|"		lc		buffer
+
+:lc Idle
+	*		idle		noeat strings
+	"<-"		kw
+	"||"		kw
+done
+	"-<|"		lc
+
+:pipe Idle
+	*		idle		noeat
+	"|"		kw		recolormark
+	
+:is_macro Idle
+	*		macro		recolormark noeat
+	"a-zA-Z0-9_@"	is_macro
+
+:macro Macro
+	*		idle		noeat
 
 :char Char
 	*		idle
@@ -186,6 +210,7 @@ done
 	"-name"		attribute
 	"-setcookie"	attribute
 	"-sname"	attribute
+	"-mode"		attribute
 done
 	"a-z_"		maybe_attribute
 
@@ -197,12 +222,17 @@ done
 	" "		no_atom
 	"("		function	recolormark noeat
 	":"		module		recolormark noeat
+	"/"		funarity
 
 :module Module
 	*		idle		noeat
 
 :function Fun
 	*		idle		noeat
+
+:funarity Fun
+	*		function	recolormark noeat
+	"0-9"		funtroll
 
 :kw Keyword
 	*		idle		noeat
@@ -225,7 +255,7 @@ done
 
 :quoted_atom Idle
 	*		quoted_atom
-	"'"		idle
+	"'"		no_atom
 
 # This implementation is sort of funky.
 # Most of the cases it's correct but some highlighting may be wrong.
