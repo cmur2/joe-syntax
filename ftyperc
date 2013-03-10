@@ -737,6 +737,11 @@
 -autoindent
 -syntax lua
 
+*
++#!\+\[     ]\+\[a-z/ ]lua\>
+-autoindent
+-syntax lua
+
  TCL
 *.tcl
 -autoindent
