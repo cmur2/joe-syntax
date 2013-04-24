@@ -526,6 +526,13 @@
 -purify
 -cpara >#!;*/%
 
+ JSON
+*.json
+-autoindent
+-syntax js
+-smarthome
+-smartbacks
+
  Hypertext preprocessor file
 *.php
 -autoindent
