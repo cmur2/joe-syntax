@@ -423,7 +423,6 @@ done
 	# quasi-keywords (Module or Kernel methods)
 	"require"	kw
 	"autoload"	kw
-	"load"		kw
 	"extend"	kw
 	"include"	kw
 	"puts"		kw
