@@ -185,6 +185,12 @@
 -syntax ruby
 -text_delimiters do=end
 
+*Guardfile
+-autoindent
+-pound_comment
+-syntax ruby
+-text_delimiters do=end
+
 *.rabl
 -autoindent
 -pound_comment
