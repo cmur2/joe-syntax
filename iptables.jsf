@@ -64,6 +64,7 @@ done
 :chain_name Option
 	*		chain_name
 	" "		rule_spec
+	"\n"		line_start
 
 :rule_spec Idle
 	*		rule_option	noeat
