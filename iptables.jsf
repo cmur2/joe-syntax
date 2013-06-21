@@ -63,7 +63,7 @@ done
 
 :chain_name Option
 	*		chain_name
-	" "		rule_spec
+	" "		rule_spec	noeat
 	"\n"		line_start
 
 :rule_spec Idle
@@ -73,7 +73,7 @@ done
 
 :rule_option Idle
 	*		rule_option
-	" "		rule_spec
+	" "		rule_spec	noeat
 	"\n"		line_start
 	"-"		rule_flag
 
@@ -100,7 +100,7 @@ done
 
 :rule_iojp Option
 	*		rule_iojp
-	" "		rule_option
+	" "		rule_option	noeat
 	"\n"		line_start
 
 :rule_sd_pre Idle
@@ -109,7 +109,7 @@ done
 
 :rule_sd Constant
 	*		rule_sd
-	" "		rule_option
+	" "		rule_option	noeat
 	"\n"		line_start
 
 :bad Bad
