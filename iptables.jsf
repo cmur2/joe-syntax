@@ -9,6 +9,7 @@
 =Table		bold
 =Policy		bold blue
 =Option		fg_310 # brown
+=Module		yellow
 
 :line_start Idle
 	*		rest		noeat
@@ -82,6 +83,7 @@ done
 	"-"		rule_flag_flag
 	"iojp"		rule_iojp_pre
 	"sd"		rule_sd_pre
+	"m"		rule_m_pre
 
 :rule_flag_flag Idle
 	*		rule_flag_flag1	buffer
@@ -109,6 +111,15 @@ done
 
 :rule_sd Constant
 	*		rule_sd
+	" "		rule_option	noeat
+	"\n"		line_start
+
+:rule_m_pre Idle
+	*		rule_m		noeat
+	" "		rule_m_pre
+
+:rule_m Module
+	*		rule_m
 	" "		rule_option	noeat
 	"\n"		line_start
 
