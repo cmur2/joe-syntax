@@ -40,8 +40,9 @@ Another good resource might be
 
 ## Licensing
 
-Every file from the original repository is under GPL2 as [JOE](http://sourceforge.net/projects/joe-editor/).
-Every file created by [me](https://github.com/cmur2) is under GPL2 as [JOE](http://sourceforge.net/projects/joe-editor/).
+Every .jsf file from the original repository is under GPL2 as [JOE](http://sourceforge.net/projects/joe-editor/).
+
+Every .jsf file created by [me](https://github.com/cmur2) is under GPL2 as [JOE](http://sourceforge.net/projects/joe-editor/).
 
 Files with unknown license info:
 
