@@ -1,11 +1,9 @@
-JOE Syntax Highlighting
-=======================
+# JOE Syntax Highlighting
 
 This directory mainly contains *improved and completely new* JOE syntax files
 fixing bugs in the original files and adding support for new languages.
 
-Using
------
+## Using
 
 ### *.jsf
 
@@ -28,8 +26,7 @@ highlighting support for new languages without overwriting
 */etc/joe/ftyperc*, you may place the modified one in *~/.joe/* as
 *~/.joe/ftyperc*.
 
-How JOE syntax highlighting works
----------------------------------
+## How JOE syntax highlighting works
 
 See [HowItWorks.md](https://github.com/cmur2/joe-syntax/blob/master/HowItWorks.md)
 which is a reworked version of the header of
@@ -37,13 +34,20 @@ which is a reworked version of the header of
 Another good resource might be
 [jsf.jsf](http://joe-editor.hg.sourceforge.net/hgweb/joe-editor/joe-editor/file/tip/syntax/jsf.jsf.in).
 
-Other Syntax Files
-------------------
+## Other Syntax Files
 
 * [d.jsf](https://gist.github.com/1032393)
 
-Links
------
+## Licensing
+
+Every file from the original repository is under GPL2 as [JOE](http://sourceforge.net/projects/joe-editor/).
+Every file created by [me](https://github.com/cmur2) is under GPL2 as [JOE](http://sourceforge.net/projects/joe-editor/).
+
+Files with unknown license info:
+
+* [go.jsf](https://github.com/cmur2/joe-syntax/blob/master/go.jsf) which is entirely contributed by [Daniel Vargas](https://github.com/danielvargas)
+
+## Links
 
 For JOE see [here](http://joe-editor.sourceforge.net/).  
 For JOE project see [here](http://sourceforge.net/projects/joe-editor/).  
