@@ -199,7 +199,7 @@
 
  Perl
 *
-+#!\+\[ 	]\+\[a-z/]/perl\>
++#!\+\[ 	]\+\[a-z/]\[/ ]perl\>
 -autoindent
 -syntax perl
 -smarthome
@@ -216,6 +216,14 @@
 -single_quoted
 
 *.pm
+-autoindent
+-syntax perl
+-smarthome
+-smartbacks
+-pound_comment
+-single_quoted
+
+*.t
 -autoindent
 -syntax perl
 -smarthome
