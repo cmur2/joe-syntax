@@ -726,6 +726,10 @@
 -autoindent
 -syntax fortran
 
+*.f90
+-autoindent
+-syntax fortran
+
 *.for
 -autoindent
 -syntax fortran
