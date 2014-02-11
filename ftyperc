@@ -984,3 +984,7 @@
 -c_comment
 -text_delimiters #if|#ifdef|#ifndef=#elif=#else=#endif
 -cpara >#!;*/%
+
+ PowerShell
+*.ps1
+-syntax powershell
