@@ -5,17 +5,56 @@
 # bold parsing is not that perfect since this works: **bold__
 
 =Idle
-=Tag		fg_030
-=Escape bold
-=Bad bold red
+=Tag		green
+=Escape		bold
+=Bad		bold red
 
-=Bold bold
+=Bold		bold
+=Headline	yellow
+=Quote		green
+=Code		green
+
+:line_start Idle
+	*		idle		noeat
+	"#"		headline_prefix recolor=-1
+	">"		quote		recolor=-1
+	" "		maybe_code1
+	"\t"		code
 
 :idle Idle
 	*		idle
+	"\n"		line_start
 	"<"		tag		recolor=-1
 	"\\"		escape		recolor=-1
 	"*_"		maybe_bold1
+
+:headline_prefix Idle
+	*		headline
+	"#"		headline_prefix
+
+:headline Headline
+	*		headline
+	"\n"		line_start
+
+:quote Quote
+	*		quote
+	"\n"		line_start
+
+:maybe_code1 Idle
+	*		idle
+	" "		maybe_code2
+
+:maybe_code2 Idle
+	*		idle
+	" "		maybe_code3
+
+:maybe_code3 Idle
+	*		idle
+	" "		code		recolor=-4
+
+:code Code
+	*		code
+	"\n"		line_start
 
 :tag Tag
 	*		idle
@@ -32,7 +71,7 @@
 
 :bold Bold
 	*		bold
-	"\n"		idle		# end if we reach newline during bold
+	"\n"		line_start	# end if we reach newline during bold
 	"*_"		maybe_end_bold
 
 :maybe_end_bold Bold
