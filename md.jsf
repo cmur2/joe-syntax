@@ -10,9 +10,13 @@
 =Bad		bold red
 
 =Bold		bold
-=Headline	yellow
+=Headline	bold yellow
 =Quote		green
 =Code		green
+=List		yellow
+=LinkDesc	green
+=Link		blue
+=Rule		inverse
 
 :line_start Idle
 	*		idle		noeat
@@ -20,6 +24,7 @@
 	">"		quote		recolor=-1
 	" "		maybe_code1
 	"\t"		code
+	"-*"		maybe_list
 
 :idle Idle
 	*		idle
@@ -27,6 +32,7 @@
 	"<"		tag		recolor=-1
 	"\\"		escape		recolor=-1
 	"*_"		maybe_bold1
+	"["		maybe_link_desc1
 
 :headline_prefix Idle
 	*		headline
@@ -56,6 +62,23 @@
 	*		code
 	"\n"		line_start
 
+:maybe_list Idle
+	*		idle
+	" "		list
+	"-*"		maybe_rule1
+
+:list List
+	*		list
+	"\n"		line_start
+
+:maybe_rule1 Idle
+	*		idle
+	"-*"		rule		recolor=-3
+
+:rule Rule
+	*		rule
+	"\n"		line_start
+
 :tag Tag
 	*		idle
 	"a-z0-9 /"	tag
@@ -80,3 +103,32 @@
 
 :end_bold Bold
 	*		idle		noeat
+
+:maybe_link_desc1 Idle
+	*		maybe_link_desc	mark
+
+:maybe_link_desc Idle
+	*		maybe_link_desc
+	"]"		maybe_end_link_desc	markend
+
+:maybe_end_link_desc Idle
+	*		idle
+	"("		link_inline1	recolormark
+	"["		link_ref1	recolormark
+
+:link_inline1 LinkDesc
+	*		link_inline	noeat
+
+:link_inline Link
+	*		link_inline
+	")"		link_end	noeat
+
+:link_ref1 LinkDesc
+	*		link_ref	noeat
+
+:link_ref Link
+	*		link_ref
+	"]"		link_end	noeat
+
+:link_end Idle
+	*		idle
