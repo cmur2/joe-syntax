@@ -21,6 +21,7 @@
 	*		idle
 	"a-z0-9 /"	tag
 	">"		idle
+
 # do escaping of *_ and so on
 :escape Escape
 	*		idle
@@ -31,6 +32,7 @@
 
 :bold Bold
 	*		bold
+	"\n"		idle		# end if we reach newline during bold
 	"*_"		maybe_end_bold
 
 :maybe_end_bold Bold
