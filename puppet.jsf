@@ -93,11 +93,11 @@
 
 :variable Var
 	*		idle		noeat
-	"a-z0-9_"	variable
+	"a-zA-Z0-9_"	variable
 
 :type Type
 	*		idle		noeat
-	"a-z0-9_"	type
+	"a-zA-Z0-9_"	type
 
 :ident Idle
 	*		idle		noeat strings
