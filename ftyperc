@@ -988,3 +988,7 @@
  PowerShell
 *.ps1
 -syntax powershell
+
+ Git COMMIT_EDITMSG
+*COMMIT_EDITMSG
+-syntax git-commit
