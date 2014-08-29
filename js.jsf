@@ -13,6 +13,7 @@
 =Type		bold
 =Keyword	bold
 =Global 	bold
+=Exports	bold black
 =Operator	bold
 =Bad		inverse bold red
 =Brace		magenta
@@ -300,6 +301,22 @@
 	"with"		kw
 	# quasi-keywords
 	"prototype"	kw
+	# Node.js
+	"module"        global
+	"exports"       export
+	"process"       global
+	"global"        global
+	"console"       global
+	"setTimeout"    global
+	"setInterval"   global
+	"clearInterval" global
+	"Buffer"        type
+	# Node.js globals that we'll pretend are keywords
+	"require"       kw
+	"__filename"    kw
+	"__dirname"     kw
+        # By convention...
+        "self"          kw
 done
 	"a-zA-Z0-9_"	ident
 
@@ -310,6 +327,9 @@ done
 	*		idle		noeat
 
 :global Global
+	*		idle		noeat
+
+:export Exports
 	*		idle		noeat
 
 :lit Constant
