@@ -12,6 +12,8 @@
 =Escape		bold cyan
 =Type		bold
 =Keyword	bold
+=Global 	bold
+=Exports	bold black
 =Operator	bold
 =Bad		inverse bold red
 =Brace		magenta
@@ -226,45 +228,95 @@
 	*		ident_end	noeat markend strings
 	"arguments"	kw
 	"Array"		type
+	"ArrayBuffer"   type
 	"break"		kw
 	"Boolean"	type
 	"case"		kw
 	"catch"		kw
+	"const"         global
 	"continue"	kw
+	"DataView"      type
+	"decodeURI"     global
+	"decodeURIComponent" global
 	"default"	kw
 	"delete"	operator
 	"do"		kw
 	"Date"		type
 	"else"		kw
+	"encodeURI"     global
+	"encodeURIComponent" global
+	"Error"         type
+	"escape"        global
+	"eval"          global
+	"EvalError"     type
 	"false"		lit
 	"finally"	kw
 	"for"		kw
 	"function"	kw
 	"Function"	type
+	"Float32Array"  type
+	"Float64Array"  type
 	"if"		kw
 	"in"		kw
+	"Infinity"      lit
 	"instanceof"	operator
+	"Int16Array"    type
+	"Int32Array"    type
+	"Int8Array"     type
+	"isFinite"      global
+	"isNaN"         global
+	"JSON"          type
 	"let"		kw
+	"Math"          type
+	"NaN"           lit
 	"new"		operator
 	"null"		lit
 	"Number"	type
 	"Object"	type
+	"parseFloat"    global
+	"parseInt"      global
 	"return"	kw
+	"RangeError"    type
+	"ReferenceError" type
 	"RegExp"	type
 	"switch"	kw
 	"String"	type
+	"SyntaxError"   type
 	"this"		kw
 	"throw"		kw
 	"true"		lit
 	"try"		kw
 	"typeof"	operator
+	"TypeError"     type
+	"Uint16Array"   type
+	"Uint32Array"   type
+	"Uint8Array"    type
+	"Uint8ClampedArray" type
 	"undefined"	lit
+	"unescape"      global
+	"URIError"      type
 	"var"		kw
 	"void"		kw
 	"while"		kw
 	"with"		kw
 	# quasi-keywords
 	"prototype"	kw
+	# Node.js
+	"module"        global
+	"exports"       export
+	"process"       global
+	"global"        global
+	"console"       global
+	"setTimeout"    global
+	"setInterval"   global
+	"clearInterval" global
+	"Buffer"        type
+	# Node.js globals that we'll pretend are keywords
+	"require"       kw
+	"__filename"    kw
+	"__dirname"     kw
+        # By convention...
+        "self"          kw
 done
 	"a-zA-Z0-9_"	ident
 
@@ -272,6 +324,12 @@ done
 	*		after_term	noeat
 
 :kw Keyword
+	*		idle		noeat
+
+:global Global
+	*		idle		noeat
+
+:export Exports
 	*		idle		noeat
 
 :lit Constant
