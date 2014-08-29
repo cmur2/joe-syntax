@@ -992,3 +992,12 @@
  Git COMMIT_EDITMSG
 *COMMIT_EDITMSG
 -syntax git-commit
+
+ LSL
+*.lsl
+-autoindent
+-syntax lsl
+-smarthome
+-smartbacks
+-c_comment
+-cpp_comment

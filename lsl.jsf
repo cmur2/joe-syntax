@@ -1,0 +1,884 @@
+# Linden Scripting Language (LSL) highlighter for JOE
+# by Zai Lynch - https://wiki.secondlife.com/wiki/User:Zai_Lynch
+# is a modification of the PASCAL highlighter by Michael Van Canneyt
+# Last update: March 26th 2009
+# Since JOE is released under GPL 1, this file is also released as GPL 1
+
+
+=Idle
+=Comment green
+=Constant cyan
+=Type bold
+=Keyword bold	# for, if, then, else...
+=Operator bold blue    # events
+=Function bold
+
+# cyan, green, magenta, red, blue
+# bold
+
+:idle Idle
+	*		idle
+	"a-zA-Z"	ident		buffer
+	"/"		maybe_linecomment
+	"\""		string		recolor=-1
+	"0-9"		number		recolor=-1
+
+# Comments
+
+:maybe_comment Idle
+	*		idle		noeat
+	"*"		comment		recolor=-2
+
+:maybe_linecomment Idle
+	*		idle		noeat
+	"/"		line_comment    recolor=-2
+	"*"		comment		recolor=-2
+
+:line_comment Comment
+	*		line_comment
+	"\n"		idle
+
+:comment Comment
+	*		comment
+	"*"		maybe_end_comment
+
+:comment Comment
+	*		comment
+	"*"		maybe_end_comment
+
+
+:maybe_end_comment Comment
+	*		comment		noeat
+	"/"		idle
+
+
+
+# String constant
+
+:string Constant
+	*		string
+#	"\n"		idle
+	"\""		maybe_end_string
+	"\\"		maybe_end_string_mask
+
+:maybe_end_string Constant
+	*		idle #string ended
+	"\""		string #new string begins
+
+# Numeric constant
+
+:maybe_end_string_mask Constant
+	*	string
+
+:number Constant
+	*		idle		noeat
+	"0-9"		number
+	"eE"		epart
+	"."		dot
+
+:dot Constant
+	*		idle	noeat
+	"0-9"		float
+
+
+:float Constant
+	*		idle	noeat
+	"eE"		epart
+	"0-9"		float
+
+:epart Constant
+	*		idle	noeat
+	"0-9+\-"	enum
+
+:enum Constant
+	*		idle	noeat
+	"0-9"		enum
+
+
+# Keywords
+
+:ident Idle
+	*		idle		noeat istrings
+# LSL types
+	"string"		type
+	"integer"		type
+	"list"			type
+	"key"			type
+	"float"			type
+	"rotation"		type
+	"vector"		type
+# LSL keywords
+"default"	constant
+"do while"	kw
+"if"		kw
+"else"		kw
+"for"		kw
+"jump"		kw
+"return"	kw
+"state"		kw
+"while"		kw
+# LSL events
+	"attach"			event
+	"at_rot_target"			event
+	"at_target"			event
+	"changed"			event
+	"collision"			event
+	"collision end"			event
+	"collision start"		event
+	"control"			event
+	"dataserver"			event
+	"email"				event
+	"http_request"			event
+	"http_response"			event
+	"land_collision"		event
+	"land_collision end"		event
+	"land_collision start"		event
+	"link_message"			event
+	"listen"			event
+	"money"				event
+	"moving_end"			event
+	"moving_start"			event
+	"no_sensor"			event
+	"not_at_rot_target"		event
+	"not_at_target"			event
+	"object_rez"			event
+	"on_rez"			event
+	"remote_data"			event
+	"run_time_permissions"		event
+	"sensor"			event
+	"state_entry"			event
+	"state_exit"			event
+	"timer"				event
+	"touch"				event
+	"touch_end"			event
+	"touch_start"			event
+# LSL constants
+	"ACTIVE"		constant
+	"AGENT"		constant
+	"AGENT_ALWAYS_RUN"		constant
+	"AGENT_ATTACHMENTS"		constant
+	"AGENT_AWAY"		constant
+	"AGENT_BUSY"		constant
+	"AGENT_CROUCHING"		constant
+	"AGENT_FLYING"		constant
+	"AGENT_IN_AIR"		constant
+	"AGENT_MOUSELOOK"		constant
+	"AGENT_ON_OBJECT"		constant
+	"AGENT_SCRIPTED"		constant
+	"AGENT_SITTING"		constant
+	"AGENT_TYPING"		constant
+	"AGENT_WALKING"		constant
+	"ALL_SIDES"		constant
+	"ANIM_ON"		constant
+	"ATTACH_BACK"		constant
+	"ATTACH_BELLY"		constant
+	"ATTACH_CHEST"		constant
+	"ATTACH_CHIN"		constant
+	"ATTACH_HEAD"		constant
+	"ATTACH_HUD_BOTTOM"		constant
+	"ATTACH_HUD_BOTTOM_LEFT"		constant
+	"ATTACH_HUD_BOTTOM_RIGHT"		constant
+	"ATTACH_HUD_CENTER_1"		constant
+	"ATTACH_HUD_TOP_CENTER"		constant
+	"ATTACH_HUD_TOP_LEFT"		constant
+	"ATTACH_HUD_TOP_RIGHT"		constant
+	"ATTACH_LEAR"		constant
+	"ATTACH_LEYE"		constant
+	"ATTACH_LFOOT"		constant
+	"ATTACH_LHAND"		constant
+	"ATTACH_LHIP"		constant
+	"ATTACH_LLARM"		constant
+	"ATTACH_LLLEG"		constant
+	"ATTACH_LSHOULDER"		constant
+	"ATTACH_LUARM"		constant
+	"ATTACH_LULEG"		constant
+	"ATTACH_MOUTH"		constant
+	"ATTACH_NOSE"		constant
+	"ATTACH_PELVIS"		constant
+	"ATTACH_REAR"		constant
+	"ATTACH_REYE"		constant
+	"ATTACH_RFOOT"		constant
+	"ATTACH_RHAND"		constant
+	"ATTACH_RHIP"		constant
+	"ATTACH_RLARM"		constant
+	"ATTACH_RLLEG"		constant
+	"ATTACH_RSHOULDER"		constant
+	"ATTACH_RUARM"		constant
+	"ATTACH_RULEG"		constant
+	"CAMERA_ACTIVE"		constant
+	"CAMERA_BEHINDNESS_ANGLE"		constant
+	"CAMERA_BEHINDNESS_LAG"		constant
+	"CAMERA_DISTANCE"		constant
+	"CAMERA_FOCUS"		constant
+	"CAMERA_FOCUS_LOCKED"		constant
+	"CAMERA_FOCUS_OFFSET"		constant
+	"CAMERA_POSITION"		constant
+	"CAMERA_POSITION_LAG"		constant
+	"CAMERA_POSITION_LOCKED"		constant
+	"CAMERA_POSITION_THRESHOLD"		constant
+	"CHANGED_ALLOWED_DROP"		constant
+	"CHANGED_COLOR"		constant
+	"CHANGED_INVENTORY"		constant
+	"CHANGED_LINK"		constant
+	"CHANGED_OWNER"		constant
+	"CHANGED_REGION_START"		constant
+	"CHANGED_SCALE"		constant
+	"CHANGED_SHAPE"		constant
+	"CHANGED_TELEPORT"		constant
+	"CHANGED_TEXTURE"		constant
+	"CLICK_ACTION_BUY"		constant
+	"CLICK_ACTION_NONE"		constant
+	"CLICK_ACTION_OPEN"		constant
+	"CLICK_ACTION_OPEN_MEDIA"		constant
+	"CLICK_ACTION_PAY"		constant
+	"CLICK_ACTION_PLAY"		constant
+	"CLICK_ACTION_SIT"		constant
+	"CONTROL_BACK"		constant
+	"CONTROL_DOWN"		constant
+	"CONTROL_LBUTTON"		constant
+	"CONTROL_LEFT"		constant
+	"CONTROL_ML_LBUTTON"		constant
+	"CONTROL_RIGHT"		constant
+	"CONTROL_ROT_LEFT"		constant
+	"CONTROL_ROT_RIGHT"		constant
+	"CONTROL_UP"		constant
+	"DATA_NAME"		constant
+	"DATA_ONLINE"		constant
+	"DATA_PAYINFO"		constant
+	"DATA_SIM_POS"		constant
+	"DATA_SIM_RATING"		constant
+	"DATA_SIM_STATUS"		constant
+	"DEBUG_CHANNEL"		constant
+	"DEG_TO_RAD"		constant
+	"EOF"		constant
+	"FALSE"		constant
+	"HTTP_BODY_MAXLENGTH"		constant
+	"HTTP_METHOD"		constant
+	"HTTP_MIMETYPE"		constant
+	"HTTP_VERIFY_CERT"		constant
+	"INVENTORY_ALL"		constant
+	"INVENTORY_ANIMATION"		constant
+	"INVENTORY_BODYPART"		constant
+	"INVENTORY_CLOTHING"		constant
+	"INVENTORY_GESTURE"		constant
+	"INVENTORY_LANDMARK"		constant
+	"INVENTORY_NONE"		constant
+	"INVENTORY_NOTECARD"		constant
+	"INVENTORY_OBJECT"		constant
+	"INVENTORY_SCRIPT"		constant
+	"INVENTORY_SOUND"		constant
+	"INVENTORY_TEXTURE"		constant
+	"LAND_LEVEL"		constant
+	"LAND_LOWER"		constant
+	"LAND_NOISE"		constant
+	"LAND_RAISE"		constant
+	"LAND_REVERT"		constant
+	"LAND_SMOOTH"		constant
+	"LINK_ALL_CHILDREN"		constant
+	"LINK_ALL_OTHERS"		constant
+	"LINK_ROOT"		constant
+	"LINK_SET"		constant
+	"LINK_THIS"		constant
+	"LIST_STAT_GEOMETRIC_MEAN"		constant
+	"LIST_STAT_MAX"		constant
+	"LIST_STAT_MEAN"		constant
+	"LIST_STAT_MIN"		constant
+	"LIST_STAT_RANGE"		constant
+	"LIST_STAT_STD_DEV"		constant
+	"LIST_STAT_SUM"		constant
+	"LIST_STAT_SUM_SQUARES"		constant
+	"LOOP"		constant
+	"MASK_BASE"		constant
+	"MASK_EVERYONE"		constant
+	"MASK_GROUP"		constant
+	"MASK_NEXT"		constant
+	"MASK_OWNER"		constant
+	"NULL_KEY"		constant
+	"OBJECT_CREATOR"		constant
+	"OBJECT_DESC"		constant
+	"OBJECT_GROUP"		constant
+	"OBJECT_NAME"		constant
+	"OBJECT_OWNER"		constant
+	"OBJECT_ROT"		constant
+	"OBJECT_UNKNOWN_DETAIL"		constant
+	"OBJECT_VELOCITY"		constant
+	"PARCEL_DETAILS_AREA"		constant
+	"PARCEL_DETAILS_DESC"		constant
+	"PARCEL_DETAILS_GROUP"		constant
+	"PARCEL_DETAILS_NAME"		constant
+	"PARCEL_DETAILS_OWNER"		constant
+	"PARCEL_FLAG_ALLOW_ALL_OBJECT_ENTRY"		constant
+	"PARCEL_FLAG_ALLOW_CREATE_GROUP_OBJECTS"		constant
+	"PARCEL_FLAG_ALLOW_CREATE_OBJECTS"		constant
+	"PARCEL_FLAG_ALLOW_DAMAGE"		constant
+	"PARCEL_FLAG_ALLOW_FLY"		constant
+	"PARCEL_FLAG_ALLOW_GROUP_OBJECT_ENTRY"		constant
+	"PARCEL_FLAG_ALLOW_GROUP_SCRIPTS"		constant
+	"PARCEL_FLAG_ALLOW_LANDMARK"		constant
+	"PARCEL_FLAG_ALLOW_SCRIPTS"		constant
+	"PARCEL_FLAG_ALLOW_TERRAFORM"		constant
+	"PARCEL_FLAG_LOCAL_SOUND_ONLY"		constant
+	"PARCEL_FLAG_RESTRICT_PUSHOBJECT"		constant
+	"PARCEL_FLAG_USE_ACCESS_GROUP"		constant
+	"PARCEL_FLAG_USE_ACCESS_LIST"		constant
+	"PARCEL_FLAG_USE_BAN_LIST"		constant
+	"PARCEL_FLAG_USE_LAND_PASS_LIST"		constant
+	"PARCEL_MEDIA_COMMAND_AGENT"		constant
+	"PARCEL_MEDIA_COMMAND_AUTO_ALIGN"		constant
+	"PARCEL_MEDIA_COMMAND_DESC"		constant
+	"PARCEL_MEDIA_COMMAND_LOOP"		constant
+	"PARCEL_MEDIA_COMMAND_LOOP_SET"		constant
+	"PARCEL_MEDIA_COMMAND_PAUSE"		constant
+	"PARCEL_MEDIA_COMMAND_PLAY"		constant
+	"PARCEL_MEDIA_COMMAND_SIZE"		constant
+	"PARCEL_MEDIA_COMMAND_STOP"		constant
+	"PARCEL_MEDIA_COMMAND_TEXTURE"		constant
+	"PARCEL_MEDIA_COMMAND_TIME"		constant
+	"PARCEL_MEDIA_COMMAND_TYPE"		constant
+	"PARCEL_MEDIA_COMMAND_URL"		constant
+	"PASSIVE"		constant
+	"PAYMENT_INFO_ON_FILE"		constant
+	"PAYMENT_INFO_USED"		constant
+	"PAY_DEFAULT"		constant
+	"PAY_HIDE"		constant
+	"PERMISSION_ATTACH"		constant
+	"PERMISSION_CHANGE_LINKS"		constant
+	"PERMISSION_CONTROL_CAMERA"		constant
+	"PERMISSION_DEBIT"		constant
+	"PERMISSION_TAKE_CONTROLS"		constant
+	"PERMISSION_TRACK_CAMERA"		constant
+	"PERMISSION_TRIGGER_ANIMATION"		constant
+	"PERM_ALL"		constant
+	"PERM_COPY"		constant
+	"PERM_MOVE"		constant
+	"PERM_TRANSFER"		constant
+	"PI"		constant
+	"PI_BY_TWO"		constant
+	"PRIM_BUMP_BARK"		constant
+	"PRIM_BUMP_BLOBS"		constant
+	"PRIM_BUMP_BRICKS"		constant
+	"PRIM_BUMP_BRIGHT"		constant
+	"PRIM_BUMP_CHECKER"		constant
+	"PRIM_BUMP_CONCRETE"		constant
+	"PRIM_BUMP_DARK"		constant
+	"PRIM_BUMP_DISKS"		constant
+	"PRIM_BUMP_GRAVEL"		constant
+	"PRIM_BUMP_LARGETILE"		constant
+	"PRIM_BUMP_NONE"		constant
+	"PRIM_BUMP_SHINY"		constant
+	"PRIM_BUMP_SIDING"		constant
+	"PRIM_BUMP_STONE"		constant
+	"PRIM_BUMP_STUCCO"		constant
+	"PRIM_BUMP_SUCTION"		constant
+	"PRIM_BUMP_TILE"		constant
+	"PRIM_BUMP_WEAVE"		constant
+	"PRIM_BUMP_WOOD"		constant
+	"PRIM_COLOR"		constant
+	"PRIM_FLEXIBLE"		constant
+	"PRIM_FULLBRIGHT"		constant
+	"PRIM_GLOW"		constant
+	"PRIM_HOLE_CIRCLE"		constant
+	"PRIM_HOLE_DEFAULT"		constant
+	"PRIM_HOLE_SQUARE"		constant
+	"PRIM_HOLE_TRIANGLE"		constant
+	"PRIM_MATERIAL"		constant
+	"PRIM_MATERIAL_FLESH"		constant
+	"PRIM_MATERIAL_GLASS"		constant
+	"PRIM_MATERIAL_METAL"		constant
+	"PRIM_MATERIAL_PLASTIC"		constant
+	"PRIM_MATERIAL_RUBBER"		constant
+	"PRIM_MATERIAL_STONE"		constant
+	"PRIM_MATERIAL_WOOD"		constant
+	"PRIM_PHANTOM"		constant
+	"PRIM_PHYSICS"		constant
+	"PRIM_POINT_LIGHT"		constant
+	"PRIM_POSITION"		constant
+	"PRIM_ROTATION"		constant
+	"PRIM_SCULPT_FLAG_INVERT"		constant
+	"PRIM_SCULPT_FLAG_MIRROR"		constant
+	"PRIM_SCULPT_TYPE_CYLINDER"		constant
+	"PRIM_SCULPT_TYPE_MASK"		constant
+	"PRIM_SCULPT_TYPE_PLANE"		constant
+	"PRIM_SCULPT_TYPE_SPHERE"		constant
+	"PRIM_SCULPT_TYPE_TORUS"		constant
+	"PRIM_SHINY_HIGH"		constant
+	"PRIM_SHINY_LOW"		constant
+	"PRIM_SHINY_MEDIUM"		constant
+	"PRIM_SHINY_NONE"		constant
+	"PRIM_SIZE"		constant
+	"PRIM_TEMP_ON_REZ"		constant
+	"PRIM_TEXGEN"		constant
+	"PRIM_TEXGEN_DEFAULT"		constant
+	"PRIM_TEXGEN_PLANAR"		constant
+	"PRIM_TEXTURE"		constant
+	"PRIM_TYPE"		constant
+	"PRIM_TYPE_BOX"		constant
+	"PRIM_TYPE_CYLINDER"		constant
+	"PRIM_TYPE_PRISM"		constant
+	"PRIM_TYPE_RING"		constant
+	"PRIM_TYPE_SCULPT"		constant
+	"PRIM_TYPE_SPHERE"		constant
+	"PRIM_TYPE_TORUS"		constant
+	"PRIM_TYPE_TUBE"		constant
+	"PUBLIC_CHANNEL"		constant
+	"RAD_TO_DEG"		constant
+	"REGION_FLAG_ALLOW_DAMAGE"		constant
+	"REGION_FLAG_ALLOW_DIRECT_TELEPORT"		constant
+	"REGION_FLAG_BLOCK_FLY"		constant
+	"REGION_FLAG_BLOCK_TERRAFORM"		constant
+	"REGION_FLAG_DISABLE_COLLISIONS"		constant
+	"REGION_FLAG_DISABLE_PHYSICS"		constant
+	"REGION_FLAG_FIXED_SUN"		constant
+	"REGION_FLAG_RESTRICT_PUSHOBJECT"		constant
+	"REGION_FLAG_SANDBOX"		constant
+	"REMOTE_DATA_CHANNEL"		constant
+	"REMOTE_DATA_REPLY"		constant
+	"REMOTE_DATA_REQUEST"		constant
+	"REVERSE"		constant
+	"ROTATE"		constant
+	"Rotation"		constant
+	"SCALE"		constant
+	"SCRIPTED"		constant
+	"SMOOTH"		constant
+	"SQRT2"		constant
+	"STATUS_BLOCK_GRAB"		constant
+	"STATUS_CAST_SHADOWS"		constant
+	"STATUS_DIE_AT_EDGE"		constant
+	"STATUS_PHANTOM"		constant
+	"STATUS_PHYSICS"		constant
+	"STATUS_RETURN_AT_EDGE"		constant
+	"STATUS_ROTATE_X"		constant
+	"STATUS_ROTATE_Y"		constant
+	"STATUS_ROTATE_Z"		constant
+	"STATUS_SANDBOX"		constant
+	"STRING_TRIM"		constant
+	"STRING_TRIM_HEAD"		constant
+	"STRING_TRIM_TAIL"		constant
+	"TEXTURE_DEFAULT"		constant
+	"TEXTURE_BLANK"		constant
+	"TEXTURE_MEDIA"		constant
+	"TEXTURE_PLYWOOD"		constant
+	"TEXTURE_TRANSPARENT"		constant
+	"TOUCH_INVALID_FACE"		constant
+	"TOUCH_INVALID_TEXCOORD"		constant
+	"TOUCH_INVALID_VECTOR"		constant
+	"TRUE"		constant
+	"TWO_PI"		constant
+	"TYPE_FLOAT"		constant
+	"TYPE_INTEGER"		constant
+	"TYPE_INVALID"		constant
+	"TYPE_KEY"		constant
+	"TYPE_ROTATION"		constant
+	"TYPE_STRING"		constant
+	"TYPE_VECTOR"		constant
+	"URL_REQUEST_DENIED"		constant
+	"URL_REQUEST_GRANTED"		constant
+	"VEHICLE_ANGULAR_DEFLECTION_EFFICIENCY"		constant
+	"VEHICLE_ANGULAR_DEFLECTION_TIMESCALE"		constant
+	"VEHICLE_ANGULAR_FRICTION_TIMESCALE"		constant
+	"VEHICLE_ANGULAR_MOTOR_DECAY_TIMESCALE"		constant
+	"VEHICLE_ANGULAR_MOTOR_DIRECTION"		constant
+	"VEHICLE_ANGULAR_MOTOR_TIMESCALE"		constant
+	"VEHICLE_BANKING_EFFICIENCY"		constant
+	"VEHICLE_BANKING_MIX"		constant
+	"VEHICLE_BANKING_TIMESCALE"		constant
+	"VEHICLE_BUOYANCY"		constant
+	"VEHICLE_FLAG_CAMERA_DECOUPLED"		constant
+	"VEHICLE_FLAG_HOVER_GLOBAL_HEIGHT"		constant
+	"VEHICLE_FLAG_HOVER_TERRAIN_ONLY"		constant
+	"VEHICLE_FLAG_HOVER_UP_ONLY"		constant
+	"VEHICLE_FLAG_HOVER_WATER_ONLY"		constant
+	"VEHICLE_FLAG_LIMIT_MOTOR_UP"		constant
+	"VEHICLE_FLAG_LIMIT_ROLL_ONLY"		constant
+	"VEHICLE_FLAG_MOUSELOOK_BANK"		constant
+	"VEHICLE_FLAG_MOUSELOOK_STEER"		constant
+	"VEHICLE_FLAG_NO_DEFLECTION_UP"		constant
+	"VEHICLE_HOVER_EFFICIENCY"		constant
+	"VEHICLE_HOVER_GLOBAL_HEIGHT"		constant
+	"VEHICLE_HOVER_HEIGHT"		constant
+	"VEHICLE_HOVER_TIMESCALE"		constant
+	"VEHICLE_HOVER_WATER_ONLY"		constant
+	"VEHICLE_LINEAR_DEFLECTION_EFFICIENCY"		constant
+	"VEHICLE_LINEAR_DEFLECTION_TIMESCALE"		constant
+	"VEHICLE_LINEAR_FRICTION_TIMESCALE"		constant
+	"VEHICLE_LINEAR_MOTOR_DIRECTION"		constant
+	"VEHICLE_LINEAR_MOTOR_OFFSET"		constant
+	"VEHICLE_LINEAR_MOTOR_TIMESCALE"		constant
+	"VEHICLE_REFERENCE_FRAME"		constant
+	"VEHICLE_TYPE_AIRPLANE"		constant
+	"VEHICLE_TYPE_BALLOON"		constant
+	"VEHICLE_TYPE_BOAT"		constant
+	"VEHICLE_TYPE_CAR"		constant
+	"VEHICLE_TYPE_NONE"		constant
+	"VEHICLE_TYPE_SLED"		constant
+	"VEHICLE_VERTICAL_ATTRACTION_EFFICIENCY"		constant
+	"VEHICLE_VERTICAL_ATTRACTION_TIMESCALE"		constant
+	"ZERO_ROTATION"		constant
+# LSL functions
+	"llAbs"						function
+	"llAcos"					function
+	"llAddToLandBanList"				function
+	"llAddToLandPassList"				function
+	"llAdjustSoundVolume"				function
+	"llAllowInventoryDrop"				function
+	"llAngleBetween"				function
+	"llApplyImpulse"				function
+	"llApplyRotationalImpulse"			function
+	"llAsin"					function
+	"llAtan2"					function
+	"llAttachToAvatar"				function
+	"llAvatarOnSitTarget"				function
+	"llAxes2Rot"					function
+	"llAxisAngle2Rot"				function
+	"llBase64ToInteger"				function
+	"llBase64ToString"				function
+	"llBreakAllLinks"				function
+	"llBreakLink"					function
+	"llCeil"					function
+	"llClearCameraParams"				function
+	"llCloseRemoteDataChannel"			function
+	"llCloud"					function
+	"llCollisionFilter"				function
+	"llCollisionSound"				function
+	"llCollisionSprite"				function
+	"llCos"						function
+	"llCreateLink"					function
+	"llCSV2List"					function
+	"llDeleteSubList"				function
+	"llDeleteSubString"				function
+	"llDetachFromAvatar"				function
+	"llDetectedGrab"				function
+	"llDetectedGroup"				function
+	"llDetectedKey"					function
+	"llDetectedLinkNumber"				function
+	"llDetectedName"				function
+	"llDetectedOwner"				function
+	"llDetectedPos"					function
+	"llDetectedRot"					function
+	"llDetectedTouchBinormal"			function
+	"llDetectedTouchFace"				function
+	"llDetectedTouchNormal"				function
+	"llDetectedTouchPos"				function
+	"llDetectedTouchST"				function
+	"llDetectedTouchUV"				function
+	"llDetectedType"				function
+	"llDetectedVel"					function
+	"llDialog"					function
+	"llDie"						function
+	"llDumpList2String"				function
+	"llEdgeOfWorld"					function
+	"llEjectFromLand"				function
+	"llEmail"					function
+	"llEscapeURL"					function
+	"llEuler2Rot"					function
+	"llFabs"					function
+	"llFloor"					function
+	"llForceMouselook"				function
+	"llFrand"					function
+	"llGetAccel"					function
+	"llGetAgentInfo"				function
+	"llGetAgentLanguage"				function
+	"llGetAgentSize"				function
+	"llGetAlpha"					function
+	"llGetAndResetTime"				function
+	"llGetAnimation"				function
+	"llGetAnimationList"				function
+	"llGetAttached"					function
+	"llGetBoundingBox"				function
+	"llGetCameraPos"				function
+	"llGetCameraRot"				function
+	"llGetCenterOfMass"				function
+	"llGetColor"					function
+	"llGetCreator"					function
+	"llGetDate"					function
+	"llGetEnergy"					function
+	"llGetForce"					function
+	"llGetFreeMemory"				function
+	"llGetGeometricCenter"				function
+	"llGetGMTclock"					function
+	"llGetInventoryCreator"				function
+	"llGetInventoryKey"				function
+	"llGetInventoryName"				function
+	"llGetInventoryNumber"				function
+	"llGetInventoryPermMask"			function
+	"llGetInventoryType"				function
+	"llGetKey"					function
+	"llGetLandOwnerAt"				function
+	"llGetLinkKey"					function
+	"llGetLinkName"					function
+	"llGetLinkNumber"				function
+	"llGetListEntryType"				function
+	"llGetListLength"				function
+	"llGetLocalPos"					function
+	"llGetLocalRot"					function
+	"llGetMass"					function
+	"llGetNextEmail"				function
+	"llGetNotecardLine"				function
+	"llGetNumberOfNotecardLines"			function
+	"llGetNumberOfPrims"				function
+	"llGetNumberOfSides"				function
+	"llGetObjectDesc"				function
+	"llGetObjectDetails"				function
+	"llGetObjectMass"				function
+	"llGetObjectName"				function
+	"llGetObjectPermMask"				function
+	"llGetObjectPrimCount"				function
+	"llGetOmega"					function
+	"llGetOwner"					function
+	"llGetOwnerKey"					function
+	"llGetParcelDetails"				function
+	"llGetParcelFlags"				function
+	"llGetParcelMaxPrims"				function
+	"llGetParcelPrimCount"				function
+	"llGetParcelPrimOwners"				function
+	"llGetPermissions"				function
+	"llGetPermissionsKey"				function
+	"llGetPos"					function
+	"llGetPrimitiveParams"				function
+	"llGetRegionAgentCount"				function
+	"llGetRegionCorner"				function
+	"llGetRegionFlags"				function
+	"llGetRegionFPS"				function
+	"llGetRegionName"				function
+	"llGetRegionTimeDilation"			function
+	"llGetRootPosition"				function
+	"llGetRootRotation"				function
+	"llGetRot"					function
+	"llGetScale"					function
+	"llGetScriptName"				function
+	"llGetScriptState"				function
+	"llGetSimulatorHostname"			function
+	"llGetStartParameter"				function
+	"llGetStatus"					function
+	"llGetSubString"				function
+	"llGetSunDirection"				function
+	"llGetTexture"					function
+	"llGetTextureOffset"				function
+	"llGetTextureRot"				function
+	"llGetTextureScale"				function
+	"llGetTime"					function
+	"llGetTimeOfDay"				function
+	"llGetTimestamp"				function
+	"llGetTorque"					function
+	"llGetUnixTime"					function
+	"llGetVel"					function
+	"llGetWallclock"				function
+	"llGiveInventory"				function
+	"llGiveInventoryList"				function
+	"llGiveMoney"					function
+	"llGodLikeRezObject"				function
+	"llGround"					function
+	"llGroundContour"				function
+	"llGroundNormal"				function
+	"llGroundRepel"					function
+	"llGroundSlope"					function
+	"llHTTPRequest"					function
+	"llInsertString"				function
+	"llInstantMessage"				function
+	"llIntegerToBase64"				function
+	"llKey2Name"					function
+	"llList2CSV"					function
+	"llList2Float"					function
+	"llList2Integer"				function
+	"llList2Key"					function
+	"llList2List"					function
+	"llList2ListStrided"				function
+	"llList2Rot"					function
+	"llList2String"					function
+	"llList2Vector"					function
+	"llListen"					function
+	"llListenControl"				function
+	"llListenRemove"				function
+	"llListFindList"				function
+	"llListInsertList"				function
+	"llListRandomize"				function
+	"llListReplaceList"				function
+	"llListSort"					function
+	"llListStatistics"				function
+	"llLoadURL"					function
+	"llLog"						function
+	"llLog10"					function
+	"llLookAt"					function
+	"llLoopSound"					function
+	"llLoopSoundMaster"				function
+	"llLoopSoundSlave"				function
+	"llMakeExplosion"				function
+	"llMakeFire"					function
+	"llMakeFountain"				function
+	"llMakeSmoke"					function
+	"llMapDestination"				function
+	"llMD5String"					function
+	"llMessageLinked"				function
+	"llMinEventDelay"				function
+	"llModifyLand"					function
+	"llModPow"					function
+	"llMoveToTarget"				function
+	"llOffsetTexture"				function
+	"llOpenRemoteDataChannel"			function
+	"llOverMyLand"					function
+	"llOwnerSay"					function
+	"llParcelMediaCommandList"			function
+	"llParcelMediaQuery"				function
+	"llParseString2List"				function
+	"llParseStringKeepNulls"			function
+	"llParticleSystem"				function
+	"llPassCollisions"				function
+	"llPassTouches"					function
+	"llPlaySound"					function
+	"llPlaySoundSlave"				function
+	"llPointAt"					function
+	"llPow"						function
+	"llPreloadSound"				function
+	"llPushObject"					function
+	"llRefreshPrimURL"				function
+	"llRegionSay"					function
+	"llReleaseCamera"				function
+	"llReleaseControls"				function
+	"llRemoteDataReply"				function
+	"llRemoteDataSetRegion"				function
+	"llRemoteLoadScript"				function
+	"llRemoteLoadScriptPin"				function
+	"llRemoveFromLandBanList"			function
+	"llRemoveFromLandPassList"			function
+	"llRemoveInventory"				function
+	"llRemoveVehicleFlags"				function
+	"llRequestAgentData"				function
+	"llRequestInventoryData"			function
+	"llRequestPermissions"				function
+	"llRequestSimulatorData"			function
+	"llResetLandBanList"				function
+	"llResetLandPassList"				function
+	"llResetOtherScript"				function
+	"llResetScript"					function
+	"llResetTime"					function
+	"llRezAtRoot"					function
+	"llRezObject"					function
+	"llRot2Angle"					function
+	"llRot2Axis"					function
+	"llRot2Euler"					function
+	"llRot2Fwd"					function
+	"llRot2Left"					function
+	"llRot2Up"					function
+	"llRotateTexture"				function
+	"llRotBetween"					function
+	"llRotLookAt"					function
+	"llRotTarget"					function
+	"llRotTargetRemove"				function
+	"llRound"					function
+	"llSameGroup"					function
+	"llSay"						function
+	"llScaleTexture"				function
+	"llScriptDanger"				function
+	"llSendRemoteData"				function
+	"llSensor"					function
+	"llSensorRemove"				function
+	"llSensorRepeat"				function
+	"llSetAlpha"					function
+	"llSetBuoyancy"					function
+	"llSetCameraAtOffset"				function
+	"llSetCameraEyeOffset"				function
+	"llSetCameraParams"				function
+	"llSetClickAction"				function
+	"llSetColor"					function
+	"llSetDamage"					function
+	"llSetForce"					function
+	"llSetForceAndTorque"				function
+	"llSetHoverHeight"				function
+	"llSetInventoryPermMask"			function
+	"llSetLinkAlpha"				function
+	"llSetLinkColor"				function
+	"llSetLinkPrimitiveParams"			function
+	"llSetLinkTexture"				function
+	"llSetLocalRot"					function
+	"llSetObjectDesc"				function
+	"llSetObjectName"				function
+	"llSetObjectPermMask"				function
+	"llSetParcelMusicURL"				function
+	"llSetPayPrice"					function
+	"llSetPos"					function
+	"llSetPrimitiveParams"				function
+	"llSetPrimURL"					function
+	"llSetRemoteScriptAccessPin"			function
+	"llSetRot"					function
+	"llSetScale"					function
+	"llSetScriptState"				function
+	"llSetSitText"					function
+	"llSetSoundQueueing"				function
+	"llSetSoundRadius"				function
+	"llSetStatus"					function
+	"llSetText"					function
+	"llSetTexture"					function
+	"llSetTextureAnim"				function
+	"llSetTimerEvent"				function
+	"llSetTorque"					function
+	"llSetTouchText"				function
+	"llSetVehicleFlags"				function
+	"llSetVehicleFloatParam"			function
+	"llSetVehicleRotationParam"			function
+	"llSetVehicleType"				function
+	"llSetVehicleVectorParam"			function
+	"llSHA1String"					function
+	"llShout"					function
+	"llSin"						function
+	"llSitTarget"					function
+	"llSleep"					function
+	"llSound"					function
+	"llSoundPreload"				function
+	"llSqrt"					function
+	"llStartAnimation"				function
+	"llStopAnimation"				function
+	"llStopHover"					function
+	"llStopLookAt"					function
+	"llStopMoveToTarget"				function
+	"llStopPointAt"					function
+	"llStopSound"					function
+	"llStringLength"				function
+	"llStringToBase64"				function
+	"llStringTrim"					function
+	"llSubStringIndex"				function
+	"llTakeCamera"					function
+	"llTakeControls"				function
+	"llTan"						function
+	"llTarget"					function
+	"llTargetOmega"					function
+	"llTargetRemove"				function
+	"llTeleportAgentHome"				function
+	"llTextBox"					function
+	"llToLower"					function
+	"llToUpper"					function
+	"llTriggerSound"				function
+	"llTriggerSoundLimited"				function
+	"llUnescapeURL"					function
+	"llUnSit"					function
+	"llVecDist"					function
+	"llVecMag"					function
+	"llVecNorm"					function
+	"llVolumeDetect"				function
+	"llWater"					function
+	"llWhisper"					function
+	"llWind"					function
+	"llXorBase64Strings"				function
+	"llXorBase64StringsCorrect"			function
+done
+	"a-zA-Z0-9_"	ident
+
+:kw Keyword
+	*	idle	noeat
+
+:type Type
+	*	idle	noeat
+
+:operator Operator
+	*	idle	noeat
+
+:event Operator
+	*	idle	noeat
+
+:word_constant Constant
+	*	idle	noeat
+
+:constant Constant
+	*	idle	noeat
+
+:function Function
+	*	idle	noeat
