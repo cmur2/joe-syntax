@@ -1,373 +1,513 @@
 # JOE syntax highlight file for JavaScript
 
-# the real one - not a pimped Java file...
-# just getting this idea seams crazy...
+# Define colors
 
-# TODO: regex escape highlighter ignored \x (and other?) sequences
-
-=Idle		
+=Idle
 =Comment	green
 =CommentLabel	bold green
 =Constant	cyan
-=Escape		bold cyan
+=String		cyan
+=StringEscape	bold cyan
+=Regexp		cyan
+=RegexpEscape	bold cyan
+=RegexpOptions	cyan
+=Number		cyan
 =Type		bold
+=CustomType
 =Keyword	bold
-=Global 	bold
-=Exports	bold black
+=Global		bold
+=Exports
+=ExportItem
 =Operator	bold
 =Bad		inverse bold red
 =Brace		magenta
-=Control	
+=Assign		bold
+=Paren
+=Bracket
+=Semicolon
+=Comma
+=PropSep
+=Syntax
+=Ident
+=Method
 
-# additional classes not present everywhere but useful
-=Methods
-=Number		cyan #fg_520 # orange
-
-# from html.jsf to support <?php?>
+# from html.jsf to support embedded languages
 =TagEdge	green
 
 :begin Idle
-	*		begin		noeat call=.js()
+	*			begin		noeat call=.js()
 
 .subr js
 
 :idle Idle
-	*		idle
-	"\n"		idle
-	"/"		slash
-	"0"		first_digit	recolor=-1
-	"1-9"		decimal		recolor=-1
-	"."		maybe_float
-	"\""		string		recolor=-1
-	"'"		char		recolor=-1
-	"a-zA-Z_"	ident		mark buffer
-	"{}"		brace		recolor=-1
+	*			idle
+	"/"			re_or_comment	recolor=-1
+	"0"			first_digit	recolor=-1
+	"1-9"			decimal		recolor=-1
+	"."			maybe_float
+	"\""			string		recolor=-1 save_c
+	"'"			string		recolor=-1 save_c
+	"A-Z"			type_match	mark buffer recolor=-1
+	"$a-z_"			ident		mark buffer recolor=-1
+	"{}"			brace		recolor=-1
+	"()"			paren		noeat recolor=-1
+	";"			semicolon	recolor=-1
+	","			comma		recolor=-1
+	"="			assign_maybe	recolor=-1
+	"[]"			bracket		noeat recolor=-1
+	"\-"			subtract	recolor=-1
+	"+"			add		recolor=-1
+	"*|&^%"			mutate_maybe	recolor=-1
+	":?~"			syntax		recolor=-1
 .ifdef html
-	",:;=()>[]*&|!?~+\-%^"	control	recolor=-1
-	"<"		maybe_done	recolor=-1
+	"<"			maybe_done	recolor=-1
+	">!"			eqmixer_maybe	recolor=-1
 .else
 .ifdef php
-	",:;=()>[]*&|!?~+\-%^"	control	recolor=-1
-	"<"		maybe_done	recolor=-1
+	"<"			maybe_done	recolor=-1
+	">!"			eqmixer_maybe	recolor=-1
 .else
-	",:;=()><[]*&|!?~+\-%^"	control recolor=-1
+.ifdef mason
+	"<"			maybe_done	recolor=-1
+	">!"			eqmixer_maybe	recolor=-1
+.else
+	"<>!"			eqmixer_maybe	recolor=-1
+.endif
 .endif
 .endif
 
-# / / regex not allowed after terms
-# class Control to handle ')' right
-:after_term Control
-	*		idle		noeat
-	" \t)"		after_term
-	"%"		control		recolor=-1
-	"/"		after_term_slash
+:subtract Assign
+	*			mutate_maybe	noeat
+	"\-"			assign		recolor=-2
+
+:add Assign
+	*			mutate_maybe	noeat
+	"+"			assign		recolor=-2
+
+:mutate_maybe Assign
+	*			syntax		recolor=-2 noeat
+	"="			assign		recolor=-2
+
+:syntax Syntax
+	*			idle		recolor=-1 noeat
+
+:assign Assign
+	*			idle		recolor=-1 noeat
+
+:eqmixer_maybe Syntax
+	*			idle		recolor=-1 noeat
+	"="			eqmixer_maybe
+
+:assign_maybe Assign
+	*			idle            recolor=-1 noeat
+	"="			equality	recolor=-2
+
+:equality Syntax
+	*			idle		recolor=-1 noeat
+	"="			syntax
 
 :maybe_done TagEdge
-	*		idle		noeat
-	"/"		idle		noeat return recolor=-2
+	*			eqmixer_maybe	noeat
+	"/"			idle		noeat return recolor=-2
 .ifdef php
-	"?%"		rtn_php		call=php.php()
+	"?"			rtn_embed	call=php.php()
+.endif
+.ifdef mason
+	"&%"			rtn_embed	call=perl.perl()
 .endif
 
-# this state allows php and perl to recolor the ?> %> or &> properly.
-:rtn_php TagEdge
-	*		idle		noeat
+:rtn_embed TagEdge
+	*			idle		noeat
 
-:brace Brace
-	*		idle		noeat
+:no_regex Idle
+	*			idle		noeat
+	"/"			maybe_comment	recolor=-1
+	" "			no_regex
 
-:control Control
-	*		idle		noeat
+:after_term Idle
+	*			after_term
+	"\n"			idle
+	"/"			maybe_comment	recolor=-1
+	"."			prop_sep	recolor=-1
+	"a-z"			infix_operator	buffer recolor=-1
+	"\"'A-Z_0-9"		bad_after_term	recolor=-1
+	"{}"			brace		recolor=-1
+	"()"			paren		noeat recolor=-1
+	";"			semicolon	recolor=-1
+	"="			assign_maybe	recolor=-1
+	","			comma		recolor=-1
+	"[]"			bracket		noeat recolor=-1
+	"\-"			subtract	recolor=-1
+	"+"			add		recolor=-1
+	"*|&^%"			mutate_maybe	recolor=-1
+	":?~"			syntax		recolor=-1
+.ifdef html
+	"<"			maybe_done	recolor=-1
+	">!"			eqmixer_maybe	recolor=-1
+.else
+.ifdef php
+	"<"			maybe_done	recolor=-1
+	">!"			eqmixer_maybe	recolor=-1
+.else
+.ifdef mason
+	"<"			maybe_done	recolor=-1
+	">!"			eqmixer_maybe	recolor=-1
+.else
+	"<>!"			eqmixer_maybe	recolor=-1
+.endif
+.endif
+.endif
 
-:slash Idle
-	*		regex		noeat recolor=-2
-	"*"		comment		recolor=-2
-	"/"		line_comment	recolor=-2
+:ident_only Idle
+	*			bad_after_term	recolor=-1
+	"A-Z"			type_match	mark buffer recolor=-1
+	"$a-z_"			ident		mark buffer recolor=-1
+	" \t"			ident_only
+	"\n"			idle
 
-# allow // and /* after terms
-:after_term_slash Idle
-	*		idle		noeat
-	"*"		comment		recolor=-2
-	"/"		line_comment	recolor=-2
+:bad_after_term Bad
+	*			after_term	noeat markend strings
+done
+	"\"'"			after_term
+	"a-zA-Z0-9_."		bad_after_term
+
+:re_or_comment Syntax
+	*			regex		recolor=-2
+	"*/"			maybe_comment	noeat
+
+:maybe_comment Syntax
+	*			syntax		noeat
+	"*"			comment		recolor=-2
+	"/"			line_comment	recolor=-2
+	"="			assign		recolor=-2
 
 :comment Comment
-	*		comment
+	*			comment
 	# might be TODO label
-	"BFHNTX"	comment		noeat call=.comment_todo()
-	"*"		maybe_end_comment
+	"BFHNTX"		comment		noeat call=.comment_todo()
+	"*"			maybe_end_comment
 
 :maybe_end_comment Comment
-	*		comment		noeat
-	"/"		idle
-	"*"		maybe_end_comment
+	*			comment		noeat
+	"/"			idle
+	"*"			maybe_end_comment
 
 :line_comment Comment
-	*		line_comment
+	*			line_comment
 	# might be TODO label
-	"BFHNTX"	line_comment	noeat call=.comment_todo()
-	"\n"		idle
+	"BFHNTX"		line_comment	noeat call=.comment_todo()
+	"\n"			idle
 
-:regex Constant
-	*		regex
-	"\\"		regex_quote	recolor=-1
-	"/"		regex_mod
+:regex Regexp
+	*			regex
+	"\\"			regex_quote	recolor=-1
+	"/"			regex_mod
 
-:regex_quote Escape
-	*		regex
+:regex_quote RegexpEscape
+	*			regex
 
-:regex_mod Constant
-	*		after_term	noeat
-	"igm"		regex_mod
+:regex_mod RegexpOptions
+	*			after_term	noeat
+	"igm"			regex_mod
+
+:brace Brace
+	*			idle		noeat
+
+:paren Paren
+	"("			idle
+	")"			no_regex
+
+:bracket Bracket
+	"["			idle
+	"]"			after_term
+
+:syntax Syntax
+	*			idle		noeat
+
+:comma Comma
+	*			idle		noeat
+
+:semicolon Semicolon
+	*			idle		noeat
 
 :first_digit Number
-	*		after_term	noeat
-	"xX"		hex
-	"."		float
-	"eE"		epart
-	"0-7"		octal
-	"89"		bad_number	recolor=-1
+	*			after_term	noeat
+	"xX"			hex
+	"."			float
+	"eE"			epart
+	"0-7"			octal
+	"89"			bad_number	recolor=-1
 
 :bad_number Bad
-	*		after_term	noeat
-	"0-9"		bad_number
+	*			after_term	noeat
+	"0-9"			bad_number
 
 :octal Number
-	*		after_term	noeat
-	"0-7"		octal
-	"89"		bad_number	recolor=-1
+	*			after_term	noeat
+	"0-7"			octal
+	"89"			bad_number	recolor=-1
 
 :hex Number
-	*		after_term	noeat
-	"0-9A-Fa-f"	hex
+	*			after_term	noeat
+	"0-9A-Fa-f"		hex
 
 :decimal Number
-	*		after_term	noeat
-	"0-9"		decimal
-	"eE"		epart
-	"."		float
+	*			after_term	noeat
+	"0-9"			decimal
+	"eE"			epart
+	"."			float
 
 :maybe_float Number
-	*		after_term	recolor=-2 noeat
-	"0-9"		float		recolor=-2
+	*			prop_sep	noeat recolor=-2
+	"0-9"			float		recolor=-2
+
+:prop_sep PropSep
+	*			ident_only	noeat
 
 :float Number
-	*		after_term	noeat
-	"eE"		epart
-	"0-9"		float
+	*			after_term	noeat
+	"eE"			epart
+	"0-9"			float
 
 :epart Number
-	*		after_term	noeat
-	"0-9+\-"	enum
+	*			after_term	noeat
+	"0-9+\-"		enum
 
 :enum Number
-	*		after_term	noeat
-	"0-9"		enum
+	*			after_term	noeat
+	"0-9"			enum
 
-:string	Constant
-	*		string
-	"\""		after_term
-	"\\"		string_escape	recolor=-1
-	"%"		string_control	recolor=-1
+:string		String
+	*			string_body	noeat mark
 
-:string_escape Escape
-	*		string
-	"x"		string_hex1
-	"0-7"		string_octal2
-	"\n"		string		recolor=-2
+:string_body	String
+	*			string
+	"\n"			string_bad
+	&			after_term
+	"\\"			string_escape	recolor=-1
 
-:string_hex1 Escape
-	*		string		noeat
-	"0-9a-fA-F"	string_hex2
+:string_bad Bad
+	*			string_bad
+	"\\"			string_bad_escape
+	&			after_term
 
-:string_hex2 Escape
-	*		string		noeat
-	"0-9a-fA-F"	string
+:string_bad_escape Bad
+	*			string_bad
 
-:string_octal2 Escape
-	*		string		noeat
-	"0-7"		string_octal3
+:string_escape StringEscape
+	*			string
+	"x"			string_hex1
+	"0-7"			string_octal2
+	"\n"			string_bad	noeat
 
-:string_octal3 Escape
-	*		string		noeat
-	"0-7"		string
+:string_hex1 StringEscape
+	*			string		noeat
+	"0-9a-fA-F"		string_hex2
 
-:string_control Escape
-	*		string_control
-	"\n"		reset
-	"diouxXeEfFgGaAcspn%SC"	string
+:string_hex2 StringEscape
+	*			string		noeat
+	"0-9a-fA-F"		string
 
-:char Constant
-	*		char
-	"\n"		reset
-	"'"		after_term
-	"\\"		char_escape	recolor=-1
+:string_octal2 StringEscape
+	*			string		noeat
+	"0-7"			string_octal3
 
-:char_escape	Escape
-	*		char
-	"x"		char_hex1
-	"0-7"		char_octal2
-	"\n"		char		recolor=-2
+:string_octal3 StringEscape
+	*			string		noeat
+	"0-7"			string
 
-:char_hex1 Escape
-	*		char		noeat
-	"0-9a-fA-F"	char_hex2
-
-:char_hex2 Escape
-	*		char		noeat
-	"0-9a-fA-F"	char
-
-:char_octal2 Escape
-	*		char		noeat
-	"0-7"		char_octal3
-
-:char_octal3 Escape
-	*		char		noeat
-	"0-7"		char
-
-:ident Idle
-	*		ident_end	noeat markend strings
-	"arguments"	kw
-	"Array"		type
-	"ArrayBuffer"   type
-	"break"		kw
-	"Boolean"	type
-	"case"		kw
-	"catch"		kw
-	"const"         global
-	"continue"	kw
-	"DataView"      type
-	"decodeURI"     global
-	"decodeURIComponent" global
-	"default"	kw
-	"delete"	operator
-	"do"		kw
-	"Date"		type
-	"else"		kw
-	"encodeURI"     global
-	"encodeURIComponent" global
-	"Error"         type
-	"escape"        global
-	"eval"          global
-	"EvalError"     type
-	"false"		lit
-	"finally"	kw
-	"for"		kw
-	"function"	kw
-	"Function"	type
-	"Float32Array"  type
-	"Float64Array"  type
-	"if"		kw
-	"in"		kw
-	"Infinity"      lit
-	"instanceof"	operator
-	"Int16Array"    type
-	"Int32Array"    type
-	"Int8Array"     type
-	"isFinite"      global
-	"isNaN"         global
-	"JSON"          type
-	"let"		kw
-	"Math"          type
-	"NaN"           lit
-	"new"		operator
-	"null"		lit
-	"Number"	type
-	"Object"	type
-	"parseFloat"    global
-	"parseInt"      global
-	"return"	kw
-	"RangeError"    type
-	"ReferenceError" type
-	"RegExp"	type
-	"switch"	kw
-	"String"	type
-	"SyntaxError"   type
-	"this"		kw
-	"throw"		kw
-	"true"		lit
-	"try"		kw
-	"typeof"	operator
-	"TypeError"     type
-	"Uint16Array"   type
-	"Uint32Array"   type
-	"Uint8Array"    type
-	"Uint8ClampedArray" type
-	"undefined"	lit
-	"unescape"      global
-	"URIError"      type
-	"var"		kw
-	"void"		kw
-	"while"		kw
-	"with"		kw
-	# quasi-keywords
-	"prototype"	kw
-	# Node.js
-	"module"        global
-	"exports"       export
-	"process"       global
-	"global"        global
-	"console"       global
-	"setTimeout"    global
-	"setInterval"   global
-	"clearInterval" global
-	"Buffer"        type
-	# Node.js globals that we'll pretend are keywords
-	"require"       kw
-	"__filename"    kw
-	"__dirname"     kw
-        # By convention...
-        "self"          kw
+:infix_operator Bad
+	*			bad_op		noeat markend strings
+	"in"			operator
+	"instanceof"		operator
 done
-	"a-zA-Z0-9_"	ident
+	"a-zA-Z0-9_"		infix_operator
 
-:type Type
-	*		after_term	noeat
-
-:kw Keyword
-	*		idle		noeat
-
-:global Global
-	*		idle		noeat
-
-:export Exports
-	*		idle		noeat
-
-:lit Constant
-	*		after_term	noeat
+:bad_op Bad
+	*			idle		noeat
+	"a-zA-Z0-9_"		bad_op
 
 :operator Operator
-	*		idle		noeat
+	*			idle		noeat
+
+:type_match CustomType
+	*			type_end	noeat markend strings
+	"Infinity"		lit
+	"NaN"			lit
+	"Array"			type
+	"ArrayBuffer"		type
+	"Boolean"		type
+	"DataView"		type
+	"Date"			type
+	"Error"			type
+	"EvalError"		type
+	"Function"		type
+	"Float32Array"		type
+	"Float64Array"		type
+	"Int16Array"		type
+	"Int32Array"		type
+	"Int8Array"		type
+	"JSON"			type
+	"Math"			type
+	"Number"		type
+	"Object"		type
+	"RangeError"		type
+	"ReferenceError"	type
+	"RegExp"		type
+	"String"		type
+	"SyntaxError"		type
+	"TypeError"		type
+	"Uint16Array"		type
+	"Uint32Array"		type
+	"Uint8Array"		type
+	"Uint8ClampedArray"	type
+	"URIError"		type
+	# node.js
+	"Buffer"		type
+done
+	"a-zA-Z0-9_"		type_match
+
+:type_end Idle
+	*			after_term	noeat
+	" "			type_end
+	"."			prop_sep	recolor=-1
+
+:ident Ident
+	*			ident_end	noeat markend strings
+	"delete"		operator
+	"in"			operator
+	"instanceof"		operator
+	"typeof"		operator
+	"new"			operator
+	"arguments"		kw
+	"break"			kw
+	"case"			kw
+	"catch"			kw
+	"continue"		kw
+	"default"		kw
+	"do"			kw
+	"else"			kw
+	"finally"		kw
+	"for"			kw
+	"function"		kw
+	"if"			kw
+	"let"			kw
+	"return"		kw
+	"switch"		kw
+	"throw"			kw
+	"try"			kw
+	"var"			kw
+	"void"			kw
+	"while"			kw
+	"with"			kw
+	"false"			lit
+	"null"			lit
+	"true"			lit
+	"const"			global
+	"decodeURI"		global
+	"decodeURIComponent"	global
+	"encodeURI"		global
+	"encodeURIComponent"	global
+	"escape"		global
+	"eval"			global
+	"isFinite"		global
+	"isNaN"			global
+	"parseFloat"		global
+	"parseInt"		global
+	"undefined"		global
+	"unescape"		global
+	"setImmediate"		global
+	"this"			quasikw
+	"prototype"		quasikw
+	# node.js
+	"exports"		export
+	"module"		global
+	"process"		global
+	"global"		global
+	"console"		global
+	"setTimeout"		global
+	"setInterval"		global
+	"clearInterval"		global
+	"clearTimeout"		global
+	"require"		quasikw
+	"__filename"		quasikw
+	"__dirname"		quasikw
+	# By convention...
+	"self"			quasikw
+done
+	"$a-zA-Z0-9_"		ident
 
 :ident_end Idle
-	*		after_term	noeat
-	" "		ident_end
-	"("		method_end	noeat recolormark
+	*			after_term	noeat
+	" "			ident_end
+	"."			prop_sep	recolor=-1
+	"("			method_start	recolor=-1
 
-:method_end Methods
-	*		idle		noeat
+:method_start Paren
+	*			method_end	noeat recolormark
+
+:method_end Method
+	*			idle		noeat
+
+:type Type
+	*			after_term	noeat
+
+:kw Keyword
+	*			idle	noeat
+
+:quasikw Keyword
+	*			after_term	noeat
+
+:global Global
+	*			after_term	noeat
+
+:export Exports
+	*			export_end	noeat
+
+:export_end Exports
+	*			after_term	noeat
+	" "			export_end
+	"."			export_item_start
+
+:export_item_start ExportItem
+	*			bad_after_term	recolor=-1 noeat
+	" "			export_item_start
+	"a-zA-Z_"		export_item
+
+:export_item ExportItem
+	*			after_term	noeat
+	"a-zA-Z0-9_"		export_item
+
+:lit Constant
+	*			lit_end		noeat
+
+:lit_end Constant
+	*			after_term	noeat
+	" "			lit_end
+	"."			prop_sep	recolor=-1
 
 .end
 
 .subr comment_todo
 # initial state
-:comment_todo_init Comment
-	*		comment_todo_guess	buffer
+:todo_init Comment
+	*			todo_guess	buffer
 
 # highlight common TODO labels
-:comment_todo_guess Comment
-	*		comment_todo_unknown	noeat strings
-	"BUG"		comment_todo
-	"FIXME"		comment_todo
-	"HACK"		comment_todo
-	"NOTE"		comment_todo
-	"TODO"		comment_todo
-	"XXX"		comment_todo
+:todo_guess Comment
+	*			todo_unknown	noeat strings
+	"BUG"			todo
+	"FIXME"			todo
+	"HACK"			todo
+	"NOTE"			todo
+	"TODO"			todo
+	"XXX"			todo
 done
-	"A-Z"		comment_todo_guess
+	"A-Z"			todo_guess
 
-:comment_todo_unknown Comment
-	*		NULL		noeat return
+:todo_unknown Comment
+	*			NULL		noeat return
 
-:comment_todo CommentLabel
-	*		NULL		noeat return
+:todo CommentLabel
+	*			NULL		noeat return
 .end
