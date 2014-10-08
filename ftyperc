@@ -543,7 +543,7 @@
  JSON
 *.json
 -autoindent
--syntax js
+-syntax json
 -smarthome
 -smartbacks
 
