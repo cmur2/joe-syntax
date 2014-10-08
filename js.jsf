@@ -172,7 +172,7 @@ done
 	"a-zA-Z0-9_."		bad_after_term
 
 :re_or_comment Syntax
-	*			regex		recolor=-2
+	*			regex		noeat recolor=-2
 	"*/"			maybe_comment	noeat
 
 :maybe_comment Syntax
@@ -201,10 +201,40 @@ done
 :regex Regexp
 	*			regex
 	"\\"			regex_quote	recolor=-1
+	"["			regex_charclass
 	"/"			regex_mod
+	"\n"			regex_bad
 
 :regex_quote RegexpEscape
 	*			regex
+	"\n"			regex_bad
+
+:regex_charclass Regexp
+	*			regex_charclass
+	"\\"			regex_cc_quote	recolor=-1
+	"\n"			regex_bad_cc
+	"]"			regex
+
+:regex_cc_quote RegexpEscape
+	*			regex_charclass
+	"\n"			regex_bad_cc
+
+:regex_bad Bad
+	*			regex_bad
+	"\\"			regex_bad_quote
+	"["			regex_bad_cc
+	"/"			after_term
+
+:regex_bad_quote Bad
+	*			regex_bad
+
+:regex_bad_cc Bad
+	*			regex_bad_cc
+	"\\"			regex_bad_quote_cc
+	"]"			regex_bad
+
+:regex_bad_quote_cc Bad
+	*			regex_bad_cc
 
 :regex_mod RegexpOptions
 	*			after_term	noeat
