@@ -35,7 +35,8 @@
 # annotations
 :decorator Decorator
 	*		decorator
-	" \t\r\n"	idle		noeat
+	"\"'"		string_sq	recolor=-1
+	"(\t\r\n"	idle		noeat
 
 :comment Comment
 	*		comment
