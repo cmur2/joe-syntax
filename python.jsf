@@ -35,7 +35,7 @@
 # annotations
 :decorator Decorator
 	*		decorator
-	" \t\r\n"	idle		noeat
+	" (\t\r\n"	idle		noeat
 
 :comment Comment
 	*		comment
