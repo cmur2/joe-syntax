@@ -36,6 +36,11 @@
 
 :begin Idle
 	*			begin		noeat call=.js()
+	"#"			shebang		recolor=-1
+
+:shebang Comment
+	*			shebang
+	"\n"			begin
 
 .subr js
 
