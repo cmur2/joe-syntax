@@ -42,11 +42,18 @@ Another good resource might be
 
 Every .jsf file from the original repository is under GPL2 as [JOE](http://sourceforge.net/projects/joe-editor/).
 
-Every .jsf file created by [me](https://github.com/cmur2) is under GPL2 as [JOE](http://sourceforge.net/projects/joe-editor/).
+Every .jsf file created and modified exclusively by [me](https://github.com/cmur2) is under GPL2 as [JOE](http://sourceforge.net/projects/joe-editor/).
 
 Files with unknown license info:
 
+* [erlang.jsf](https://github.com/cmur2/joe-syntax/blob/master/go.jsf) which is created by [Christian Nicolai](https://github.com/cmur2) and then modified by Jonas Rosling and enhanced with a small tweak from [raev](https://github.com/raev)
 * [go.jsf](https://github.com/cmur2/joe-syntax/blob/master/go.jsf) which is entirely contributed by [Daniel Vargas](https://github.com/danielvargas)
+* [js.jsf](https://github.com/cmur2/joe-syntax/blob/master/js.jsf) which is created by [Christian Nicolai](https://github.com/cmur2) and then modified by [Rebecca Turner](https://github.com/iarna)
+* [json.jsf](https://github.com/cmur2/joe-syntax/blob/master/json.jsf) which is entirely contributed by [Rebecca Turner](https://github.com/iarna)
+* [md.jsf](https://github.com/cmur2/joe-syntax/blob/master/md.jsf) which is created by [Christian Nicolai](https://github.com/cmur2) and then modified by Jonas Rosling
+* [powershell.jsf](https://github.com/cmur2/joe-syntax/blob/master/powershell.jsf) which is entirely contributed by [Oskar Liljeblad](https://github.com/osklil)
+* [puppet.jsf](https://github.com/cmur2/joe-syntax/blob/master/puppet.jsf) which is created by [Christian Nicolai](https://github.com/cmur2) and then modified by [Eric Eisenhart](https://github.com/eeisenhart)
+* [sql.jsf](https://github.com/cmur2/joe-syntax/blob/master/sql.jsf) which is from an "unknown source" (delivered by [Rebecca Turner](https://github.com/iarna))
 
 ## Links
 
