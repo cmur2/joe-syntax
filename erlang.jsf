@@ -232,7 +232,7 @@ done
 
 :funarity Fun
 	*		function	recolormark noeat
-	"0-9"		funtroll
+	"0-9"		idle
 
 :kw Keyword
 	*		idle		noeat
