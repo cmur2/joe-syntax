@@ -46,6 +46,7 @@ Every .jsf file created and modified exclusively by [me](https://github.com/cmur
 
 Files with unknown license info:
 
+* [elixir.jsf](https://github.com/cmur2/joe-syntax/blob/master/elixir.jsf) which is created by [Andrew Lisin](https://github.com/avli) under GPL v2 ([comment](https://github.com/cmur2/joe-syntax/pull/18#issuecomment-69193456))
 * [erlang.jsf](https://github.com/cmur2/joe-syntax/blob/master/go.jsf) which is created by [Christian Nicolai](https://github.com/cmur2) and then modified by Jonas Rosling and enhanced with a small tweak from [raev](https://github.com/raev)
 * [go.jsf](https://github.com/cmur2/joe-syntax/blob/master/go.jsf) which is entirely contributed by [Daniel Vargas](https://github.com/danielvargas)
 * [js.jsf](https://github.com/cmur2/joe-syntax/blob/master/js.jsf) which is created by [Christian Nicolai](https://github.com/cmur2) and then modified by [Rebecca Turner](https://github.com/iarna)
