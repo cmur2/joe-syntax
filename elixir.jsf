@@ -2,6 +2,15 @@
 
 # Written by Andrey Lisin (at gmail.com)
 
+# TODO
+# - test attributes and docstrings highlighting
+# - maybe highlight arithmetical operations
+# - comprehensions highlighting
+
+# Changes
+# - fix atom with underscore highlighting
+# - distinct docstrings and module attributes
+
 =Idle
 =Comment	fg_030
 =Keyword	bold
@@ -10,6 +19,7 @@
 =Extrapolation  fg_200 bold
 =Atom		fg_530
 =Attribute	fg_505
+=ModAttr	fg_141
 =Brace		fg_440
 =Brack		fg_311
 =Int		fg_033
@@ -26,7 +36,7 @@
 	"'"		single_quoted	recolor=-1
 	"\""		double_quoted	recolor=-1
 	":"		atom		recolor=-1
-	"@"		is_edoc		noeat
+	"@"		modattr		recolor=-1
 	"[]"            brack           recolor=-1
 	"{}"		brace		recolor=-1
 	"|"		maybe_pipe
@@ -57,20 +67,25 @@
 	
 :atom Atom
 	*		idle		noeat
-	"a-zA-Z0-9"	atom
+	"a-zA-Z0-9_"	atom
 	
-:is_edoc Comment
-	*		is_edoc
-	"\""		string_dq_1
-	"\n"		idle
+:modattr ModAttr
+	*		idle
+	"a-zA-Z0-9_"	modattr
+	" "		maybe_edoc
 	
-:string_dq_1 Comment
-	*		is_edoc
+:maybe_edoc Idle
+	*		idle
+	" "		maybe_edoc
+	"\""		string_dq_1 	recolor=-1
+	
+:string_dq_1 String
+	*		double_quoted	recolor=-1
 	"\""		string_dq_2
 	
 :string_dq_2 Comment
-	*		is_edoc
-	"\""		docstr_dq
+	*		idle
+	"\""		docstr_dq	recolor=-3
 	
 :docstr_dq Comment
 	*		docstr_dq
@@ -83,6 +98,8 @@
 :docstr_dq_2 Comment
 	*		docstr_dq
 	"\""		idle
+	
+	
 	
 :brace Brace
 	*		idle		noeat
@@ -139,6 +156,7 @@
 	"defcallback"				start_def
 	"import"				start_mod_def
 	"require"				start_mod_def
+	"test"					start_def
 	"use"					start_mod_def
 	"alias"					start_mod_def
 	"end"					kw

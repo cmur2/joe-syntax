@@ -1016,11 +1016,9 @@
 -syntax elixir
 -pound_comment
 -text_delimiters do=end
--linums
 
 *.exs
 -autoindent
 -syntax elixir
 -pound_comment
 -text_delimiters do=end
--linums
