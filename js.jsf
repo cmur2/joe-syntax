@@ -4,7 +4,6 @@
 
 =Idle
 =Comment	green
-=CommentLabel	bold green
 =Constant	cyan
 =String		cyan
 =StringEscape	bold cyan
@@ -189,7 +188,7 @@ done
 :comment Comment
 	*			comment
 	# might be TODO label
-	"BFHNTX"		comment		noeat call=.comment_todo()
+	"BFHNTX"		comment		noeat call=comment_todo.comment_todo()
 	"*"			maybe_end_comment
 
 :maybe_end_comment Comment
@@ -200,7 +199,7 @@ done
 :line_comment Comment
 	*			line_comment
 	# might be TODO label
-	"BFHNTX"		line_comment	noeat call=.comment_todo()
+	"BFHNTX"		line_comment	noeat call=comment_todo.comment_todo()
 	"\n"			idle
 
 :regex Regexp
@@ -521,28 +520,4 @@ done
 	" "			lit_end
 	"."			prop_sep	recolor=-1
 
-.end
-
-.subr comment_todo
-# initial state
-:todo_init Comment
-	*			todo_guess	buffer
-
-# highlight common TODO labels
-:todo_guess Comment
-	*			todo_unknown	noeat strings
-	"BUG"			todo
-	"FIXME"			todo
-	"HACK"			todo
-	"NOTE"			todo
-	"TODO"			todo
-	"XXX"			todo
-done
-	"A-Z"			todo_guess
-
-:todo_unknown Comment
-	*			NULL		noeat return
-
-:todo CommentLabel
-	*			NULL		noeat return
 .end

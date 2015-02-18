@@ -1,17 +1,6 @@
-# ===== Color Definitions =====
 
 =Comment 	green
 =CommentLabel	bold green
-
-# ===== Example Usage =====
-
-:line_comment Comment
-	*		line_comment
-	# might be TODO label
-	"BFHNTX"	line_comment	noeat call=.comment_todo()
-	"\n"		idle
-
-# ===== Subroutine Declaration =====
 
 .subr comment_todo
 # initial state
