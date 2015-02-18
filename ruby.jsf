@@ -186,7 +186,7 @@ done
 	"%"		line_comment_maybe_erb_end
 .endif
 	# might be TODO label
-	"BFHNTX"	line_comment	noeat call=commend_todo.comment_todo()
+	"BFHNTX"	line_comment	noeat call=comment_todo.comment_todo()
 .ifdef haml
 	"\n"		NULL		return
 .else
