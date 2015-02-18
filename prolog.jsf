@@ -8,7 +8,7 @@
 =Bad		bold red
 
 =Brace		#magenta
-=Variable	fg_310
+=Variable	#yellow
 =Predicate	red
 
 :idle Idle

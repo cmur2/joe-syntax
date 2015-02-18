@@ -7,7 +7,7 @@
 =Bad		bold red
 =Brace		magenta
 
-=Tag		fg_310
+=Tag		blue
 =Class		yellow
 =Id		green
 =Doctype	bold magenta

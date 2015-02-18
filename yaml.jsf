@@ -11,7 +11,7 @@
 
 =Directive	red
 =Reference	yellow
-=LocalType	fg_310 # brown
+=LocalType	blue
 =BlockDelim	bold blue
 
 =BadTab		inverse red

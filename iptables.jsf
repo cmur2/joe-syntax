@@ -8,8 +8,8 @@
 
 =Table		bold
 =Policy		bold blue
-=Option		fg_310 # brown
-=Module		yellow
+=Option		yellow
+=Module		blue
 
 :line_start Idle
 	*		rest		noeat

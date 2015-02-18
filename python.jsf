@@ -15,7 +15,7 @@
 =Bad		bold red
 =Brace		magenta
 
-=PrivateMember	fg_310 # brown
+=PrivateMember	yellow #fg_310 # brown
 =Decorator	red
 
 :idle Idle

@@ -12,20 +12,20 @@
 # - distinct docstrings and module attributes
 
 =Idle
-=Comment	fg_030
+=Comment	green
 =Keyword	bold
-=Bif		fg_501
-=String		fg_110
-=Extrapolation  fg_200 bold
-=Atom		fg_530
-=Attribute	fg_505
-=ModAttr	fg_141
-=Brace		fg_440
-=Brack		fg_311
-=Int		fg_033
-=Def		fg_115
-=ModDef		fg_101
-=Underscore	fg_310
+=Bif		#fg_501
+=String		cyan
+=Extrapolation  cyan bold
+=Atom		red
+=Attribute	#fg_505
+=ModAttr	yellow #fg_141
+=Brace		magenta #fg_440
+=Brack		magenta #fg_311
+=Int		cyan
+=Def		
+=ModDef		blue bold
+=Underscore	blue #fg_310 #brown
 
 
 :idle Idle
