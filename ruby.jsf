@@ -7,7 +7,6 @@
 
 =Idle
 =Comment	green
-=CommentLabel	bold green
 =POD		green
 =Constant	cyan
 =Escape		bold cyan
