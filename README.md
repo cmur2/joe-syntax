@@ -8,7 +8,8 @@ fixing bugs in the original files and adding support for new languages.
 ### *.jsf
 
 To enable the .jsf files in this repository they need to appear in JOEs
-*syntax* directory.  This is likely to be */usr/share/joe/syntax* when using
+*syntax* directory, either locally (`~/.joe/syntax`) or globally. The global
+syntax directory is is likely to be */usr/share/joe/syntax* when using
 Debian and APT or */usr/local/Cellar/joe/3.7/share/joe/syntax* when using brew
 on Mac OS X.  You may download the
 [latest jsf-bundle](https://github.com/downloads/cmur2/joe-syntax/jsf-bundle_2.tar)
@@ -17,7 +18,8 @@ be outdated compared to the repository's state).
 
 A maybe better way to achieve this is to clone this repository somewhere
 onto your hard disk and establish symlinks to all jsf files in the *syntax*
-directory.
+directory, or to install this repository to `~/joe/syntax` and symlink `ftyperc`
+to `~/.joe`.
 
 ### ftyperc (only needed to enable new languages)
 
