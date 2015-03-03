@@ -24,9 +24,9 @@ See [HowItWorks.md](https://github.com/cmur2/joe-syntax/blob/master/HowItWorks.m
 
 ## Licensing
 
-Every .jsf file from the original repository is under GPL2 as [JOE](http://sourceforge.net/projects/joe-editor/).
+Every .jsf file from the original repository is under GPL v2 as [JOE](http://sourceforge.net/projects/joe-editor/).
 
-Every .jsf file created and modified exclusively by [me](https://github.com/cmur2) is under GPL2 as [JOE](http://sourceforge.net/projects/joe-editor/).
+Every .jsf file created and modified exclusively by [me](https://github.com/cmur2) is under GPL v2 as [JOE](http://sourceforge.net/projects/joe-editor/).
 
 Files with contributions (or unclear license info):
 
