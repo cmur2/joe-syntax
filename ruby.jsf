@@ -455,7 +455,7 @@ done
 :pstring Idle
 	*		match		noeat
 	" \t"		after_term	noeat
-	"xrqQwW"	match
+	"xrsqQwW"	match
 .ifdef erb
 	">"		NULL		recolor=-2 return
 .endif
