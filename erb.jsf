@@ -1,4 +1,5 @@
 # JOE syntax highlight file for plain ERB
+# by Christian Nicolai (http://mycrobase.de)
 
 =Idle
 =Keyword	bold

@@ -1,4 +1,7 @@
 # JOE syntax highlight file for Erlang
+# by Christian Nicolai (http://mycrobase.de)
+# with contributions from Jonas Rosling and Andrew Lisin
+
 # TODO Handle type information ::
 # TODO implement subroutines for cleaner and more correct implementation.
 # TODO Probably use less colors to be less distractive.

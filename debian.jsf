@@ -1,4 +1,5 @@
 # JOE syntax highlight file for apt's sources.list
+# by Christian Nicolai (http://mycrobase.de)
 
 =Idle
 =Comment	green

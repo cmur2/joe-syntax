@@ -1,4 +1,5 @@
 # JOE syntax highlight file for Haml
+# by Christian Nicolai (http://mycrobase.de)
 
 =Idle
 =Comment	green
