@@ -1,8 +1,8 @@
  File Type table.  This is :included by the joerc file.
 
  No '.' in file name?  Assume it's a text file and we want wordwrap on.
- *
- -wordwrap
+*
+-wordwrap
 
  File name with '.'?  It's probably not a text file.
 *.*
@@ -51,18 +51,15 @@
 -wordwrap
 -syntax troff
 
- System RC file
-*rc
--syntax conf
-
  TeX
 *.tex
- -wordwrap
+-wordwrap
 -syntax tex
 -tex_comment
 -no_double_quoted
 
 *.sty
+-wordwrap
 -syntax tex
 -tex_comment
 -no_double_quoted
@@ -443,6 +440,18 @@
 -text_delimiters #if|#ifdef|#ifndef=#elif=#else=#endif
 -cpara >#!;*/%
 
+*.hh
+-autoindent
+-syntax c
+-smarthome
+-smartbacks
+-purify
+-single_quoted
+-c_comment
+-cpp_comment
+-text_delimiters #if|#ifdef|#ifndef=#elif=#else=#endif
+-cpara >#!;*/%
+
  Verilog file
 *.v
 -autoindent
@@ -483,15 +492,19 @@
 
  XML
 *.xml
+-wordwrap
 -autoindent
 -syntax xml
 
+ XML
 *.xsd
+-wordwrap
 -autoindent
 -syntax xml
 
 *
 +<\?xml
+-wordwrap
 -autoindent
 -syntax xml
 
@@ -502,10 +515,12 @@
 
  HTML
 *.htm
+-wordwrap
 -autoindent
 -syntax html
 
 *.html
+-wordwrap
 -autoindent
 -syntax html
 
@@ -547,6 +562,15 @@
 -smarthome
 -smartbacks
 
+ Typescript
+*.ts
+-autoindent
+-syntax typescript
+-smarthome
+-smartbacks
+-purify
+-cpara >#!;*/%
+
  Hypertext preprocessor file
 *.php
 -autoindent
@@ -557,7 +581,7 @@
 
  Python
 *
-+#!\+\[ 	]\+\[a-z/]\+\[ 	]python\+\[0-9]\>
++#!\+\[ 	]\+\[a-z/]\+\[ 	]python\>
 -autoindent
 -syntax python
 -smarthome
@@ -638,7 +662,7 @@
 -pound_comment
 -text_delimiters do=done:if=elif=else=fi:case=esac
 
-*.bashrc
+*.bash
 -autoindent
 -syntax sh
 -pound_comment
@@ -772,18 +796,44 @@
 -autoindent
 -syntax tcl
 
+ Go language
+*.go
+-autoindent
+-syntax go
+-smarthome
+-smartbacks
+-purify
+-single_quoted
+-c_comment
+-text_delimiters #if|#ifdef|#ifndef=#elif=#else=#endif
+-cpara >#!;*/%
+
+ CSharp
+*.cs
+-autoindent
+-syntax csharp
+-smarthome
+-smartbacks
+-purify
+-cpara >#!;*/%
+-text_delimiters #region=#endregion:#if=#elif=#else=#endif
+
+ RESX/.NET resource files
+*.resx
+-autoindent
+-syntax xml
+
  Joe Syntax File
 *.jsf
 -autoindent
 -syntax jsf
 -smarthome
--tab 8
+
 
 *.jsf.in
 -autoindent
 -syntax jsf
 -smarthome
--tab 8
 
  Autoconfig file
 *.ac
@@ -809,6 +859,30 @@
 *tmp/mutt-*
 -wordwrap
 -syntax mail
+
+ System RC file
+*rc
+-syntax conf
+
+ Windows batch files
+*.bat
+-autoindent
+-syntax batch
+
+*.cmd
+-autoindent
+-syntax batch
+
+ Windows configuration files
+*.ini
+-pound_comment
+-semi_comment
+-syntax ini
+
+*.inf
+-pound_comment
+-semi_comment
+-syntax ini
 
  JOERC file
 *ftyperc
@@ -882,12 +956,6 @@
 -encoding iso-8859-1
 -pound_comment
 -syntax properties
-
- INI file
-*.ini
--pound_comment
--semi_comment
--syntax ini
 
 *hgrc
 -pound_comment
@@ -980,19 +1048,6 @@
 -syntax iptables
 -pound_comment
 
-  Go
-*.go
--autoindent
--syntax go
--tab 4
--smarthome
--smartbacks
--purify
--single_quoted
--c_comment
--text_delimiters #if|#ifdef|#ifndef=#elif=#else=#endif
--cpara >#!;*/%
-
  PowerShell
 *.ps1
 -syntax powershell
@@ -1000,15 +1055,6 @@
  Git COMMIT_EDITMSG
 *COMMIT_EDITMSG
 -syntax git-commit
-
- LSL
-*.lsl
--autoindent
--syntax lsl
--smarthome
--smartbacks
--c_comment
--cpp_comment
 
  Elixir
 *.ex
