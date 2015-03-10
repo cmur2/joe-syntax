@@ -26,7 +26,7 @@ See [HowItWorks.md](https://github.com/cmur2/joe-syntax/blob/master/HowItWorks.m
 
 Every .jsf file from the original repository is under GPL v2 as [JOE](http://sourceforge.net/projects/joe-editor/).
 
-Every .jsf file created and modified exclusively by [me](https://github.com/cmur2) is under GPL v2 as [JOE](http://sourceforge.net/projects/joe-editor/).
+Every .jsf file created and modified exclusively by [me](https://github.com/cmur2) is under GPL v2 or any later version as [JOE](http://sourceforge.net/projects/joe-editor/).
 
 Files with contributions (or unclear license info):
 
@@ -37,7 +37,7 @@ Files with contributions (or unclear license info):
 * [json.jsf](https://github.com/cmur2/joe-syntax/blob/master/json.jsf) which is entirely contributed by [Rebecca Turner](https://github.com/iarna) under GPL v2 and ISC license ([comment](https://github.com/cmur2/joe-syntax/pull/14#issuecomment-76939731))
 * [lsl.jsf](https://github.com/cmur2/joe-syntax/blob/master/lsl.jsf) which is from [Zai Lynch](https://wiki.secondlife.com/wiki/User:Zai_Lynch) under GPL v1 (delivered by [Rebecca Turner](https://github.com/iarna))
 * [md.jsf](https://github.com/cmur2/joe-syntax/blob/master/md.jsf) which is created by [Christian Nicolai](https://github.com/cmur2) and then modified by Jonas Rosling
-* [powershell.jsf](https://github.com/cmur2/joe-syntax/blob/master/powershell.jsf) which is entirely contributed by [Oskar Liljeblad](https://github.com/osklil) under GPL v2 ([comment](https://github.com/cmur2/joe-syntax/pull/5#issuecomment-76935968))
+* [powershell.jsf](https://github.com/cmur2/joe-syntax/blob/master/powershell.jsf) which is entirely contributed by [Oskar Liljeblad](https://github.com/osklil) under GPL v2 or any later version ([comment](https://github.com/cmur2/joe-syntax/pull/5#issuecomment-76935968))
 * [puppet.jsf](https://github.com/cmur2/joe-syntax/blob/master/puppet.jsf) which is created by [Christian Nicolai](https://github.com/cmur2) and then modified by [Eric Eisenhart](https://github.com/eeisenhart)
 * [sql.jsf](https://github.com/cmur2/joe-syntax/blob/master/sql.jsf) which is from an "unknown source" (delivered by [Rebecca Turner](https://github.com/iarna))
 
