@@ -46,5 +46,6 @@ Files with contributions (or unclear license info):
 For JOE see [here](http://joe-editor.sourceforge.net/).  
 For JOE project see [here](http://sourceforge.net/projects/joe-editor/).  
 For original JOE syntax files see [here](http://joe-editor.hg.sourceforge.net/hgweb/joe-editor/joe-editor/file/tip/syntax).  
+For ne (the nice editor that uses JOE syntax files, too) see [here](http://ne.di.unimi.it/).  
 
 *You can find this repository [here](https://github.com/cmur2/joe-syntax).*
