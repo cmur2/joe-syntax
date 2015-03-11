@@ -8,6 +8,7 @@
 
 =Key
 =Separator	bold
+=SeparatorArrow	bold
 =Section	bold magenta
 
 :line_start Idle
@@ -53,9 +54,9 @@
 
 :sep Separator
 	*		value_pre	noeat
-	">"		sep_arrow	recolor=-1
+	">"		sep_arrow	recolor=-2
 
-:sep_arrow Separator
+:sep_arrow SeparatorArrow
 	*		value_pre	noeat
 
 :value_pre Idle
@@ -67,6 +68,7 @@
 	"\\"		value_esc
 	"\n"		line_start
 	" \t\r"		maybe_comment	recolor=-1
+	"$"		maybe_subst
 
 :value_esc Escape
 	*		value
@@ -78,3 +80,11 @@
 :maybe_comment Idle
 	*		value		noeat
 	";#"		line_comment	recolor=-1
+
+:maybe_subst Constant
+	*		value		noeat
+	"{"		subst		recolor=-2
+
+:subst Escape
+	*		subst
+	"}"		value
