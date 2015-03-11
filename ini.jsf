@@ -62,7 +62,7 @@
 	*		value
 	"\\"		value_esc
 	"\n"		line_start
-	" "		maybe_comment	recolor=-1
+	" \t\r"		maybe_comment	recolor=-1
 
 :value_esc Escape
 	*		value
