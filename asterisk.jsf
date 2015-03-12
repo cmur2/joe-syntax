@@ -25,12 +25,13 @@
 
 :section Section
 	*		section
-	"]"		section_end
+	"]"		section_post
 	"\n"		section_unexp_end	recolor=-2
 
-:section_end Bad
-	*		section_end
+:section_post Idle
+	*		section_post
 	"\n"		line_start
+	";#"		line_comment		recolor=-1
 
 :section_unexp_end Bad
 	*		line_start	noeat
