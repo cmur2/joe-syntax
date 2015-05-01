@@ -1022,3 +1022,14 @@
 -syntax elixir
 -pound_comment
 -text_delimiters do=end
+
+ Scheme
+*.scm
+-autoindent
+-syntax scheme
+-semi_comment
+
+*.ss
+-autoindent
+-syntax scheme
+-semi_comment

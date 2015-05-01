@@ -1,0 +1,73 @@
+# JOE syntax highlight file for Scheme
+
+=Idle
+=Comment	green
+=Constant	cyan
+=Escape		bold cyan
+=Bad		bold red
+
+=Keyword	bold
+
+:idle Idle
+	*		idle
+	";"		line_comment	recolor=-1
+	"1-9"		number		recolor=-1
+	"\""		string		recolor=-1
+	"'"		symbol		recolor=-1
+	"#"		maybe_bool
+	"a-zA-Z_"	ident		buffer
+
+:line_comment Comment
+	*		line_comment
+	"\n"		idle
+
+:number Constant
+	*		idle		noeat
+	"0-9"		number
+
+:string Constant
+	*		string
+	"\""		idle
+
+:symbol Constant
+	*		idle		noeat
+	"("		special_symbol
+	"a-zA-Z0-9_-"	symbol
+
+:special_symbol Constant
+	*		idle		noeat
+	")"		symbol
+
+:maybe_bool Idle
+	*		idle		noeat
+	"tf"		bool		recolor=-2
+
+:bool Constant
+	*		idle		noeat
+
+:ident Idle
+	*		idle		noeat strings
+	"call-with-current-continuation"	kw
+	"car"		kw
+	"cdr"		kw
+	"cons"		kw
+	"define"	kw
+	"even?"		kw
+	"exact?"	kw
+	"if"		kw
+	"lambda"	kw
+	"let"		kw
+	"letrec"	kw
+	"let*"		kw
+	"list"		kw
+	"map"		kw
+	"null?"		kw
+	"odd?"		kw
+	"s"		kw
+	"set!"		kw
+	"zero?"		kw
+done
+	"a-zA-Z0-9_*!?-"	ident
+
+:kw Keyword
+	*		idle		noeat
