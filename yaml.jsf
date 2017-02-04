@@ -1,4 +1,5 @@
 # JOE syntax highlight file for YAML
+# by Christian Nicolai (http://mycrobase.de)
 
 =Idle
 =Comment	green
@@ -11,7 +12,7 @@
 
 =Directive	red
 =Reference	yellow
-=LocalType	fg_310 # brown
+=LocalType	blue
 =BlockDelim	bold blue
 
 =BadTab		inverse red
@@ -19,13 +20,18 @@
 :line_start Idle
 	*		maybe_key	noeat
 	"\t"		bad_tab		recolor=-1
+	"#"		line_comment	recolor=-1
 	" "		line_start
+
+:maybe_idlecomment Comment
+	*		idle		noeat
+	"#"		line_comment	recolor=-1
 
 :idle Constant
 	*		idle
 	"\n"		line_start
+	" "		maybe_idlecomment
 	"%"		directive	recolor=-1
-	"#"		line_comment	recolor=-1
 	"'"		string_sq_1	recolor=-1
 	"\""		string_dq_1	recolor=-1
 	"{[]}"		brace		recolor=-1
@@ -35,7 +41,8 @@
 
 :maybe_key Idle
 	*		maybe_key1	recolor=-1 mark
-	"\n%#'\"{[]}*&!"	idle		noeat
+	"\n"		line_start
+	"%#'\"{[]}*&!"	idle		noeat
 	"-"		maybe_block1	mark
 
 :maybe_key1 Constant
