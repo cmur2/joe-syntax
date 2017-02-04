@@ -1033,3 +1033,7 @@
 -autoindent
 -syntax scheme
 -semi_comment
+
+ Docker
+*Dockerfile
+-syntax dockerfile
