@@ -12,7 +12,7 @@
 
 =Directive	red
 =Reference	yellow
-=LocalType	blue
+=LocalType	fg_310 # brown
 =BlockDelim	bold blue
 
 =BadTab		inverse red
@@ -23,15 +23,11 @@
 	"#"		line_comment	recolor=-1
 	" "		line_start
 
-:maybe_idlecomment Comment
-	*		idle		noeat
-	"#"		line_comment	recolor=-1
-
 :idle Constant
 	*		idle
 	"\n"		line_start
-	" "		maybe_idlecomment
 	"%"		directive	recolor=-1
+	" "		maybe_line_comment
 	"'"		string_sq_1	recolor=-1
 	"\""		string_dq_1	recolor=-1
 	"{[]}"		brace		recolor=-1
@@ -41,8 +37,7 @@
 
 :maybe_key Idle
 	*		maybe_key1	recolor=-1 mark
-	"\n"		line_start
-	"%#'\"{[]}*&!"	idle		noeat
+	"\n%#'\"{[]}*&!"	idle		noeat
 	"-"		maybe_block1	mark
 
 :maybe_key1 Constant
@@ -60,6 +55,10 @@
 # mark bad tabs until the first non-whitespace
 :bad_tab BadTab
 	*		line_start	noeat
+
+:maybe_line_comment Comment
+	*		idle		noeat
+	"#"		line_comment
 
 :line_comment Comment
 	*		line_comment
