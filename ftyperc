@@ -1037,3 +1037,9 @@
  Docker
 *Dockerfile
 -syntax dockerfile
+
+ Terraform
+*.tf
+-autoindent
+-syntax terraform
+-c_comment
