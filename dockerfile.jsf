@@ -21,7 +21,7 @@
 :arguments Idle
 	*		arguments
 	"\n"		idle
-	"#"		comment
+	"#"		comment		recolor=-1
 		
 	
 	
