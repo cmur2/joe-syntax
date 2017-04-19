@@ -72,14 +72,54 @@
 
 :interpolate_ident Interpolate
 	*		interpolate	noeat strings
+	"basename"	func
+	"ceil"		func
+	"chomp"		func
+	"cidrhost"	func
+	"cidrnetmask"	func
+	"cidrsubnet"	func
+	"coalesce"	func
+	"compact"	func
+	"concat"	func
 	"count"		var
 	"data"		var
+	"dirname"	func
+	"distinct"	func
 	"element"	func
+	"file"		func
+	"floor"		func
+	"format"	func
+	"formatlist"	func
+	"index"		func
+	"join"		func
+	"keys"		func
+	"length"	func
+	"list"		func
+	"lookup"	func
+	"lower"		func
+	"map"		func
+	"max"		func
+	"merge"		func
+	"min"		func
 	"module"	var
 	"path"		var
+	"pathexpand"	func
+	"replace"	func
 	"self"		var
+	"signum"	func
+	"slice"		func
+	"sort"		func
+	"split"		func
+	"substr"	func
 #	"terraform"	var
+	"timestamp"	func
+	"title"		func
+	"trimspace"	func
+	"upper"		func
+	"uuid"		func
+	"values"	func
 	"var"		var
+	"zipmap"	func
 done
 	"a-zA-Z"	interpolate_ident
 
