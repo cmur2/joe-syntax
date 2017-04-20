@@ -37,7 +37,7 @@
 :line_comment Comment
 	*		line_comment
 	# might be TODO label
-	"BFHNTX"	comment		noeat call=.comment_todo()
+	"BFHNTX"	line_comment		noeat call=.comment_todo()
 	"\n"		line_start
 
 :maybe_var_or_target Idle
