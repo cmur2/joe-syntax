@@ -1,0 +1,97 @@
+# JOE syntax highlight file for Makefile
+
+=Idle
+=Comment	green
+=CommentLabel	bold green
+=Constant	cyan
+=Escape		bold cyan
+=Bad		bold red
+
+=RecipeCont	bold cyan
+=TargetPhony	yellow
+=TargetOther	fg_310 # brown
+=TargetRest
+
+:line_start Idle
+	*		idle		noeat
+	"#"		line_comment	recolor=-1
+	"a-zA-Z._"	maybe_target	mark buffer
+	"\t"		recipe
+
+:idle Idle
+	*		idle
+	"$"		maybe_substitute
+	"\n"		line_start
+
+:maybe_substitute Idle
+	*		idle		noeat
+	"("		substitute	recolor=-2
+
+:substitute Constant
+	*		substitute
+	")"		idle
+
+:recipe Idle
+	*		recipe
+	"$"		maybe_r_substitute
+	"\\"		recipe_cont	recolor=-1
+	"\n"		line_start
+
+:recipe_cont RecipeCont
+	*		recipe		noeat
+	"\n"		recipe
+
+:maybe_r_substitute Idle
+	*		recipe		noeat
+	"("		r_substitute	recolor=-2
+
+:r_substitute Constant
+	*		r_substitute
+	")"		recipe
+
+:line_comment Comment
+	*		line_comment
+	# might be TODO label
+	"BFHNTX"	line_comment		noeat call=.comment_todo()
+	"\n"		line_start
+
+:maybe_target Idle
+	*		idle		noeat
+	":"		target_other	noeat recolormark strings
+	".PHONY"	target_phony
+done
+	"a-zA-Z._-"	maybe_target
+
+:target_phony TargetPhony
+	*		target_rest	noeat
+
+:target_other TargetOther
+	*		target_rest	noeat
+
+:target_rest TargetRest
+	*		target_rest
+	"\n"		line_start
+
+.subr comment_todo
+# initial state
+:comment_todo_init Comment
+	*		comment_todo_guess	buffer
+
+# highlight common TODO labels
+:comment_todo_guess Comment
+	*		comment_todo_unknown	noeat strings
+	"BUG"		comment_todo
+	"FIXME"		comment_todo
+	"HACK"		comment_todo
+	"NOTE"		comment_todo
+	"TODO"		comment_todo
+	"XXX"		comment_todo
+done
+	"A-Z"		comment_todo_guess
+
+:comment_todo_unknown Comment
+	*		NULL		noeat return
+
+:comment_todo CommentLabel
+	*		NULL		noeat return
+.end

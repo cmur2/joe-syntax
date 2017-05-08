@@ -40,6 +40,7 @@ Files with contributions (or unclear license info):
 * [powershell.jsf](https://github.com/cmur2/joe-syntax/blob/master/powershell.jsf) which is entirely contributed by [Oskar Liljeblad](https://github.com/osklil) under GPL v2 or any later version ([comment](https://github.com/cmur2/joe-syntax/pull/5#issuecomment-76935968))
 * [puppet.jsf](https://github.com/cmur2/joe-syntax/blob/master/puppet.jsf) which is created by [Christian Nicolai](https://github.com/cmur2) and then modified by [Eric Eisenhart](https://github.com/eeisenhart)
 * [sql.jsf](https://github.com/cmur2/joe-syntax/blob/master/sql.jsf) which is from an "unknown source" (delivered by [Rebecca Turner](https://github.com/iarna))
+* [yaml.jsf](https://github.com/cmur2/joe-syntax/blob/master/yaml.jsf) which is created by [Christian Nicolai](https://github.com/cmur2) with bug fixes from [Todd Lewis](https://github.com/utoddl)
 
 ## Links
 

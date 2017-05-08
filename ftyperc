@@ -689,27 +689,27 @@
  Makefile
 *Makefile
 -autoindent
--syntax conf
+-syntax makefile
 -pound_comment
 
 *makefile
 -autoindent
--syntax conf
+-syntax makefile
 -pound_comment
 
 *Makefile.in
 -autoindent
--syntax conf
+-syntax makefile
 -pound_comment
 
 *makefile.in
 -autoindent
--syntax conf
+-syntax makefile
 -pound_comment
 
 *MAKEFILE
 -autoindent
--syntax conf
+-syntax makefile
 -pound_comment
 
  Pascal
@@ -1033,3 +1033,13 @@
 -autoindent
 -syntax scheme
 -semi_comment
+
+ Docker
+*Dockerfile
+-syntax dockerfile
+
+ Terraform
+*.tf
+-autoindent
+-syntax terraform
+-c_comment

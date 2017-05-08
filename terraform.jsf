@@ -1,0 +1,169 @@
+# JOE syntax highlight file for Terraform (or "HashiCorp configuration language")
+
+=Idle
+=Comment	green
+=CommentLabel	bold green
+=Constant	cyan
+=Escape		bold cyan
+=Bad		bold red
+
+=Keyword	fg_310 # brown
+=Interpolate	magenta
+=InterpolateVar	bold magenta
+
+:idle Idle
+	*		idle
+	"#"		line_comment	recolor=-1
+	"/"		maybe_comment
+	"0-9"		number		recolor=-1
+	"\""		string		recolor=-1
+	"a-zA-Z_"	ident		buffer
+
+:line_comment Comment
+	*		line_comment
+	"\n"		idle
+
+:maybe_comment Idle
+	*		idle		noeat
+	"*"		comment		recolor=-2
+
+:comment Comment
+	*		comment
+	# might be TODO label
+	"BFHNTX"	comment		noeat call=.comment_todo()
+	"*"		maybe_end_comment
+
+:maybe_end_comment Comment
+	*		comment		noeat
+	"/"		idle
+	"*"		maybe_end_comment
+
+:number Constant
+	*		idle		noeat
+	"0-9"		number
+
+:string Constant
+	*		string
+	"$"		maybe_interpolate
+	"\""		idle
+
+:maybe_interpolate Constant
+	*		idle		noeat
+	"{"		interpolate	recolor=-2
+
+:interpolate Interpolate
+	*		interpolate
+	"\""		interpolate_string	recolor=-1
+	"0-9"		interpolate_number	recolor=-1
+	"*"		interpolate_star	recolor=-1
+	"a-zA-Z"	interpolate_ident	buffer
+	"}"		string
+
+:interpolate_string Constant
+	*		interpolate_string
+	"\""		interpolate
+
+:interpolate_number Constant
+	*		interpolate	noeat
+	"0-9"		interpolate_number
+
+:interpolate_star Constant
+	*		interpolate	noeat
+
+:interpolate_ident Interpolate
+	*		interpolate	noeat strings
+	"basename"	func
+	"ceil"		func
+	"chomp"		func
+	"cidrhost"	func
+	"cidrnetmask"	func
+	"cidrsubnet"	func
+	"coalesce"	func
+	"compact"	func
+	"concat"	func
+	"count"		var
+	"data"		var
+	"dirname"	func
+	"distinct"	func
+	"element"	func
+	"file"		func
+	"floor"		func
+	"format"	func
+	"formatlist"	func
+	"index"		func
+	"join"		func
+	"keys"		func
+	"length"	func
+	"list"		func
+	"lookup"	func
+	"lower"		func
+	"map"		func
+	"max"		func
+	"merge"		func
+	"min"		func
+	"module"	var
+	"path"		var
+	"pathexpand"	func
+	"replace"	func
+	"self"		var
+	"signum"	func
+	"slice"		func
+	"sort"		func
+	"split"		func
+	"substr"	func
+#	"terraform"	var
+	"timestamp"	func
+	"title"		func
+	"trimspace"	func
+	"upper"		func
+	"uuid"		func
+	"values"	func
+	"var"		var
+	"zipmap"	func
+done
+	"a-zA-Z"	interpolate_ident
+
+:var InterpolateVar
+	*		interpolate	noeat
+
+:func InterpolateVar
+	*		interpolate	noeat
+
+:ident Idle
+	*		idle		noeat strings
+	"false"		bool
+	"module"	kw
+	"resource"	kw
+	"true"		bool
+done
+	"a-zA-Z_"	ident
+
+:kw Keyword
+	*		idle		noeat
+	
+:bool Constant
+	*		idle		noeat
+
+.subr comment_todo
+# initial state
+:comment_todo_init Comment
+	*		comment_todo_guess	buffer
+
+# highlight common TODO labels
+:comment_todo_guess Comment
+	*		comment_todo_unknown	noeat strings
+	"BUG"		comment_todo
+	"FIXME"		comment_todo
+	"HACK"		comment_todo
+	"NOTE"		comment_todo
+	"TODO"		comment_todo
+	"XXX"		comment_todo
+done
+	"A-Z"		comment_todo_guess
+
+:comment_todo_unknown Comment
+	*		NULL		noeat return
+
+:comment_todo CommentLabel
+	*		NULL		noeat return
+.end
