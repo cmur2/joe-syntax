@@ -131,10 +131,15 @@ done
 
 :ident Idle
 	*		idle		noeat strings
+	"data"		kw
 	"false"		bool
 	"module"	kw
+	"output"	kw
+	"provider"	kw
 	"resource"	kw
+	"terraform"	kw
 	"true"		bool
+	"variable"	kw
 done
 	"a-zA-Z_"	ident
 
