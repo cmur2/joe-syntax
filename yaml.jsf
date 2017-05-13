@@ -24,10 +24,10 @@
 	" "		line_start
 
 :idle Constant
-	*		idle
+	*		plain_scalar	noeat
 	"\n"		line_start
 	"%"		directive	recolor=-1
-	" "		maybe_line_comment
+	" "		maybe_idle_comment
 	"'"		string_sq_1	recolor=-1
 	"\""		string_dq_1	recolor=-1
 	"{[]}"		brace		recolor=-1
@@ -35,9 +35,16 @@
 	"*&"		maybe_reference
 	"!"		maybe_typecast
 
+:plain_scalar Constant
+	*		plain_scalar
+	"\t"		bad_tab		recolor=-1
+	"\n"		line_start	noeat
+	" "		maybe_plain_scalar_comment
+
 :maybe_key Idle
 	*		maybe_key1	recolor=-1 mark
-	"\n%#'\"{[]}*&!"	idle		noeat
+	"\n"		line_start
+	"%#'\"{[]}*&!"	idle		noeat
 	"-"		maybe_block1	mark
 
 :maybe_key1 Constant
@@ -56,7 +63,11 @@
 :bad_tab BadTab
 	*		line_start	noeat
 
-:maybe_line_comment Comment
+:maybe_plain_scalar_comment Comment
+	*		plain_scalar	noeat
+	"#"		line_comment
+
+:maybe_idle_comment Comment
 	*		idle		noeat
 	"#"		line_comment
 
