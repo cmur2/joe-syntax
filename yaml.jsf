@@ -34,6 +34,7 @@
 	"."		maybe_block_end1
 	"*&"		maybe_reference
 	"!"		maybe_typecast
+	"#"		line_comment	recolor=-1
 
 :plain_scalar Constant
 	*		plain_scalar
