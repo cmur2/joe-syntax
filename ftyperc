@@ -1043,3 +1043,8 @@
 -autoindent
 -syntax terraform
 -c_comment
+
+*.tfvars
+-autoindent
+-syntax terraform
+-c_comment

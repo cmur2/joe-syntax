@@ -1,10 +1,10 @@
 # JOE Syntax Highlighting
 
-This directory mainly contains *improved and completely new* JOE syntax files fixing bugs in the original files and adding support for new languages.
+This repository mainly contains *improved and completely new* JOE syntax files fixing bugs in the original files and adding support for new languages.
 
 ## Using
 
-### *.jsf
+### \*.jsf
 
 To enable the .jsf files in this repository they need to appear in JOEs *syntax* directory, either locally (*~/.joe/syntax*) or globally. The global syntax directory is is likely to be */usr/share/joe/syntax* when using Debian and APT or */usr/local/Cellar/joe/3.7/share/joe/syntax* when using brew on Mac OS X.  You may download the [latest jsf-bundle](https://github.com/downloads/cmur2/joe-syntax/jsf-bundle_2.tar) and place it's contents into the *syntax* directory (Note: this bundle might be outdated compared to the repository's state).
 
@@ -45,8 +45,8 @@ Files with contributions (or unclear license info):
 ## Links
 
 For JOE see [here](http://joe-editor.sourceforge.net/).  
-For JOE project see [here](http://sourceforge.net/projects/joe-editor/).  
-For original JOE syntax files see [here](http://joe-editor.hg.sourceforge.net/hgweb/joe-editor/joe-editor/file/tip/syntax).  
+For JOE project see [here](https://sourceforge.net/projects/joe-editor/).  
+For original JOE syntax files see [here](https://sourceforge.net/p/joe-editor/mercurial/ci/default/tree/syntax/).  
 For ne (the nice editor that uses JOE syntax files, too) see [here](http://ne.di.unimi.it/).  
 
 *You can find this repository [here](https://github.com/cmur2/joe-syntax).*
