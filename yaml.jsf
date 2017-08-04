@@ -51,7 +51,7 @@
 	*		idle		noeat
 	":"		key
 	"a-zA-Z0-9_-"	maybe_key1
-	" "		maybe_key1_comment	noeat
+	" "		maybe_key1_comment
 
 # necessary to include the :
 :key Idle
