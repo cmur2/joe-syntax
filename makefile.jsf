@@ -15,7 +15,7 @@
 :line_start Idle
 	*		idle		noeat
 	"#"		line_comment	recolor=-1
-	"a-zA-Z._"	maybe_target	mark buffer
+	"a-zA-Z0-9._"	maybe_target	mark buffer
 	"\t"		recipe
 
 :idle Idle
@@ -60,7 +60,7 @@
 	":"		target_other	noeat recolormark strings
 	".PHONY"	target_phony
 done
-	"a-zA-Z._-"	maybe_target
+	"a-zA-Z0-9._-"	maybe_target
 
 :target_phony TargetPhony
 	*		target_rest	noeat
