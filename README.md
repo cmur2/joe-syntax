@@ -26,13 +26,14 @@ See [HowItWorks.md](https://github.com/cmur2/joe-syntax/blob/master/HowItWorks.m
 
 Every .jsf file from the original repository is under GPL as [JOE](http://sourceforge.net/projects/joe-editor/). There are efforts to move JOE to GPL v2 or any later version.
 
-Every .jsf file created and modified exclusively by [me](https://github.com/cmur2) is under GPL v2 or any later version.
+Every .jsf file created and modified exclusively by [me (Christian Nicolai)](https://github.com/cmur2) is under GPL v2 or any later version.
 
 Files with contributions (or unclear license info):
 
 * [elixir.jsf](https://github.com/cmur2/joe-syntax/blob/master/elixir.jsf) which is created by [Andrew Lisin](https://github.com/avli) under GPL v2 or any later version ([comment](https://github.com/cmur2/joe-syntax/pull/18#issuecomment-78036115))
 * [erlang.jsf](https://github.com/cmur2/joe-syntax/blob/master/erlang.jsf) which is created by [Christian Nicolai](https://github.com/cmur2) and then modified by Jonas Rosling and enhanced with a small tweak from [raev](https://github.com/raev)
 * [go.jsf](https://github.com/cmur2/joe-syntax/blob/master/go.jsf) which is entirely contributed by [Daniel Vargas](https://github.com/danielvargas)
+* [ini.jsf](https://github.com/cmur2/joe-syntax/blob/master/ini.jsf) which is created by [Christian Nicolai](https://github.com/cmur2) with contributions from [Todd Lewis](https://github.com/utoddl)
 * [js.jsf](https://github.com/cmur2/joe-syntax/blob/master/js.jsf) which is created by [Christian Nicolai](https://github.com/cmur2) and then modified by [Rebecca Turner](https://github.com/iarna) under GPL v2 or any later version and compatible ISC license ([comment](https://github.com/cmur2/joe-syntax/pull/13#issuecomment-78058267))
 * [json.jsf](https://github.com/cmur2/joe-syntax/blob/master/json.jsf) which is entirely contributed by [Rebecca Turner](https://github.com/iarna) under GPL v2 or any later version and compatible ISC license ([comment](https://github.com/cmur2/joe-syntax/pull/14#issuecomment-78058037))
 * [lsl.jsf](https://github.com/cmur2/joe-syntax/blob/master/lsl.jsf) which is from [Zai Lynch](https://wiki.secondlife.com/wiki/User:Zai_Lynch) under GPL v1 (delivered by [Rebecca Turner](https://github.com/iarna))

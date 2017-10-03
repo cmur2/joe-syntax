@@ -1,76 +1,104 @@
 # JOE syntax highlight file for INI files
+# License: GPL
+# by Christian Nicolai (http://mycrobase.de)
+# contributions by Todd Lewis (https://github.com/utoddl)
 
 =Idle
 =Comment	green
-=Constant	cyan
-=Escape		bold cyan
-=Bad		bold red
-
+=Constant	cyan    dim
+=Escape		cyan    bold
+=Bad		red     bold
 =Key
-=Separator	bold
-=Section	bold magenta
+=Separator	        bold
+=Section	white   bold bg_MAGENTA
+=SectionBracket	white        bg_MAGENTA
 
 :line_start Idle
-	*		key		noeat
+	*		key		noeat mark
 	"\n"		line_start
 	" \t\r"		line_start # leading spaces
 	";#"		line_comment	recolor=-1
-	"["		section		recolor=-1
+	"["		section_start	noeat
 	"="		missing_key	recolor=-1
 
 :line_comment Comment
 	*		line_comment
 	"\n"		line_start
 
+:section_start SectionBracket
+	*		section		mark noeat
+	"["		section_start
+
 :section Section
 	*		section
-	"]"		section_end
-	"\n"		section_unexp_end	recolor=-2
+	"]"		section_end	noeat
+	"\n"		unexpected_end	noeat recolormark
 
-:section_end Bad
-	*		section_end
+:section_end SectionBracket
+	*		unexpected_end  noeat
+	"]"		section_end	mark
 	"\n"		line_start
 
-:section_unexp_end Bad
-	*		line_start	noeat
+:unexpected_end Bad
+	*		unexpected_end
+	"\n"		line_start
 
 :missing_key Bad
 	*		value_pre	noeat
 
 :key Key
 	*		key
-	" \t\r"		key_post	noeat
-	"="		sep		recolor=-1
-	"\n"		key_error	recolor=-2
-
-:key_post Idle
-	*		value_pre	noeat
-	" \t\r"		key_post
-	"="		sep		recolor=-1
-
-:key_error Bad
-	*		key		noeat
+	"=:"		sep		noeat mark
+	"\n"		unexpected_end	noeat recolormark
 
 :sep Separator
 	*		value_pre	noeat
+	"=:"		value_pre
 
 :value_pre Idle
-	*		value		noeat
+	*		value		noeat mark
 	" \t\r"		value_pre
+	"\n"		unexpected_end	noeat recolormark
 
 :value Constant
 	*		value
-	"\\"		value_esc
+	"\\"		value_esc	mark
 	"\n"		line_start
-	" \t\r"		maybe_comment	recolor=-1
+	" "		value_maybe_comment	recolor=-1
 
-:value_esc Escape
-	*		value
-	"\n"		value_error	recolor=-2
-
-:value_error Bad
-	*		value		noeat
-
-:maybe_comment Idle
+:value_maybe_comment Idle
 	*		value		noeat
 	";#"		line_comment	recolor=-1
+
+:value_esc Escape
+	*		value_esc_bad	noeat recolormark
+	"0abtrn;#=:\\"	value_esc_end	recolormark
+	"x"		value_esc_unicode1
+	"\n"		value		mark
+
+:value_esc_bad Bad
+	*		value		noeat mark
+
+:value_esc_end Escape
+	*		value		noeat mark
+
+:value_esc_unicode1 Escape
+	*		value_esc_bad	noeat recolormark
+	"0-9a-fA-F"	value_esc_unicode2
+	"\n"		unexpected_end	noeat recolormark
+
+:value_esc_unicode2 Escape
+	*		value_esc_bad	noeat recolormark
+	"0-9a-fA-F"	value_esc_unicode3
+	"\n"		unexpected_end	noeat recolormark
+
+:value_esc_unicode3 Escape
+	*		value_esc_bad	noeat recolormark
+	"0-9a-fA-F"	value_esc_unicode4
+	"\n"		unexpected_end	noeat recolormark
+
+:value_esc_unicode4 Escape
+	*		value_esc_bad	noeat recolormark
+	"0-9a-fA-F"	value_esc_end	      recolormark
+	"\n"		unexpected_end	noeat recolormark
+
