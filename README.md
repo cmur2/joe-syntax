@@ -6,9 +6,7 @@ This repository mainly contains *improved and completely new* JOE syntax files f
 
 ### \*.jsf
 
-To enable the .jsf files in this repository they need to appear in JOEs *syntax* directory, either locally (*~/.joe/syntax*) or globally. The global syntax directory is is likely to be */usr/share/joe/syntax* when using Debian and APT or */usr/local/Cellar/joe/3.7/share/joe/syntax* when using brew on Mac OS X.  You may download the [latest jsf-bundle](https://github.com/downloads/cmur2/joe-syntax/jsf-bundle_2.tar) and place it's contents into the *syntax* directory (Note: this bundle might be outdated compared to the repository's state).
-
-A maybe better way to achieve this is to clone this repository somewhere onto your hard disk and establish symlinks to all jsf files in the *syntax* directory, or to install this repository to *~/.joe/syntax* and symlink *ftyperc* appropriately (see below).
+To enable the .jsf files in this repository they need to appear in JOEs *syntax* directory, either locally (*~/.joe/syntax*) or globally. The global syntax directory is is likely to be */usr/share/joe/syntax* when using Debian and APT or */usr/local/Cellar/joe/3.7/share/joe/syntax* when using brew on Mac OS X.  You may either download the contents of this repository as a [zip file](https://github.com/cmur2/joe-syntax/archive/master.zip) or clone this repository somewhere onto your hard disk and establish symlinks to all jsf files in the *syntax* directory, or to install this repository to *~/.joe/syntax* and symlink *ftyperc* appropriately (see below).
 
 ### ftyperc (only needed to enable new languages)
 
@@ -16,7 +14,7 @@ To enable the enhanced *ftyperc* from this repository to gain syntax highlightin
 
 ## How JOE syntax highlighting works
 
-See [HowItWorks.md](https://github.com/cmur2/joe-syntax/blob/master/HowItWorks.md) which is a reworked version of the header of [c.jsf](http://joe-editor.hg.sourceforge.net/hgweb/joe-editor/joe-editor/file/tip/syntax/c.jsf.in). Another good resource might be [jsf.jsf](http://joe-editor.hg.sourceforge.net/hgweb/joe-editor/joe-editor/file/tip/syntax/jsf.jsf.in).
+See [HowItWorks.md](https://github.com/cmur2/joe-syntax/blob/master/misc/HowItWorks.md) which is a reworked version of the header of [c.jsf](http://joe-editor.hg.sourceforge.net/hgweb/joe-editor/joe-editor/file/tip/syntax/c.jsf.in). Another good resource might be [jsf.jsf](http://joe-editor.hg.sourceforge.net/hgweb/joe-editor/joe-editor/file/tip/syntax/jsf.jsf.in).
 
 ## Other Syntax Files
 
