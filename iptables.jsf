@@ -1,4 +1,5 @@
 # JOE syntax highlight file for ip(6)tables-save and -restore
+# by Christian Nicolai (http://mycrobase.de)
 
 =Idle
 =Comment	green

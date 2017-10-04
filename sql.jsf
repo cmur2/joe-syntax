@@ -35,7 +35,7 @@
 	"."		maybe_float
 	"\""		string		recolor=-1
 	"'"		char		recolor=-1
-	"a-zA-Z_@"	ident		buffer
+	"\i@"		ident		buffer
 	"{}"		brace		recolor=-1
 	",:;=()><[]*&|!~+%^"	control		recolor=-1
 
@@ -226,7 +226,7 @@
 	"count"		kw
 	"counter"		kw
 	"create"		kw
-#	"currency"		kw
+	"currency"		kw
 	"current_date"		kw
 	"current_time"		kw
 	"current_timestamp"		kw
@@ -409,7 +409,7 @@
 	"usage"		kw
 	"user"		kw
 	"using"		kw
-#	"value"		kw
+	"value"		kw
 	"values"		kw
 	"var"		kw
 	"varbinary"		kw
@@ -485,7 +485,7 @@
 	"deterministic"	kw
 	"list"          kw
 done
-	"a-zA-Z0-9_"	ident
+	"\c"		ident
 
 :type Type
 	*	idle	noeat
