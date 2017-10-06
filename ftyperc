@@ -35,6 +35,16 @@
 -wordwrap
 -syntax troff
 
+ UNIX configuration file
+[conf]
+ Automake file
+*.am
+ System RC file
+*rc
+-autoindent
+-syntax conf
+-pound_comment
+
  TeX
 [tex]
 *.tex
@@ -567,16 +577,6 @@
 *.m
 -wordwrap
 -syntax matlab
-
- UNIX configuration file
-[conf]
- Automake file
-*.am
- System RC file
-*rc
--autoindent
--syntax conf
--pound_comment
 
  Windows batch files
 [bat]
