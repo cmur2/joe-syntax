@@ -680,6 +680,11 @@
 -autoindent
 -title
 
+*.esh
+-syntax erlang
+-autoindent
+-tab 4
+
  Sieve (ManageSieve)
 [sieve]
 *.sieve
