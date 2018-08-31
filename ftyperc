@@ -958,7 +958,7 @@
 -autoindent
 -tab 4
 
-*.esh
+*.escript
 -syntax erlang
 -autoindent
 -tab 4
