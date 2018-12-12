@@ -14,7 +14,7 @@ To enable the enhanced *ftyperc* from this repository to gain syntax highlightin
 
 ## How JOE syntax highlighting works
 
-See [HowItWorks.md](https://github.com/cmur2/joe-syntax/blob/master/misc/HowItWorks.md) which is a reworked version of the header of [c.jsf](http://joe-editor.hg.sourceforge.net/hgweb/joe-editor/joe-editor/file/tip/syntax/c.jsf.in). Another good resource might be [jsf.jsf](http://joe-editor.hg.sourceforge.net/hgweb/joe-editor/joe-editor/file/tip/syntax/jsf.jsf.in).
+See [HowItWorks.md](misc/HowItWorks.md) which is a reworked version of the header of [c.jsf](http://joe-editor.hg.sourceforge.net/hgweb/joe-editor/joe-editor/file/tip/syntax/c.jsf.in). Another good resource might be [jsf.jsf](http://joe-editor.hg.sourceforge.net/hgweb/joe-editor/joe-editor/file/tip/syntax/jsf.jsf.in).
 
 ## Other Syntax Files
 
@@ -28,18 +28,18 @@ Every .jsf file created and modified exclusively by [me (Christian Nicolai)](htt
 
 Files with contributions (or unclear license info):
 
-* [elixir.jsf](https://github.com/cmur2/joe-syntax/blob/master/elixir.jsf) which is created by [Andrey Lisin](https://github.com/avli) under GPL v2 or any later version ([comment](https://github.com/cmur2/joe-syntax/pull/18#issuecomment-78036115))
-* [erlang.jsf](https://github.com/cmur2/joe-syntax/blob/master/erlang.jsf) which is created by [Christian Nicolai](https://github.com/cmur2) and then modified by Jonas Rosling and enhanced with a small tweak from [raev](https://github.com/raev)
-* [go.jsf](https://github.com/cmur2/joe-syntax/blob/master/go.jsf) which is entirely contributed by [Daniel Vargas](https://github.com/danielvargas)
-* [ini.jsf](https://github.com/cmur2/joe-syntax/blob/master/ini.jsf) which is created by [Christian Nicolai](https://github.com/cmur2) with contributions from [Todd Lewis](https://github.com/utoddl)
-* [js.jsf](https://github.com/cmur2/joe-syntax/blob/master/js.jsf) which is created by [Christian Nicolai](https://github.com/cmur2) and then modified by [Rebecca Turner](https://github.com/iarna) under GPL v2 or any later version and compatible ISC license ([comment](https://github.com/cmur2/joe-syntax/pull/13#issuecomment-78058267))
-* [json.jsf](https://github.com/cmur2/joe-syntax/blob/master/json.jsf) which is entirely contributed by [Rebecca Turner](https://github.com/iarna) under GPL v2 or any later version and compatible ISC license ([comment](https://github.com/cmur2/joe-syntax/pull/14#issuecomment-78058037))
-* [lsl.jsf](https://github.com/cmur2/joe-syntax/blob/master/lsl.jsf) which is from [Zai Lynch](https://wiki.secondlife.com/wiki/User:Zai_Lynch) under GPL v1 (delivered by [Rebecca Turner](https://github.com/iarna))
-* [md.jsf](https://github.com/cmur2/joe-syntax/blob/master/md.jsf) which is created by [Christian Nicolai](https://github.com/cmur2) and then modified by Jonas Rosling and [Todd Lewis](https://github.com/utoddl)
-* [powershell.jsf](https://github.com/cmur2/joe-syntax/blob/master/powershell.jsf) which is entirely contributed by [Oskar Liljeblad](https://github.com/osklil) under GPL v2 or any later version ([comment](https://github.com/cmur2/joe-syntax/pull/5#issuecomment-76935968))
-* [puppet.jsf](https://github.com/cmur2/joe-syntax/blob/master/puppet.jsf) which is created by [Christian Nicolai](https://github.com/cmur2) and then modified by [Eric Eisenhart](https://github.com/eeisenhart)
-* [sql.jsf](https://github.com/cmur2/joe-syntax/blob/master/sql.jsf) which is from an "unknown source" (delivered by [Rebecca Turner](https://github.com/iarna))
-* [yaml.jsf](https://github.com/cmur2/joe-syntax/blob/master/yaml.jsf) which is created by [Christian Nicolai](https://github.com/cmur2) with bug fixes from [Todd Lewis](https://github.com/utoddl)
+* [elixir.jsf](elixir.jsf) which is created by [Andrey Lisin](https://github.com/avli) under GPL v2 or any later version ([comment](https://github.com/cmur2/joe-syntax/pull/18#issuecomment-78036115))
+* [erlang.jsf](erlang.jsf) which is created by [Christian Nicolai](https://github.com/cmur2) and then modified by Jonas Rosling and enhanced with a small tweak from [raev](https://github.com/raev)
+* [go.jsf](go.jsf) which is entirely contributed by [Daniel Vargas](https://github.com/danielvargas)
+* [ini.jsf](ini.jsf) which is created by [Christian Nicolai](https://github.com/cmur2) with contributions from [Todd Lewis](https://github.com/utoddl)
+* [js.jsf](js.jsf) which is created by [Christian Nicolai](https://github.com/cmur2) and then modified by [Rebecca Turner](https://github.com/iarna) under GPL v2 or any later version and compatible ISC license ([comment](https://github.com/cmur2/joe-syntax/pull/13#issuecomment-78058267))
+* [json.jsf](json.jsf) which is entirely contributed by [Rebecca Turner](https://github.com/iarna) under GPL v2 or any later version and compatible ISC license ([comment](https://github.com/cmur2/joe-syntax/pull/14#issuecomment-78058037))
+* [lsl.jsf](lsl.jsf) which is from [Zai Lynch](https://wiki.secondlife.com/wiki/User:Zai_Lynch) under GPL v1 (delivered by [Rebecca Turner](https://github.com/iarna))
+* [md.jsf](md.jsf) which is created by [Christian Nicolai](https://github.com/cmur2) and then modified by Jonas Rosling and [Todd Lewis](https://github.com/utoddl)
+* [powershell.jsf](powershell.jsf) which is entirely contributed by [Oskar Liljeblad](https://github.com/osklil) under GPL v2 or any later version ([comment](https://github.com/cmur2/joe-syntax/pull/5#issuecomment-76935968))
+* [puppet.jsf](puppet.jsf) which is created by [Christian Nicolai](https://github.com/cmur2) and then modified by [Eric Eisenhart](https://github.com/eeisenhart)
+* [sql.jsf](sql.jsf) which is from an "unknown source" (delivered by [Rebecca Turner](https://github.com/iarna))
+* [yaml.jsf](yaml.jsf) which is created by [Christian Nicolai](https://github.com/cmur2) with bug fixes from [Todd Lewis](https://github.com/utoddl)
 
 ## Links
 
