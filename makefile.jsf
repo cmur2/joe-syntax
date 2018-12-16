@@ -59,7 +59,7 @@
 	":"		target_other	noeat recolormark strings
 	".PHONY"	target_phony
 done
-	"a-zA-Z0-9._-"	maybe_target
+	"a-zA-Z0-9._/-"	maybe_target
 
 :target_phony TargetPhony
 	*		target_rest	noeat
