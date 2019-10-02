@@ -27,12 +27,16 @@
 	"\""		string_dq_1	recolor=-1
 	"a-zA-Z_"	ident		noeat
 	"{}"		brace		recolor=-1
-	"@"		decorator	recolor=-1
+	"@"		maybe_decorator
 
 :brace Brace
 	*		idle		noeat
 
 # annotations
+:maybe_decorator Idle
+	"a-zA-Z_"	decorator	recolor=-2
+	" (\t\r\n"	idle		noeat
+
 :decorator Decorator
 	*		decorator
 	" (\t\r\n"	idle		noeat
