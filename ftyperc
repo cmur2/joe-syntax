@@ -412,6 +412,7 @@
 *
 +#![ 	]*[^\n]*python[0-9.]*\>
 *.py
+*.star
 -autoindent
 -title
 -syntax python
