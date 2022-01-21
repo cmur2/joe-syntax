@@ -131,6 +131,7 @@
 *Gemfile
 *Rakefile
 *Guardfile
+*Vagrantfile
 *.rabl
 -autoindent
 -title
