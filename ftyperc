@@ -894,3 +894,10 @@
 -autoindent
 -syntax terraform
 -c_comment
+
+ Asciidoc
+[asciidoc]
+*.adoc
+*.asciidoc
+-syntax asciidoc
+ -wordwrap

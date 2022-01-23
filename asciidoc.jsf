@@ -1,0 +1,135 @@
+# JOE syntax highlight file for Asciidoc
+# by Christian Nicolai
+
+=Idle
+=Tag		green
+=Bad		bold red
+
+=Bold		bold white
+=Italic		underline
+=Headline	bold yellow
+=Code		green
+=List		yellow
+=Link		blue
+
+:line_start Idle
+	*		idle		noeat
+	"="		headline_prefix recolor=-1
+	" "		code
+	"-*"		maybe_list
+	":"		maybe_tag	mark
+
+:idle Idle
+	*		idle
+	"\n"		line_start
+	"*"		maybe_bold	mark
+	"_"		maybe_italic	mark
+	"h"		maybe_link	mark
+	"`"		backtick	buffer noeat
+
+:headline_prefix Idle
+	*		headline
+	"="		headline_prefix
+
+:headline Headline
+	*		headline
+	"\n"		line_start
+
+:code Code
+	*		code
+	"\n"		line_start
+
+:maybe_list Idle
+	*		idle
+	" "		list
+	"-"		maybe_rule1
+
+:list List
+	*		list
+	"\n"		line_start
+
+:maybe_tag Idle
+	*		maybe_tag
+	":"		tag
+
+:tag Idle
+	*		tag_end		recolormark
+
+:tag_end Tag
+	*		idle		noeat
+
+:maybe_bold Idle
+	*		maybe_bold
+	"*"		bold
+
+:bold Idle
+	*		bold_end	recolormark
+
+:bold_end Bold
+	*		idle		noeat
+
+:maybe_italic Idle
+	*		maybe_italic
+	"_"		italic
+
+:italic Idle
+	*		italic_end	recolormark
+
+:italic_end Italic
+	*		idle		noeat
+
+:backtick Idle
+	*		backtick_body	save_s noeat
+	"`"		backtick
+
+:backtick_body Code
+	*		backtick_body
+	"`"             backtick_end_maybe	buffer
+
+:backtick_end_maybe Code
+	*		backtick_body	strings
+	"&"		backtick_end
+done
+	"`"		backtick_end_maybe
+
+:backtick_end Idle
+	*		idle		noeat
+
+:maybe_link Idle
+	*		idle		noeat markend
+	"t"		maybe_link1
+
+:maybe_link1 Idle
+	*		idle		noeat markend
+	"t"		maybe_link2
+
+:maybe_link2 Idle
+	*		idle		noeat markend
+	"p"		maybe_link3
+
+:maybe_link3 Idle
+	*		idle		noeat markend
+	"s"		maybe_link3
+	":"		maybe_link4
+
+:maybe_link4 Idle
+	*		maybe_link4
+	"["		maybe_link5
+
+:maybe_link5 Idle
+	*		maybe_link5
+	"]"		link
+
+:link Idle
+	*		link_end	recolormark
+
+:link_end Link
+	*		idle		noeat
+
+:maybe_rule1 Idle
+	*		idle
+	"-"		rule		recolor=-3
+
+:rule Headline
+	*		rule
+	"\n"		line_start
