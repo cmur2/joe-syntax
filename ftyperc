@@ -646,6 +646,7 @@
 *hgrc
 *.gitconfig
 *.git/config
+*.service
 -syntax ini
 -pound_comment
 -semi_comment
